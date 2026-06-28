@@ -3,268 +3,776 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEN Z ERA - This Era Trends</title>
+    <title>GEN Z ERA - Malik Nafay Labs</title>
     <style>
-        /* CSS Designs - Gen Z Modern Dark Theme */
+        /* CSS Variables */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0F172A, #1E1B4B);
+            --primary: #7C3AED;
+            --secondary: #3B82F6;
+            --success: #22C55E;
+            --wrong: #EF4444;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #FFFFFF;
+            --text-muted: #94A3B8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        .light-mode {
+            --bg-gradient: linear-gradient(135deg, #F8FAFC, #E2E8F0);
+            --primary: #6D28D9;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --text: #0F172A;
+            --text-muted: #475569;
+            --glass-border: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Reset & Base Setup */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
+
         body {
-            background-color: #0d0d12;
-            color: #ffffff;
-            line-height: 1.6;
+            background: var(--bg-gradient);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.5s ease;
         }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        /* Typography & Utilities */
+        h1, h2, h3 { font-weight: 700; }
+        .text-center { text-align: center; }
+        .hidden { display: none !important; }
+        .glass-panel {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header */
         header {
-            background: linear-gradient(90deg, #1f1f3a, #0f0f1c);
-            padding: 20px 40px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #5a5af3;
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(10px);
         }
-        .header-buttons button {
-            background: #5a5af3;
-            color: white;
+
+        .brand h1 { font-size: 24px; color: var(--text); letter-spacing: 1px; }
+        .brand p { font-size: 12px; color: var(--secondary); margin-top: 2px; }
+        .brand .dev-tag { font-size: 10px; color: var(--text-muted); }
+
+        .nav-buttons button, .action-btn {
+            padding: 10px 20px;
             border: none;
-            padding: 10px 15px;
-            margin-left: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .header-buttons button:hover {
-            background: #4040d8;
-            transform: scale(1.05);
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
         }
-        .main-content {
-            text-align: center;
-            padding: 80px 20px;
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
         }
-        .main-content h1 {
-            font-size: 4rem;
-            color: #00ffcc;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--glass-border);
         }
-        .main-content p {
-            font-size: 1.5rem;
-            color: #aaaaaa;
-            margin-bottom: 50px;
-        }
-        .qa-section {
-            background: #1a1a2e;
-            max-width: 600px;
+        .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid #333;
+            position: relative;
         }
-        .qa-section h2 {
+
+        /* Animations */
+        .fade-in { animation: fadeIn 0.5s ease forwards; }
+        .slide-up { animation: slideUp 0.6s ease forwards; }
+        .bounce { animation: bounce 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+        /* Quiz Layout */
+        #quiz-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
-        .qa-section input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
+
+        .stats span { margin-right: 15px; font-weight: bold; color: var(--secondary); }
+
+        /* Timer SVG */
+        .timer-circle {
+            position: relative;
+            width: 50px;
+            height: 50px;
         }
-        .qa-section button {
-            background: #00ffcc;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+        .timer-circle svg { width: 50px; height: 50px; transform: rotate(-90deg); }
+        .timer-circle circle {
+            fill: none;
+            stroke-width: 4;
+            stroke: rgba(255,255,255,0.1);
+        }
+        .timer-circle .progress {
+            stroke: var(--secondary);
+            stroke-dasharray: 125;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s linear;
+        }
+        .timer-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
             font-weight: bold;
-            cursor: pointer;
+            font-size: 14px;
         }
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #09090b;
-            color: #777;
+
+        /* Progress Bar */
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        #progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        /* Question */
+        #question-text {
+            font-size: 24px;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        /* Options */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        @media(max-width: 600px) { .options-grid { grid-template-columns: 1fr; } }
+
+        .option-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid transparent;
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .option-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .option-card.correct { background: rgba(34, 197, 94, 0.2); border-color: var(--success); }
+        .option-card.wrong { background: rgba(239, 68, 68, 0.2); border-color: var(--wrong); }
+        .option-card.disabled { pointer-events: none; }
+
+        .poll-stats { font-size: 12px; font-weight: bold; color: var(--success); }
+
+        /* Controls */
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+        }
+        .social-actions button {
+            background: transparent; border: none; color: var(--text); cursor: pointer;
+            margin-right: 15px; font-size: 18px; transition: transform 0.2s;
+        }
+        .social-actions button:hover { transform: scale(1.2); color: var(--secondary); }
+
+        /* Start Screen & End Screen */
+        .center-screen { text-align: center; max-width: 600px; padding: 40px; }
+        .center-screen h2 { font-size: 32px; margin-bottom: 15px; color: var(--primary); }
+        .center-screen p { margin-bottom: 25px; color: var(--text-muted); }
+        .score-circle {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            border: 8px solid var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px; font-weight: bold;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
+        }
+
+        /* Sidebar Links / Socials */
+        .sidebar {
             position: fixed;
-            bottom: 0;
-            width: 100%;
-            border-top: 1px solid #222;
+            left: 20px; top: 50%; transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 15px; z-index: 50;
         }
-        footer span {
-            color: #00ffcc;
-            font-weight: bold;
+        .sidebar a {
+            background: var(--card-bg); backdrop-filter: blur(10px);
+            color: var(--text); text-decoration: none; padding: 10px; border-radius: 50%;
+            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--glass-border); transition: 0.3s;
+            font-weight: bold; font-size: 12px;
         }
-        
-        /* Modals (Popups) CSS */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0,0,0,0.8); 
+        .sidebar a:hover { background: var(--primary); transform: scale(1.1); }
+        @media(max-width: 768px) { .sidebar { display: none; } } /* Hide on small screens to save space */
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s;
         }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
         .modal-content {
-            background-color: #1f1f3a;
-            margin: 10% auto; 
-            padding: 30px;
-            border: 1px solid #5a5af3;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
-            text-align: center;
+            width: 90%; max-width: 400px; padding: 30px; text-align: center;
         }
-        .close-btn {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close-btn:hover { color: white; }
         .modal-content input {
-            width: 90%;
-            padding: 10px;
-            margin: 20px 0;
-            border-radius: 5px;
-            border: 1px solid #5a5af3;
+            width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px;
+            border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2);
+            color: var(--text); outline: none;
         }
-        .modal-content a {
-            display: block;
-            color: #00ffcc;
-            text-decoration: none;
-            margin: 15px 0;
-            font-size: 1.1rem;
-            transition: 0.2s;
+        .verify-badge { color: var(--success); font-weight: bold; margin-top: 15px; display: none; }
+
+        /* Confetti Canvas */
+        #confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed; bottom: 20px; right: 20px; background: var(--success);
+            color: white; padding: 12px 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transform: translateX(150%); transition: transform 0.3s ease; z-index: 1001;
         }
-        .modal-content a:hover { color: #fff; }
+        .toast.show { transform: translateX(0); }
     </style>
 </head>
 <body>
 
+    <!-- Confetti Canvas -->
+    <canvas id="confetti"></canvas>
+
+    <!-- Header -->
     <header>
-        <div class="logo">
-            <h2>THIS ERA TRENDS</h2>
+        <div class="brand">
+            <h1>GEN Z ERA</h1>
+            <p>THE ERA OF 2000-2026</p>
+            <span class="dev-tag">DEVELOP BY MALIK NAFAY LABS | THIS WEB MAKE BY NAFAY</span>
         </div>
-        <div class="header-buttons">
-            <button onclick="openModal('signinModal')">SIGN IN</button>
-            <button onclick="openModal('helpModal')">HELP</button>
-            <button onclick="openModal('nafayLinksModal')">NAFAY'S LINKS</button>
-            <button onclick="openModal('socialModal')">SOCIAL MEDIA</button>
+        <div class="nav-buttons">
+            <button class="btn-outline" onclick="toggleTheme()" id="theme-btn">🌙</button>
+            <button class="btn-outline" onclick="toggleSound()">🔊</button>
+            <button class="btn-outline" onclick="showModal('help-modal')">Help</button>
+            <button class="btn-primary" onclick="showModal('signin-modal')">Sign In</button>
         </div>
     </header>
 
-    <div class="main-content">
-        <h1>GEN Z ERA</h1>
-        <p>THE ERA OF 2000-2026</p>
-
-        <div class="qa-section">
-            <h2>Ask a Question</h2>
-            <input type="text" placeholder="What's trending in this era?">
-            <button>Submit Question</button>
-        </div>
+    <!-- Sidebar Socials -->
+    <div class="sidebar">
+        <a href="https://whatsapp.com/channel/0029Vb8Z5szGOj9wNBebrQ2U" target="_blank" title="WhatsApp News Labs">WA</a>
+        <a href="https://maliknafaytop10.github.io/ELEVEN-PRO-/" target="_blank" title="Eleven Pro">GH1</a>
+        <a href="https://maliknafaytop10.github.io/the-ultimate-song/" target="_blank" title="Ultimate Song">GH2</a>
+        <a href="https://maliknafaytop10.github.io/POETS-WRITES/" target="_blank" title="Poets Writes">GH3</a>
+        <a href="https://maliknafaytop10.github.io/NAFAY-WRITE/" target="_blank" title="Nafay Write">GH4</a>
     </div>
 
-    <footer>
-        <p>DEVELOP BY <span>MALIK NAFAY LABS</span></p>
-        <p>THIS WEB MAKE BY NAFAY</p>
-    </footer>
+    <!-- Main Content -->
+    <main>
+        <!-- Start Screen -->
+        <div id="start-screen" class="glass-panel center-screen slide-up">
+            <h2>Welcome to the Ultimate Poll & Quiz</h2>
+            <p>Test your preferences and see how you rank among the Gen Z choices. 30 seconds per question.</p>
+            <button class="btn-primary bounce" style="font-size: 18px; padding: 15px 40px;" onclick="startQuiz()">Start Now 🚀</button>
+            
+            <div style="margin-top: 30px; font-size: 12px; text-align: left;">
+                <p style="color: var(--secondary); margin-bottom:10px;">Official Socials:</p>
+                TikTok: <b>pakpattan123</b> | Insta: <b>maliknafay321</b> | X: <b>falconlabs_officail</b> | Snapchat: <b>nafaypakpattan1</b>
+            </div>
+        </div>
 
-    <div id="signinModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('signinModal')">&times;</span>
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="glass-panel hidden">
+            <div class="quiz-header">
+                <div class="stats">
+                    <span id="question-counter">Question: 1/20</span>
+                    <span id="score-display">Score: 0</span>
+                </div>
+                <div class="timer-circle">
+                    <svg><circle class="progress" cx="25" cy="25" r="20"></circle></svg>
+                    <div class="timer-text" id="timer-text">30</div>
+                </div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+
+            <h2 id="question-text">Question will appear here?</h2>
+            
+            <div class="options-grid" id="options-grid">
+                <!-- Options injected via JS -->
+            </div>
+
+            <div class="quiz-controls">
+                <div class="social-actions">
+                    <button title="Like" onclick="likeQuestion()">❤️ <span id="like-count">0</span></button>
+                    <button title="Share" onclick="showToast('Shared successfully!')">📤</button>
+                    <button title="Copy Link" onclick="showToast('Link Copied!')">🔗</button>
+                </div>
+                <div>
+                    <button class="btn-outline" onclick="prevQuestion()" id="prev-btn" style="display:none;">Previous</button>
+                    <button class="btn-outline" onclick="skipQuestion()">Skip</button>
+                    <button class="btn-primary hidden" onclick="nextQuestion()" id="next-btn">Next ➔</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="glass-panel center-screen hidden">
+            <h2>Quiz Complete! 🎉</h2>
+            <div class="score-circle" id="final-score">0%</div>
+            <p id="performance-msg">Awesome job!</p>
+            <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
+                <p style="color: var(--success);">Correct: <b id="correct-ans">0</b></p>
+                <p style="color: var(--wrong);">Wrong: <b id="wrong-ans">0</b></p>
+                <p style="color: var(--text-muted);">Skipped: <b id="skipped-ans">0</b></p>
+            </div>
+            <button class="btn-primary" onclick="location.reload()">Home / Restart</button>
+        </div>
+    </main>
+
+    <!-- Sign In Modal -->
+    <div class="modal-overlay" id="signin-modal">
+        <div class="glass-panel modal-content">
             <h2>Sign In</h2>
-            <p>Please enter your Gmail address to continue.</p>
-            <input type="email" id="gmailInput" placeholder="Enter your @gmail.com email">
-            <br>
-            <button onclick="verifyGmail()" style="background: #5a5af3; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">Submit</button>
-            <p id="signinMessage" style="margin-top: 15px; color: #00ffcc; display: none;"></p>
+            <p style="font-size: 12px; color: var(--text-muted);">Please enter your @gmail.com account</p>
+            <input type="email" id="email-input" placeholder="example@gmail.com" />
+            <button class="btn-primary" style="width: 100%;" onclick="verifySignIn()">Submit</button>
+            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="closeModal('signin-modal')">Cancel</button>
+            <div class="verify-badge" id="verify-badge">@Verify AI @Pro ✅</div>
         </div>
     </div>
 
-    <div id="helpModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('helpModal')">&times;</span>
-            <h2>Help & Privacy Policy</h2>
-            <p style="margin-top: 15px; text-align: left; color: #ccc;">
-                Welcome to GEN Z ERA Q&A. <br><br>
-                <strong>Privacy Policy:</strong> We respect your data. Emails collected during sign-in are strictly for verification purposes and are protected under Malik Nafay Labs protocols.
+    <!-- Help / Privacy Modal -->
+    <div class="modal-overlay" id="help-modal">
+        <div class="glass-panel modal-content" style="max-height: 80vh; overflow-y: auto;">
+            <h2 style="color: var(--primary);">Help & Privacy Policy</h2>
+            <p style="text-align: left; font-size: 14px; margin-top: 15px; line-height: 1.6;">
+                <b>Welcome to Gen Z Era.</b> Developed by Malik Nafay Labs.<br><br>
+                <b>Rules:</b><br>
+                - You have 30 seconds per question.<br>
+                - Correct answers score points.<br>
+                - Use Keyboard (1,2,3,4) to select options and Enter to skip/next.<br><br>
+                <b>Privacy:</b><br>
+                Your data is stored locally. We respect your choices.<br>
+                Contact us on WhatsApp channel or Socials.
             </p>
+            <button class="btn-primary" style="width: 100%; margin-top: 20px;" onclick="closeModal('help-modal')">Got it!</button>
         </div>
     </div>
 
-    <div id="nafayLinksModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('nafayLinksModal')">&times;</span>
-            <h2>Nafay's Official Links</h2>
-            <a href="https://whatsapp.com/channel/0029Vb8Z5szGOj9wNBebrQ2U" target="_blank">NEWS LABS channel on WhatsApp</a>
-            <a href="https://maliknafaytop10.github.io/ELEVEN-PRO-/" target="_blank">ELEVEN-PRO</a>
-            <a href="https://maliknafaytop10.github.io/the-ultimate-song/" target="_blank">The Ultimate Song</a>
-            <a href="https://maliknafaytop10.github.io/POETS-WRITES/" target="_blank">POETS-WRITES</a>
-            <a href="https://maliknafaytop10.github.io/NAFAY-WRITE/" target="_blank">NAFAY-WRITE</a>
-        </div>
-    </div>
-
-    <div id="socialModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('socialModal')">&times;</span>
-            <h2>Social Media Accounts</h2>
-            <a href="https://www.tiktok.com/@pakpattan123" target="_blank">TikTok: pakpattan123</a>
-            <a href="https://www.instagram.com/maliknafay321" target="_blank">Instagram: maliknafay321</a>
-            <a href="https://twitter.com/falconlabs_officail" target="_blank">X: falconlabs_officail</a>
-            <a href="https://www.snapchat.com/add/nafaypakpattan1" target="_blank">Snapchat: nafaypakpattan1</a>
-            <a href="#" target="_blank">Threads: @maliknafay321</a>
-        </div>
-    </div>
+    <!-- Toast -->
+    <div class="toast" id="toast">Notification</div>
 
     <script>
-        // Function to open modals
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-        }
+        // --- 1. Database (Questions Array) ---
+        // Mixture of Poll/Quiz. To make it a functional "Quiz" with score, one option is marked as correct.
+        const quizData = [
+            { q: "What is your favorite car brand?", options: ["BMW", "Mercedes-Benz", "Rolls-Royce", "Ferrari"], answer: 2 },
+            { q: "What is your favorite bike brand?", options: ["Yamaha", "Honda", "Kawasaki", "Ducati"], answer: 2 },
+            { q: "Which meal can you never say no to?", options: ["Pizza", "Biryani", "Burger", "Pasta"], answer: 1 },
+            { q: "If you had Rs. 1 million, what would you buy first?", options: ["A car", "A house", "A bike", "Save it"], answer: 1 },
+            { q: "What's your dream vacation?", options: ["Beach", "Mountains", "Dubai", "Europe"], answer: 2 },
+            { q: "If you could have one superpower?", options: ["Fly", "Invisible", "Read minds", "Time travel"], answer: 3 },
+            { q: "Which smartphone brand do you trust most?", options: ["Apple", "Samsung", "Xiaomi", "Google Pixel"], answer: 0 },
+            { q: "Which gaming console would you choose?", options: ["PlayStation", "Xbox", "Nintendo Switch", "Gaming PC"], answer: 3 },
+            { q: "Which fast-food restaurant do you prefer?", options: ["McDonald's", "KFC", "Burger King", "Subway"], answer: 1 },
+            { q: "Which browser do you use the most?", options: ["Google Chrome", "Microsoft Edge", "Firefox", "Safari"], answer: 0 },
+            { q: "Which social media app do you use the most?", options: ["Instagram", "TikTok", "Facebook", "X"], answer: 1 },
+            { q: "If you could instantly learn one skill?", options: ["Coding", "Cooking", "Guitar", "Speaking every language"], answer: 0 },
+            { q: "Which streaming service do you like most?", options: ["Netflix", "Disney+", "Prime Video", "YouTube"], answer: 3 },
+            { q: "Which chocolate is your favorite?", options: ["KitKat", "Dairy Milk", "Snickers", "Mars"], answer: 1 },
+            { q: "Which watch brand would you wear?", options: ["Rolex", "Casio", "Seiko", "Apple Watch"], answer: 0 },
+            { q: "Which AI assistant do you like the most?", options: ["ChatGPT", "Gemini", "Claude", "Copilot"], answer: 1 },
+            { q: "What's harder to live without?", options: ["Phone", "Wi-Fi", "Friends", "Family"], answer: 1 },
+            { q: "If you could teleport anywhere right now?", options: ["Dubai", "Japan", "Switzerland", "Maldives"], answer: 2 },
+            { q: "What's your biggest goal right now?", options: ["Become rich", "Stay healthy", "Travel the world", "Start a successful business"], answer: 3 },
+            { q: "Which would you choose?", options: ["Unlimited money", "Unlimited happiness", "Perfect health", "World peace"], answer: 1 }
+        ];
 
-        // Function to close modals
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-            // Reset sign in message on close
-            if(modalId === 'signinModal') {
-                document.getElementById("signinMessage").style.display = "none";
-                document.getElementById("gmailInput").value = "";
-            }
-        }
+        // --- 2. State Variables ---
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+        let skippedAnswers = 0;
+        let timer;
+        let timeLeft = 30;
+        let hasAnswered = false;
+        let soundEnabled = true;
 
-        // Close modal if user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target.className === "modal") {
-                event.target.style.display = "none";
-            }
-        }
+        // --- 3. DOM Elements ---
+        const screens = {
+            start: document.getElementById('start-screen'),
+            quiz: document.getElementById('quiz-container'),
+            result: document.getElementById('result-screen')
+        };
+        const elements = {
+            qText: document.getElementById('question-text'),
+            optionsGrid: document.getElementById('options-grid'),
+            counter: document.getElementById('question-counter'),
+            scoreDisp: document.getElementById('score-display'),
+            timerText: document.getElementById('timer-text'),
+            progressCircle: document.querySelector('.progress'),
+            progressBar: document.getElementById('progress-bar'),
+            nextBtn: document.getElementById('next-btn'),
+            prevBtn: document.getElementById('prev-btn'),
+            likeCount: document.getElementById('like-count')
+        };
 
-        // Gmail Verification Logic
-        function verifyGmail() {
-            const emailInput = document.getElementById("gmailInput").value;
-            const messageElement = document.getElementById("signinMessage");
+        // --- 4. Audio System (Web Audio API - No external files!) ---
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioContext();
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            if (audioCtx.state === 'suspended') audioCtx.resume();
             
-            if (emailInput.toLowerCase().includes("@gmail.com")) {
-                messageElement.style.color = "#00ffcc";
-                messageElement.innerHTML = "Sign In Complete! Welcome to Gen Z Era.";
-                messageElement.style.display = "block";
-                
-                // Automatically close modal after 2 seconds
-                setTimeout(() => {
-                    closeModal('signinModal');
-                }, 2000);
-            } else {
-                messageElement.style.color = "#ff4d4d";
-                messageElement.innerHTML = "Error: Please enter a valid @gmail.com address.";
-                messageElement.style.display = "block";
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            if (type === 'click') {
+                osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+            } else if (type === 'correct') {
+                osc.type = 'triangle'; 
+                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.2);
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+            } else if (type === 'wrong') {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+            } else if (type === 'win') {
+                // simple arpeggio
+                [400, 500, 600, 800].forEach((freq, i) => {
+                    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+                    o.connect(g); g.connect(audioCtx.destination);
+                    o.frequency.value = freq;
+                    g.gain.setValueAtTime(0.1, audioCtx.currentTime + (i*0.1));
+                    o.start(audioCtx.currentTime + (i*0.1)); o.stop(audioCtx.currentTime + (i*0.1) + 0.1);
+                });
             }
         }
+
+        // --- 5. Core Logic ---
+        function startQuiz() {
+            playSound('click');
+            screens.start.classList.add('hidden');
+            screens.quiz.classList.remove('hidden');
+            screens.quiz.classList.add('fade-in');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            clearInterval(timer);
+            hasAnswered = false;
+            timeLeft = 30;
+            elements.nextBtn.classList.add('hidden');
+            elements.prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
+            elements.likeCount.innerText = Math.floor(Math.random() * 500) + 50; // Random trending likes
+
+            const q = quizData[currentQuestionIndex];
+            elements.qText.innerText = `${currentQuestionIndex + 1}. ${q.q}`;
+            elements.counter.innerText = `Question: ${currentQuestionIndex + 1}/${quizData.length}`;
+            elements.scoreDisp.innerText = `Score: ${score}`;
+            
+            // Update Progress Bar
+            const prog = ((currentQuestionIndex) / quizData.length) * 100;
+            elements.progressBar.style.width = `${prog}%`;
+
+            elements.optionsGrid.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'option-card fade-in';
+                div.style.animationDelay = `${idx * 0.1}s`;
+                div.innerHTML = `<span>${String.fromCharCode(65 + idx)}. ${opt}</span> <span class="poll-stats hidden"></span>`;
+                div.onclick = () => selectOption(idx, div);
+                elements.optionsGrid.appendChild(div);
+            });
+
+            startTimer();
+        }
+
+        function selectOption(selectedIndex, cardElement) {
+            if (hasAnswered) return;
+            hasAnswered = true;
+            clearInterval(timer);
+            
+            const q = quizData[currentQuestionIndex];
+            const isCorrect = selectedIndex === q.answer;
+            
+            // Mock Live Vote Percentages for the "Poll" feel
+            const cards = document.querySelectorAll('.option-card');
+            let remaining = 100;
+            cards.forEach((card, idx) => {
+                card.classList.add('disabled');
+                let percent = 0;
+                if (idx === q.answer) {
+                    card.classList.add('correct');
+                    percent = Math.floor(Math.random() * 20) + 40; // Assign higher % to correct
+                } else if (idx === selectedIndex && !isCorrect) {
+                    card.classList.add('wrong');
+                    percent = Math.floor(Math.random() * 15) + 10;
+                } else {
+                    percent = Math.floor(Math.random() * 15);
+                }
+                remaining -= percent;
+                const statSpan = card.querySelector('.poll-stats');
+                statSpan.innerText = `${percent}%`;
+                statSpan.classList.remove('hidden');
+            });
+
+            if (isCorrect) {
+                playSound('correct');
+                score += 10;
+                correctAnswers++;
+                showToast("Correct! +10 Points");
+            } else {
+                playSound('wrong');
+                wrongAnswers++;
+            }
+
+            elements.scoreDisp.innerText = `Score: ${score}`;
+            elements.nextBtn.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            playSound('click');
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+
+        function prevQuestion() {
+            playSound('click');
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function skipQuestion() {
+            if (!hasAnswered) skippedAnswers++;
+            nextQuestion();
+        }
+
+        // --- 6. Timer Logic ---
+        function startTimer() {
+            updateTimerUI();
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerUI();
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    if (!hasAnswered) {
+                        skippedAnswers++;
+                        showToast("Time's up!");
+                        elements.nextBtn.classList.remove('hidden');
+                        hasAnswered = true; // prevent clicks
+                        document.querySelectorAll('.option-card').forEach(c => c.classList.add('disabled'));
+                    }
+                }
+            }, 1000);
+        }
+
+        function updateTimerUI() {
+            elements.timerText.innerText = timeLeft;
+            // 125 is the circumference of the circle (2 * pi * r) where r=20
+            const offset = 125 - (125 * timeLeft) / 30;
+            elements.progressCircle.style.strokeDashoffset = offset;
+            elements.progressCircle.style.stroke = timeLeft <= 5 ? 'var(--wrong)' : 'var(--secondary)';
+        }
+
+        // --- 7. End Screen & Confetti ---
+        function endQuiz() {
+            screens.quiz.classList.add('hidden');
+            screens.result.classList.remove('hidden');
+            screens.result.classList.add('fade-in');
+            
+            const percentage = Math.round((correctAnswers / quizData.length) * 100);
+            document.getElementById('final-score').innerText = `${percentage}%`;
+            document.getElementById('correct-ans').innerText = correctAnswers;
+            document.getElementById('wrong-ans').innerText = wrongAnswers;
+            document.getElementById('skipped-ans').innerText = skippedAnswers;
+
+            const msgEl = document.getElementById('performance-msg');
+            if (percentage >= 80) {
+                msgEl.innerText = "Nawab Level! You crushed it. 🔥";
+                playSound('win');
+                triggerConfetti();
+            } else if (percentage >= 50) {
+                msgEl.innerText = "Good job! You know your stuff. 👍";
+            } else {
+                msgEl.innerText = "Keep grinding! Next time for sure. 💪";
+            }
+        }
+
+        // Lightweight Confetti
+        const canvas = document.getElementById('confetti');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particles = [];
+
+        function triggerConfetti() {
+            for (let i = 0; i < 150; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 6 + 2,
+                    dx: Math.random() * 4 - 2,
+                    dy: Math.random() * 4 + 2,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`
+                });
+            }
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            requestAnimationFrame(animateConfetti);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, index) => {
+                p.y += p.dy; p.x += p.dx;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                if (p.y > canvas.height) particles.splice(index, 1);
+            });
+        }
+
+        // --- 8. UI Interactions & Modals ---
+        function showModal(id) { document.getElementById(id).classList.add('active'); playSound('click'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); playSound('click'); }
+        
+        function verifySignIn() {
+            const email = document.getElementById('email-input').value;
+            if (email.toLowerCase().endsWith('@gmail.com')) {
+                playSound('correct');
+                document.getElementById('verify-badge').style.display = 'block';
+                setTimeout(() => { closeModal('signin-modal'); showToast('Signed In as @Verify AI @Pro'); }, 1500);
+            } else {
+                playSound('wrong');
+                showToast("Only @gmail.com is allowed!");
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            playSound('click');
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            showToast(soundEnabled ? "Sound ON 🔊" : "Sound OFF 🔇");
+        }
+
+        function likeQuestion() {
+            playSound('click');
+            let el = document.getElementById('like-count');
+            el.innerText = parseInt(el.innerText) + 1;
+            el.parentElement.style.color = "var(--wrong)";
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // --- 9. Keyboard Support ---
+        window.addEventListener('keydown', (e) => {
+            if (screens.quiz.classList.contains('hidden')) return;
+            const key = e.key;
+            if (['1', '2', '3', '4'].includes(key)) {
+                const idx = parseInt(key) - 1;
+                const cards = document.querySelectorAll('.option-card');
+                if (cards[idx] && !hasAnswered) selectOption(idx, cards[idx]);
+            }
+            if (key === 'Enter') {
+                if (hasAnswered) nextQuestion();
+                else skipQuestion();
+            }
+        });
+
+        // Initialize user preference
+        if(localStorage.getItem('theme') === 'light') toggleTheme();
     </script>
 </body>
 </html>
