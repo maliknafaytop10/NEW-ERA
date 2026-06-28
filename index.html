@@ -3,776 +3,1288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEN Z ERA - Malik Nafay Labs</title>
+    <title>GEN Z ERA - THIS ERA TRENDS</title>
     <style>
-        /* CSS Variables */
+        /* CSS DESIGN STYLES & GLASSMORPHISM IMPORTS */
         :root {
-            --bg-gradient: linear-gradient(135deg, #0F172A, #1E1B4B);
+            --bg-dark: #0F172A;
             --primary: #7C3AED;
             --secondary: #3B82F6;
             --success: #22C55E;
             --wrong: #EF4444;
             --card-bg: rgba(30, 41, 59, 0.7);
-            --text: #FFFFFF;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #FFFFFF;
             --text-muted: #94A3B8;
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --transition-speed: 0.3s;
         }
 
         .light-mode {
-            --bg-gradient: linear-gradient(135deg, #F8FAFC, #E2E8F0);
+            --bg-dark: #F8FAFC;
             --primary: #6D28D9;
+            --secondary: #2563EB;
+            --success: #16A34A;
+            --wrong: #DC2626;
             --card-bg: rgba(255, 255, 255, 0.8);
-            --text: #0F172A;
+            --card-border: rgba(124, 58, 237, 0.2);
+            --text-main: #0F172A;
             --text-muted: #475569;
-            --glass-border: rgba(0, 0, 0, 0.1);
         }
 
-        /* Reset & Base Setup */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            user-select: none;
         }
 
         body {
-            background: var(--bg-gradient);
-            color: var(--text);
-            min-height: 100vh;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-family);
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.5s ease;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+            min-height: 100vh;
+            position: relative;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
-
-        /* Typography & Utilities */
-        h1, h2, h3 { font-weight: 700; }
-        .text-center { text-align: center; }
-        .hidden { display: none !important; }
-        .glass-panel {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
         }
 
-        /* Header */
+        /* BACKGROUND FLOATING SHAPES */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            filter: blur(80px);
+            opacity: 0.15;
+            border-radius: 50%;
+            animation: floating 12s infinite alternate ease-in-out;
+        }
+
+        .shape-1 { width: 300px; height: 300px; top: 10%; left: -5%; animation-duration: 14s; }
+        .shape-2 { width: 400px; height: 400px; bottom: 10%; right: -5%; animation-duration: 18s; }
+
+        @keyframes floating {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(40px) scale(1.1); }
+        }
+
+        /* NAVBAR & HEADER */
         header {
-            padding: 20px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--glass-border);
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(10px);
         }
 
-        .brand h1 { font-size: 24px; color: var(--text); letter-spacing: 1px; }
-        .brand p { font-size: 12px; color: var(--secondary); margin-top: 2px; }
-        .brand .dev-tag { font-size: 10px; color: var(--text-muted); }
+        .brand {
+            display: flex;
+            flex-direction: column;
+        }
 
-        .nav-buttons button, .action-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
+        .brand h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #7C3AED, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
             font-weight: 600;
-            transition: all 0.3s ease;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
-        }
-
-        .btn-primary:hover {
+        .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
         }
 
         .btn-outline {
             background: transparent;
-            color: var(--text);
-            border: 1px solid var(--glass-border);
+            border: 2px solid var(--primary);
+            color: var(--text-main);
+            box-shadow: none;
         }
-        .btn-outline:hover { background: rgba(255,255,255,0.1); }
 
-        /* Main Container */
-        main {
-            flex: 1;
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* TOGGLE CONTROLS */
+        .icon-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            width: 100%;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .icon-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* MAIN CONTAINER WIREFRAME */
+        main {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        /* APP SCREENS LAYOUT */
+        .app-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: transform 0.4s ease, opacity 0.4s ease;
             position: relative;
         }
 
-        /* Animations */
-        .fade-in { animation: fadeIn 0.5s ease forwards; }
-        .slide-up { animation: slideUp 0.6s ease forwards; }
-        .bounce { animation: bounce 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-
-        /* Quiz Layout */
-        #quiz-container {
-            width: 100%;
-            max-width: 800px;
-            padding: 30px;
+        .hidden {
+            display: none !important;
         }
 
+        /* HERO ENTRY SCREEN */
+        .hero-section {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero-section h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .hero-section p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* QUIZ POLL WRAPPER INTERFACE */
         .quiz-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
 
-        .stats span { margin-right: 15px; font-weight: bold; color: var(--secondary); }
+        .meta-badges {
+            display: flex;
+            gap: 0.5rem;
+        }
 
-        /* Timer SVG */
-        .timer-circle {
+        .badge {
+            background: rgba(255,255,255,0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--card-border);
+        }
+
+        .badge-primary {
+            background: rgba(124, 58, 237, 0.2);
+            color: #C084FC;
+            border-color: rgba(124, 58, 237, 0.4);
+        }
+
+        /* REVOLVING TIMING LOOPS ARCHETYPE */
+        .timer-container {
             position: relative;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
         }
-        .timer-circle svg { width: 50px; height: 50px; transform: rotate(-90deg); }
-        .timer-circle circle {
-            fill: none;
-            stroke-width: 4;
-            stroke: rgba(255,255,255,0.1);
+
+        .timer-svg {
+            transform: rotate(-90deg);
+            width: 60px;
+            height: 60px;
         }
-        .timer-circle .progress {
-            stroke: var(--secondary);
-            stroke-dasharray: 125;
+
+        .timer-svg circle {
+            slot: stroke-dasharray;
+            stroke-dasharray: 151;
             stroke-dashoffset: 0;
+            stroke-linecap: round;
+            stroke-width: 5;
+            fill: none;
+        }
+
+        .circle-bg { stroke: rgba(255,255,255,0.1); }
+        .circle-progress {
+            stroke: var(--secondary);
             transition: stroke-dashoffset 1s linear;
         }
+
         .timer-text {
             position: absolute;
-            top: 50%; left: 50%;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
-            font-weight: bold;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
         }
 
-        /* Progress Bar */
-        .progress-bar-container {
-            width: 100%;
-            height: 8px;
+        /* PROGRESS TRACKERS */
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar-wrapper {
             background: rgba(255,255,255,0.1);
+            height: 8px;
             border-radius: 4px;
-            margin-bottom: 30px;
             overflow: hidden;
-        }
-        #progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            width: 0%;
-            transition: width 0.4s ease;
+            margin-bottom: 0.5rem;
         }
 
-        /* Question */
-        #question-text {
-            font-size: 24px;
-            margin-bottom: 30px;
+        .progress-bar-fill {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 0%;
+            height: 100%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* OPTIONS MATRIX DESIGN RULES */
+        .question-text {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
             line-height: 1.4;
         }
 
-        /* Options */
         .options-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
         }
-        @media(max-width: 600px) { .options-grid { grid-template-columns: 1fr; } }
+
+        @media (min-width: 768px) {
+            .options-grid { grid-template-columns: 1fr 1fr; }
+        }
 
         .option-card {
-            background: rgba(255,255,255,0.05);
-            border: 2px solid transparent;
-            padding: 20px;
-            border-radius: 12px;
+            background: rgba(255,255,255,0.03);
+            border: 2px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
             cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
         }
+
         .option-card:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--primary);
+            background: rgba(255,255,255,0.07);
+            border-color: var(--secondary);
             transform: translateY(-2px);
         }
-        .option-card.correct { background: rgba(34, 197, 94, 0.2); border-color: var(--success); }
-        .option-card.wrong { background: rgba(239, 68, 68, 0.2); border-color: var(--wrong); }
-        .option-card.disabled { pointer-events: none; }
 
-        .poll-stats { font-size: 12px; font-weight: bold; color: var(--success); }
+        .option-card.selected {
+            border-color: var(--primary);
+            background: rgba(124, 58, 237, 0.15);
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+        }
 
-        /* Controls */
-        .quiz-controls {
+        .option-card.correct {
+            border-color: var(--success) !important;
+            background: rgba(34, 197, 94, 0.2) !important;
+            color: white;
+        }
+
+        .option-card.wrong {
+            border-color: var(--wrong) !important;
+            background: rgba(239, 68, 68, 0.2) !important;
+            color: white;
+        }
+
+        .option-card.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .vote-percentage {
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        /* NAVIGATION CONTROL PLATFORM */
+        .controls-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 20px;
-        }
-        .social-actions button {
-            background: transparent; border: none; color: var(--text); cursor: pointer;
-            margin-right: 15px; font-size: 18px; transition: transform 0.2s;
-        }
-        .social-actions button:hover { transform: scale(1.2); color: var(--secondary); }
-
-        /* Start Screen & End Screen */
-        .center-screen { text-align: center; max-width: 600px; padding: 40px; }
-        .center-screen h2 { font-size: 32px; margin-bottom: 15px; color: var(--primary); }
-        .center-screen p { margin-bottom: 25px; color: var(--text-muted); }
-        .score-circle {
-            width: 150px; height: 150px;
-            border-radius: 50%;
-            border: 8px solid var(--primary);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 36px; font-weight: bold;
-            margin: 0 auto 30px auto;
-            box-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        /* Sidebar Links / Socials */
-        .sidebar {
-            position: fixed;
-            left: 20px; top: 50%; transform: translateY(-50%);
-            display: flex; flex-direction: column; gap: 15px; z-index: 50;
+        .navigation-btns {
+            display: flex;
+            gap: 0.75rem;
         }
-        .sidebar a {
-            background: var(--card-bg); backdrop-filter: blur(10px);
-            color: var(--text); text-decoration: none; padding: 10px; border-radius: 50%;
-            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
-            border: 1px solid var(--glass-border); transition: 0.3s;
-            font-weight: bold; font-size: 12px;
-        }
-        .sidebar a:hover { background: var(--primary); transform: scale(1.1); }
-        @media(max-width: 768px) { .sidebar { display: none; } } /* Hide on small screens to save space */
 
-        /* Modal */
+        /* END SCREEN SCORE MATRIX */
+        .end-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .end-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--card-border);
+            padding: 1.25rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .stat-box .num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-box .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* MODAL WINDOW SYSTEM FOR REAL VERIFIED SIGN IN BOX */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
-        .modal-overlay.active { opacity: 1; pointer-events: all; }
-        .modal-content {
-            width: 90%; max-width: 400px; padding: 30px; text-align: center;
-        }
-        .modal-content input {
-            width: 100%; padding: 12px; margin: 15px 0; border-radius: 8px;
-            border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2);
-            color: var(--text); outline: none;
-        }
-        .verify-badge { color: var(--success); font-weight: bold; margin-top: 15px; display: none; }
 
-        /* Confetti Canvas */
-        #confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
-        
-        /* Toast Notification */
-        .toast {
-            position: fixed; bottom: 20px; right: 20px; background: var(--success);
-            color: white; padding: 12px 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transform: translateX(150%); transition: transform 0.3s ease; z-index: 1001;
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
         }
-        .toast.show { transform: translateX(0); }
+
+        .modal-box {
+            background: #1E293B;
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            padding: 2.5rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .modal-subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .input-control {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid var(--card-border);
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-control:focus {
+            border-color: var(--primary);
+        }
+
+        .badges-row {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ROUTING PANELS LINKS MATRIX */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 600px) {
+            .links-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .link-anchor {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all var(--transition-speed);
+        }
+
+        .link-anchor:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--secondary);
+            transform: translateX(3px);
+        }
+
+        /* TOAST SYSTEM RULES */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .toast {
+            background: #1E293B;
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* LABELS FOOTER */
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-top: 1px solid var(--card-border);
+            margin-top: 4rem;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        /* CONFETTI LAYER CANVAS EFFECT */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1500;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Confetti Canvas -->
-    <canvas id="confetti"></canvas>
+    <!-- BACKDROP BLURS -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
 
-    <!-- Header -->
+    <!-- CANVAS FOR CONFETTI -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- HEADER PANEL STRUC -->
     <header>
         <div class="brand">
             <h1>GEN Z ERA</h1>
-            <p>THE ERA OF 2000-2026</p>
-            <span class="dev-tag">DEVELOP BY MALIK NAFAY LABS | THIS WEB MAKE BY NAFAY</span>
+            <span>THE ERA OF 2000-2026</span>
         </div>
-        <div class="nav-buttons">
-            <button class="btn-outline" onclick="toggleTheme()" id="theme-btn">🌙</button>
-            <button class="btn-outline" onclick="toggleSound()">🔊</button>
-            <button class="btn-outline" onclick="showModal('help-modal')">Help</button>
-            <button class="btn-primary" onclick="showModal('signin-modal')">Sign In</button>
+        <div class="nav-actions">
+            <button class="btn btn-sm btn-outline" id="help-trigger">Help</button>
+            <button class="btn btn-sm btn-outline" id="policy-trigger">Privacy Policies</button>
+            <button class="btn btn-sm btn-outline" id="links-trigger">Nafay's Links</button>
+            <button class="icon-btn" id="sound-toggle" title="Mute/Unmute">🔊</button>
+            <button class="icon-btn" id="theme-toggle" title="Toggle Mode">🌙</button>
+            <button class="btn btn-sm" id="signin-navbar-btn">Sign In</button>
+            <div id="user-avatar-slot" class="hidden" style="font-size: 1.5rem; background: var(--primary); padding: 0.3rem 0.6rem; border-radius: 50%;">⚡</div>
         </div>
     </header>
 
-    <!-- Sidebar Socials -->
-    <div class="sidebar">
-        <a href="https://whatsapp.com/channel/0029Vb8Z5szGOj9wNBebrQ2U" target="_blank" title="WhatsApp News Labs">WA</a>
-        <a href="https://maliknafaytop10.github.io/ELEVEN-PRO-/" target="_blank" title="Eleven Pro">GH1</a>
-        <a href="https://maliknafaytop10.github.io/the-ultimate-song/" target="_blank" title="Ultimate Song">GH2</a>
-        <a href="https://maliknafaytop10.github.io/POETS-WRITES/" target="_blank" title="Poets Writes">GH3</a>
-        <a href="https://maliknafaytop10.github.io/NAFAY-WRITE/" target="_blank" title="Nafay Write">GH4</a>
-    </div>
-
-    <!-- Main Content -->
+    <!-- MAIN DISPLAY CANVAS WIREFRAME -->
     <main>
-        <!-- Start Screen -->
-        <div id="start-screen" class="glass-panel center-screen slide-up">
-            <h2>Welcome to the Ultimate Poll & Quiz</h2>
-            <p>Test your preferences and see how you rank among the Gen Z choices. 30 seconds per question.</p>
-            <button class="btn-primary bounce" style="font-size: 18px; padding: 15px 40px;" onclick="startQuiz()">Start Now 🚀</button>
-            
-            <div style="margin-top: 30px; font-size: 12px; text-align: left;">
-                <p style="color: var(--secondary); margin-bottom:10px;">Official Socials:</p>
-                TikTok: <b>pakpattan123</b> | Insta: <b>maliknafay321</b> | X: <b>falconlabs_officail</b> | Snapchat: <b>nafaypakpattan1</b>
-            </div>
+        
+        <!-- HERO START CARD SCREEN -->
+        <div class="app-card hero-section" id="screen-start">
+            <h2>This Era Trends</h2>
+            <p>Test your knowledge on choices, brands, and pop-culture trends from the Gen Z Timeline (2000-2026).</p>
+            <button class="btn" id="start-quiz-btn" style="font-size: 1.2rem; padding: 0.8rem 2.5rem;">Start Quiz & Poll Matrix</button>
         </div>
 
-        <!-- Quiz Container -->
-        <div id="quiz-container" class="glass-panel hidden">
+        <!-- WORKING QUIZ CONTROLLER PLATFORM -->
+        <div class="app-card hidden" id="screen-quiz">
             <div class="quiz-header">
-                <div class="stats">
-                    <span id="question-counter">Question: 1/20</span>
-                    <span id="score-display">Score: 0</span>
+                <div class="meta-badges">
+                    <span class="badge badge-primary" id="badge-category">Trends</span>
+                    <span class="badge" id="badge-difficulty">Standard</span>
                 </div>
-                <div class="timer-circle">
-                    <svg><circle class="progress" cx="25" cy="25" r="20"></circle></svg>
-                    <div class="timer-text" id="timer-text">30</div>
+                <div class="timer-container">
+                    <svg class="timer-svg">
+                        <circle class="circle-bg" cx="30" cy="30" r="24"></circle>
+                        <circle class="circle-progress" id="timer-progress-circle" cx="30" cy="30" r="24"></circle>
+                    </svg>
+                    <div class="timer-text" id="timer-countdown-lbl">30</div>
                 </div>
             </div>
 
-            <div class="progress-bar-container">
-                <div id="progress-bar"></div>
-            </div>
-
-            <h2 id="question-text">Question will appear here?</h2>
-            
-            <div class="options-grid" id="options-grid">
-                <!-- Options injected via JS -->
-            </div>
-
-            <div class="quiz-controls">
-                <div class="social-actions">
-                    <button title="Like" onclick="likeQuestion()">❤️ <span id="like-count">0</span></button>
-                    <button title="Share" onclick="showToast('Shared successfully!')">📤</button>
-                    <button title="Copy Link" onclick="showToast('Link Copied!')">🔗</button>
+            <!-- PROGRESS TRACKERS -->
+            <div class="progress-container">
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-fill" id="quiz-progress-fill"></div>
                 </div>
-                <div>
-                    <button class="btn-outline" onclick="prevQuestion()" id="prev-btn" style="display:none;">Previous</button>
-                    <button class="btn-outline" onclick="skipQuestion()">Skip</button>
-                    <button class="btn-primary hidden" onclick="nextQuestion()" id="next-btn">Next ➔</button>
+                <div class="progress-meta">
+                    <span id="counter-questions-lbl">Question 1 of 20</span>
+                    <span id="counter-percentage-lbl">0% Complete</span>
+                </div>
+            </div>
+
+            <!-- RUNTIME TEXTS -->
+            <div class="question-text" id="main-question-text">Loading survey question parameters...</div>
+
+            <!-- DYNAMIC BLOCKS HOUSING 4 CLICKS CARDS -->
+            <div class="options-grid" id="options-matrix-box">
+                <!-- Programmatically generated options go here -->
+            </div>
+
+            <!-- NAVIGATION INTERACTION CONTROLS BAR -->
+            <div class="controls-row">
+                <div class="progress-meta" style="gap: 1rem;">
+                    <span>Live Score: <b id="live-score-lbl" style="color:var(--secondary)">0</b></span>
+                    <span>Answered: <b id="live-answered-lbl">0</b></span>
+                    <span>Remaining: <b id="live-remaining-lbl">0</b></span>
+                </div>
+                <div class="navigation-btns">
+                    <button class="btn btn-outline btn-sm" id="control-prev-btn">Previous</button>
+                    <button class="btn btn-outline btn-sm" id="control-skip-btn">Skip</button>
+                    <button class="btn btn-sm" id="control-next-btn">Next</button>
                 </div>
             </div>
         </div>
 
-        <!-- Result Screen -->
-        <div id="result-screen" class="glass-panel center-screen hidden">
-            <h2>Quiz Complete! 🎉</h2>
-            <div class="score-circle" id="final-score">0%</div>
-            <p id="performance-msg">Awesome job!</p>
-            <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
-                <p style="color: var(--success);">Correct: <b id="correct-ans">0</b></p>
-                <p style="color: var(--wrong);">Wrong: <b id="wrong-ans">0</b></p>
-                <p style="color: var(--text-muted);">Skipped: <b id="skipped-ans">0</b></p>
+        <!-- RESULTS / SUMMARY DISPLAY END SCREEN -->
+        <div class="app-card hidden" id="screen-end">
+            <h2 style="text-align:center; font-size: 2.2rem; margin-bottom: 0.5rem;">Matrix Evaluation Complete</h2>
+            <p style="text-align:center; color: var(--text-muted); margin-bottom: 2rem;" id="end-performance-msg">Thank you for submitting your responses across Gen Z era milestones.</p>
+
+            <div class="end-grid">
+                <div class="stat-box">
+                    <div class="num" id="stat-score">0%</div>
+                    <div class="label">Final Score</div>
+                </div>
+                <div class="stat-box">
+                    <div class="num" id="stat-correct" style="color: var(--success)">0</div>
+                    <div class="label">Correct</div>
+                </div>
+                <div class="stat-box">
+                    <div class="num" id="stat-wrong" style="color: var(--wrong)">0</div>
+                    <div class="label">Wrong</div>
+                </div>
+                <div class="stat-box">
+                    <div class="num" id="stat-skipped" style="color: var(--text-muted)">0</div>
+                    <div class="label">Skipped</div>
+                </div>
             </div>
-            <button class="btn-primary" onclick="location.reload()">Home / Restart</button>
+
+            <div style="display:flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+                <button class="btn btn-outline" id="end-home-btn">Home</button>
+                <button class="btn" id="end-restart-btn">Restart Matrix</button>
+            </div>
         </div>
+
     </main>
 
-    <!-- Sign In Modal -->
-    <div class="modal-overlay" id="signin-modal">
-        <div class="glass-panel modal-content">
-            <h2>Sign In</h2>
-            <p style="font-size: 12px; color: var(--text-muted);">Please enter your @gmail.com account</p>
-            <input type="email" id="email-input" placeholder="example@gmail.com" />
-            <button class="btn-primary" style="width: 100%;" onclick="verifySignIn()">Submit</button>
-            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="closeModal('signin-modal')">Cancel</button>
-            <div class="verify-badge" id="verify-badge">@Verify AI @Pro ✅</div>
+    <!-- REAL WORKING OVERLAY SYSTEM BLOCK FOR SIGN IN LOGIC -->
+    <div class="modal-overlay" id="modal-signin">
+        <div class="modal-box">
+            <div class="modal-title">Get more experience with Sign Up</div>
+            <div class="modal-subtitle">Provide parameters for validation verification access pipelines.</div>
+            
+            <div class="input-group">
+                <input type="text" class="input-control" id="signin-email-field" placeholder="Enter your Gmail address">
+            </div>
+
+            <div class="badges-row">
+                <span class="badge badge-primary">@Verify AI</span>
+                <span class="badge badge-primary">@Pro</span>
+            </div>
+
+            <div style="display:flex; gap: 1rem;">
+                <button class="btn btn-outline" style="flex:1" id="signin-cancel-btn">Cancel</button>
+                <button class="btn" style="flex:1" id="signin-confirm-btn">Sign In</button>
+            </div>
         </div>
     </div>
 
-    <!-- Help / Privacy Modal -->
-    <div class="modal-overlay" id="help-modal">
-        <div class="glass-panel modal-content" style="max-height: 80vh; overflow-y: auto;">
-            <h2 style="color: var(--primary);">Help & Privacy Policy</h2>
-            <p style="text-align: left; font-size: 14px; margin-top: 15px; line-height: 1.6;">
-                <b>Welcome to Gen Z Era.</b> Developed by Malik Nafay Labs.<br><br>
-                <b>Rules:</b><br>
-                - You have 30 seconds per question.<br>
-                - Correct answers score points.<br>
-                - Use Keyboard (1,2,3,4) to select options and Enter to skip/next.<br><br>
-                <b>Privacy:</b><br>
-                Your data is stored locally. We respect your choices.<br>
-                Contact us on WhatsApp channel or Socials.
-            </p>
-            <button class="btn-primary" style="width: 100%; margin-top: 20px;" onclick="closeModal('help-modal')">Got it!</button>
+    <!-- HELP ROUTING MODAL -->
+    <div class="modal-overlay" id="modal-help">
+        <div class="modal-box">
+            <div class="modal-title">Matrix Help Guide</div>
+            <div class="modal-subtitle" style="text-align:left; margin-top:1rem; line-height: 1.6;">
+                * Press <b>Arrow Keys Left/Right</b> to navigate across parsed cards.<br>
+                * Press numbers <b>1, 2, 3, 4</b> or <b>Enter</b> to confirm option selections inside the grid.<br>
+                * Complete all questions completely to view structural preference statistics comparison indices.
+            </div>
+            <button class="btn" style="width:100%; margin-top:1.5rem;" id="help-close-btn">Close Help</button>
         </div>
     </div>
 
-    <!-- Toast -->
-    <div class="toast" id="toast">Notification</div>
+    <!-- PRIVACY POLICIES CONTAINER PANEL -->
+    <div class="modal-overlay" id="modal-policy">
+        <div class="modal-box" style="max-width: 550px;">
+            <div class="modal-title">Cyber Security Protection Terms</div>
+            <div class="modal-subtitle" style="text-align:left; margin-top:1rem; line-height: 1.5; font-size:0.85rem;">
+                This database system is verified under cryptographic validation layers. All computational structures are protected against reverse engineering scripting injections.<br><br>
+                By proceeding, users agree that telemetry parameters log zero trackable footprints onto public environments. Explicit violations incur security firewall bans automatically.
+            </div>
+            <button class="btn" style="width:100%; margin-top:1.5rem;" id="policy-close-btn">Acknowledge</button>
+        </div>
+    </div>
 
+    <!-- REAL NAFAYS LINK CONTROLLER GRID PANEL -->
+    <div class="modal-overlay" id="modal-links">
+        <div class="modal-box" style="max-width: 500px;">
+            <div class="modal-title">Malik Nafay Labs Ecosystem</div>
+            <div class="modal-subtitle">Verified external deployment links and communication hub channels.</div>
+            
+            <div class="links-grid">
+                <a href="https://whatsapp.com/channel/0029Vb8Z5szGOj9wNBebrQ2U" target="_blank" class="link-anchor">🟢 WhatsApp News Labs</a>
+                <a href="https://maliknafaytop10.github.io/ELEVEN-PRO-/" target="_blank" class="link-anchor">⚡ Eleven Pro App</a>
+                <a href="https://maliknafaytop10.github.io/the-ultimate-song/" target="_blank" class="link-anchor">🎵 The Ultimate Song</a>
+                <a href="https://maliknafaytop10.github.io/POETS-WRITES/" target="_blank" class="link-anchor">📝 Poets Writes Portal</a>
+                <a href="https://maliknafaytop10.github.io/NAFAY-WRITE/" target="_blank" class="link-anchor">✍️ Nafay Write Engine</a>
+            </div>
+
+            <div style="margin-top:1.5rem; border-top:1px solid var(--card-border); padding-top:1rem;">
+                <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.5rem; text-align:center;">Social Media Nodes:</div>
+                <div style="font-size:0.8rem; line-height:1.6; color:var(--text-muted)">
+                    * <b>TikTok:</b> pakpattan123 <br>
+                    * <b>Instagram:</b> maliknafay321 <br>
+                    * <b>X (Twitter):</b> falconlabs_officail <br>
+                    * <b>Snapchat:</b> nafaypakpattan1 <br>
+                    * <b>Threads Matrix Connected Verified</b>
+                </div>
+            </div>
+
+            <button class="btn" style="width:100%; margin-top:1.5rem;" id="links-close-btn">Dismiss</button>
+        </div>
+    </div>
+
+    <!-- FOOTER PANEL SYSTEM WRAPPER -->
+    <footer>
+        <div>DEVELOP BY MALIK NAFAY LABS</div>
+        <div style="font-size: 0.75rem; margin-top: 0.25rem; opacity: 0.7;">BASICALLY THIS WEB IS MAKE FOR QUESTION ANSWER ENGINE &copy; 2026</div>
+        <div style="font-size: 0.7rem; margin-top: 0.5rem; color: var(--primary);">THIS WEB MAKE BY NAFAY</div>
+    </footer>
+
+    <!-- TOAST POP PIPELINES BOX -->
+    <div class="toast-container" id="toast-bin"></div>
+
+    <!-- MAIN JAVASCRIPT LOGIC BLOCK -->
     <script>
-        // --- 1. Database (Questions Array) ---
-        // Mixture of Poll/Quiz. To make it a functional "Quiz" with score, one option is marked as correct.
-        const quizData = [
-            { q: "What is your favorite car brand?", options: ["BMW", "Mercedes-Benz", "Rolls-Royce", "Ferrari"], answer: 2 },
-            { q: "What is your favorite bike brand?", options: ["Yamaha", "Honda", "Kawasaki", "Ducati"], answer: 2 },
-            { q: "Which meal can you never say no to?", options: ["Pizza", "Biryani", "Burger", "Pasta"], answer: 1 },
-            { q: "If you had Rs. 1 million, what would you buy first?", options: ["A car", "A house", "A bike", "Save it"], answer: 1 },
-            { q: "What's your dream vacation?", options: ["Beach", "Mountains", "Dubai", "Europe"], answer: 2 },
-            { q: "If you could have one superpower?", options: ["Fly", "Invisible", "Read minds", "Time travel"], answer: 3 },
-            { q: "Which smartphone brand do you trust most?", options: ["Apple", "Samsung", "Xiaomi", "Google Pixel"], answer: 0 },
-            { q: "Which gaming console would you choose?", options: ["PlayStation", "Xbox", "Nintendo Switch", "Gaming PC"], answer: 3 },
-            { q: "Which fast-food restaurant do you prefer?", options: ["McDonald's", "KFC", "Burger King", "Subway"], answer: 1 },
-            { q: "Which browser do you use the most?", options: ["Google Chrome", "Microsoft Edge", "Firefox", "Safari"], answer: 0 },
-            { q: "Which social media app do you use the most?", options: ["Instagram", "TikTok", "Facebook", "X"], answer: 1 },
-            { q: "If you could instantly learn one skill?", options: ["Coding", "Cooking", "Guitar", "Speaking every language"], answer: 0 },
-            { q: "Which streaming service do you like most?", options: ["Netflix", "Disney+", "Prime Video", "YouTube"], answer: 3 },
-            { q: "Which chocolate is your favorite?", options: ["KitKat", "Dairy Milk", "Snickers", "Mars"], answer: 1 },
-            { q: "Which watch brand would you wear?", options: ["Rolex", "Casio", "Seiko", "Apple Watch"], answer: 0 },
-            { q: "Which AI assistant do you like the most?", options: ["ChatGPT", "Gemini", "Claude", "Copilot"], answer: 1 },
-            { q: "What's harder to live without?", options: ["Phone", "Wi-Fi", "Friends", "Family"], answer: 1 },
-            { q: "If you could teleport anywhere right now?", options: ["Dubai", "Japan", "Switzerland", "Maldives"], answer: 2 },
-            { q: "What's your biggest goal right now?", options: ["Become rich", "Stay healthy", "Travel the world", "Start a successful business"], answer: 3 },
-            { q: "Which would you choose?", options: ["Unlimited money", "Unlimited happiness", "Perfect health", "World peace"], answer: 1 }
+        // QUESTION PREFERENCE DATABASE SYSTEM
+        const QUIZ_QUESTIONS = [
+            { question: "What is your favorite car?", options: ["BMW", "Mercedes-Benz", "Rolls-Royce", "Ferrari"], correctAnswer: "Ferrari", category: "Automotive", difficulty: "Standard" },
+            { question: "What is your favorite bike brand?", options: ["Yamaha", "Honda", "Kawasaki", "Ducati"], correctAnswer: "Ducati", category: "Automotive", difficulty: "Standard" },
+            { question: "What is your favorite food?", options: ["Pizza", "Burger", "Biryani", "Pasta"], correctAnswer: "Biryani", category: "Culinary", difficulty: "Standard" },
+            { question: "What is your favorite drink?", options: ["Coffee", "Tea", "Fresh Juice", "Soft Drink"], correctAnswer: "Coffee", category: "Beverages", difficulty: "Standard" },
+            { question: "What is your favorite fruit?", options: ["Mango", "Apple", "Banana", "Orange"], correctAnswer: "Mango", category: "Culinary", difficulty: "Standard" },
+            { question: "What is your favorite season?", options: ["Spring", "Summer", "Autumn", "Winter"], correctAnswer: "Winter", category: "Nature", difficulty: "Standard" },
+            { question: "What is your favorite pet?", options: ["Dog", "Cat", "Bird", "Fish"], correctAnswer: "Cat", category: "Fauna", difficulty: "Standard" },
+            { question: "What is your favorite sport?", options: ["Cricket", "Football", "Basketball", "Tennis"], correctAnswer: "Cricket", category: "Athletics", difficulty: "Standard" },
+            { question: "What is your favorite color?", options: ["Blue", "Black", "Red", "Green"], correctAnswer: "Black", category: "Aesthetics", difficulty: "Standard" },
+            { question: "What is your dream vacation?", options: ["Beach", "Mountains", "City Tour", "Countryside"], correctAnswer: "Mountains", category: "Travel", difficulty: "Standard" },
+            { question: "If you had Rs. 1,000, what would you do?", options: ["Buy delicious food 🍕", "Save it 💰", "Donate to someone in need ❤️", "Watch a movie 🎬"], correctAnswer: "Save it 💰", category: "Life Choices", difficulty: "Standard" },
+            { question: "If you won Rs. 1 million, what would you buy first?", options: ["A car 🚗", "A house 🏠", "A bike 🏍️", "Nothing, I'd save it 💰"], correctAnswer: "Nothing, I'd save it 💰", category: "Life Choices", difficulty: "Standard" },
+            { question: "What's your dream vacation spot?", options: ["Beach 🏖️", "Mountains ⛰️", "Dubai 🌆", "Europe ✈️"], correctAnswer: "Europe ✈️", category: "Travel", difficulty: "Standard" },
+            { question: "If you could have one superpower, what would you choose?", options: ["Fly 🦅", "Become invisible 👻", "Read minds 🧠", "Time travel ⏳"], correctAnswer: "Time travel ⏳", category: "Sci-Fi", difficulty: "Standard" },
+            { question: "Which meal can you never say no to?", options: ["Pizza 🍕", "Biryani 🍛", "Burger 🍔", "BBQ 🍗"], correctAnswer: "Biryani 🍛", category: "Culinary", difficulty: "Standard" },
+            { question: "How would you spend a free Sunday?", options: ["Sleep 😴", "Watch Netflix 📺", "Go out with friends 👫", "Play games 🎮"], correctAnswer: "Play games 🎮", category: "Lifestyle", difficulty: "Standard" },
+            { question: "Which pet would you love to have?", options: ["Dog 🐶", "Cat 🐱", "Parrot 🦜", "Fish 🐠"], correctAnswer: "Cat 🐱", category: "Fauna", difficulty: "Standard" },
+            { question: "If you could own one luxury item, what would it be?", options: ["Sports car 🏎️", "Private jet ✈️", "Luxury watch ⌚", "Yacht 🛥️"], correctAnswer: "Sports car 🏎️", category: "Luxury", difficulty: "Standard" },
+            { question: "What would you do if you had one day off with no responsibilities?", options: ["Travel 🚗", "Sleep all day 😴", "Play games 🎮", "Spend time with family ❤️"], correctAnswer: "Play games 🎮", category: "Lifestyle", difficulty: "Standard" },
+            { question: "If you could eat only one food for a month, what would it be?", options: ["Pizza 🍕", "Biryani 🍛", "Burgers 🍔", "Pasta 🍝"], correctAnswer: "Biryani 🍛", category: "Culinary", difficulty: "Standard" },
+            { question: "Which PC brand do you prefer?", options: ["Dell", "HP", "Lenovo", "Acer"], correctAnswer: "Dell", category: "Tech Gear", difficulty: "Standard" },
+            { question: "Which smartphone brand do you trust the most?", options: ["Apple", "Samsung", "Xiaomi", "Google Pixel"], correctAnswer: "Apple", category: "Tech Gear", difficulty: "Standard" },
+            { question: "Which gaming console would you choose?", options: ["PlayStation", "Xbox", "Nintendo Switch", "Gaming PC"], correctAnswer: "Gaming PC", category: "Gaming", difficulty: "Standard" },
+            { question: "Which AI assistant do you like the most?", options: ["ChatGPT", "Gemini", "Claude", "Microsoft Copilot"], correctAnswer: "Gemini", category: "Artificial Intelligence", difficulty: "Standard" }
         ];
 
-        // --- 2. State Variables ---
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let correctAnswers = 0;
-        let wrongAnswers = 0;
-        let skippedAnswers = 0;
-        let timer;
-        let timeLeft = 30;
-        let hasAnswered = false;
-        let soundEnabled = true;
-
-        // --- 3. DOM Elements ---
-        const screens = {
-            start: document.getElementById('start-screen'),
-            quiz: document.getElementById('quiz-container'),
-            result: document.getElementById('result-screen')
-        };
-        const elements = {
-            qText: document.getElementById('question-text'),
-            optionsGrid: document.getElementById('options-grid'),
-            counter: document.getElementById('question-counter'),
-            scoreDisp: document.getElementById('score-display'),
-            timerText: document.getElementById('timer-text'),
-            progressCircle: document.querySelector('.progress'),
-            progressBar: document.getElementById('progress-bar'),
-            nextBtn: document.getElementById('next-btn'),
-            prevBtn: document.getElementById('prev-btn'),
-            likeCount: document.getElementById('like-count')
+        // ENGINE APPLICATION STATE CONTROLLER
+        let state = {
+            currentQuestionIndex: 0,
+            score: 0,
+            answeredCount: 0,
+            responses: {}, // index -> {selectedOptionText, isCorrect}
+            timerInterval: null,
+            timeLeft: 30,
+            isMuted: false,
+            questionsList: [...QUIZ_QUESTIONS]
         };
 
-        // --- 4. Audio System (Web Audio API - No external files!) ---
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        const audioCtx = new AudioContext();
+        // AUDIO CONTEXT SYSTEM SYNTHESIZERS
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration) {
+            if (state.isMuted) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
 
-        function playSound(type) {
-            if (!soundEnabled) return;
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
+        function playClickSound() { playTone(600, 'sine', 0.1); }
+        function playCorrectSound() { playTone(800, 'triangle', 0.3); }
+        function playWrongSound() { playTone(250, 'sawtooth', 0.45); }
 
-            if (type === 'click') {
-                osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.1);
-            } else if (type === 'correct') {
-                osc.type = 'triangle'; 
-                osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.2);
-                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.2);
-            } else if (type === 'wrong') {
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(300, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
-                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.3);
-            } else if (type === 'win') {
-                // simple arpeggio
-                [400, 500, 600, 800].forEach((freq, i) => {
-                    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
-                    o.connect(g); g.connect(audioCtx.destination);
-                    o.frequency.value = freq;
-                    g.gain.setValueAtTime(0.1, audioCtx.currentTime + (i*0.1));
-                    o.start(audioCtx.currentTime + (i*0.1)); o.stop(audioCtx.currentTime + (i*0.1) + 0.1);
+        // TOAST NOTIFICATIONS PIPELINE
+        function showToast(message) {
+            const container = document.getElementById('toast-bin');
+            const element = document.createElement('div');
+            element.className = 'toast';
+            element.innerText = message;
+            container.appendChild(element);
+            setTimeout(() => { element.remove(); }, 3500);
+        }
+
+        // CONFETTI RENDERER ENGINE PIPELINE
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let particles = [];
+            for (let i = 0; i < 120; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 6 + 4,
+                    d: Math.random() * canvas.height,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    tilt: Math.random() * 10 - 5,
+                    speed: Math.random() * 3 + 2
                 });
             }
-        }
-
-        // --- 5. Core Logic ---
-        function startQuiz() {
-            playSound('click');
-            screens.start.classList.add('hidden');
-            screens.quiz.classList.remove('hidden');
-            screens.quiz.classList.add('fade-in');
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            clearInterval(timer);
-            hasAnswered = false;
-            timeLeft = 30;
-            elements.nextBtn.classList.add('hidden');
-            elements.prevBtn.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
-            elements.likeCount.innerText = Math.floor(Math.random() * 500) + 50; // Random trending likes
-
-            const q = quizData[currentQuestionIndex];
-            elements.qText.innerText = `${currentQuestionIndex + 1}. ${q.q}`;
-            elements.counter.innerText = `Question: ${currentQuestionIndex + 1}/${quizData.length}`;
-            elements.scoreDisp.innerText = `Score: ${score}`;
-            
-            // Update Progress Bar
-            const prog = ((currentQuestionIndex) / quizData.length) * 100;
-            elements.progressBar.style.width = `${prog}%`;
-
-            elements.optionsGrid.innerHTML = '';
-            q.options.forEach((opt, idx) => {
-                const div = document.createElement('div');
-                div.className = 'option-card fade-in';
-                div.style.animationDelay = `${idx * 0.1}s`;
-                div.innerHTML = `<span>${String.fromCharCode(65 + idx)}. ${opt}</span> <span class="poll-stats hidden"></span>`;
-                div.onclick = () => selectOption(idx, div);
-                elements.optionsGrid.appendChild(div);
-            });
-
-            startTimer();
-        }
-
-        function selectOption(selectedIndex, cardElement) {
-            if (hasAnswered) return;
-            hasAnswered = true;
-            clearInterval(timer);
-            
-            const q = quizData[currentQuestionIndex];
-            const isCorrect = selectedIndex === q.answer;
-            
-            // Mock Live Vote Percentages for the "Poll" feel
-            const cards = document.querySelectorAll('.option-card');
-            let remaining = 100;
-            cards.forEach((card, idx) => {
-                card.classList.add('disabled');
-                let percent = 0;
-                if (idx === q.answer) {
-                    card.classList.add('correct');
-                    percent = Math.floor(Math.random() * 20) + 40; // Assign higher % to correct
-                } else if (idx === selectedIndex && !isCorrect) {
-                    card.classList.add('wrong');
-                    percent = Math.floor(Math.random() * 15) + 10;
-                } else {
-                    percent = Math.floor(Math.random() * 15);
-                }
-                remaining -= percent;
-                const statSpan = card.querySelector('.poll-stats');
-                statSpan.innerText = `${percent}%`;
-                statSpan.classList.remove('hidden');
-            });
-
-            if (isCorrect) {
-                playSound('correct');
-                score += 10;
-                correctAnswers++;
-                showToast("Correct! +10 Points");
-            } else {
-                playSound('wrong');
-                wrongAnswers++;
-            }
-
-            elements.scoreDisp.innerText = `Score: ${score}`;
-            elements.nextBtn.classList.remove('hidden');
-        }
-
-        function nextQuestion() {
-            playSound('click');
-            if (currentQuestionIndex < quizData.length - 1) {
-                currentQuestionIndex++;
-                loadQuestion();
-            } else {
-                endQuiz();
-            }
-        }
-
-        function prevQuestion() {
-            playSound('click');
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                loadQuestion();
-            }
-        }
-
-        function skipQuestion() {
-            if (!hasAnswered) skippedAnswers++;
-            nextQuestion();
-        }
-
-        // --- 6. Timer Logic ---
-        function startTimer() {
-            updateTimerUI();
-            timer = setInterval(() => {
-                timeLeft--;
-                updateTimerUI();
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    if (!hasAnswered) {
-                        skippedAnswers++;
-                        showToast("Time's up!");
-                        elements.nextBtn.classList.remove('hidden');
-                        hasAnswered = true; // prevent clicks
-                        document.querySelectorAll('.option-card').forEach(c => c.classList.add('disabled'));
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, idx) => {
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                    ctx.stroke();
+                    p.y += p.speed;
+                    p.x += Math.sin(p.tilt) * 0.5;
+                    if (p.y > canvas.height) {
+                        particles[idx] = { ...p, y: -20, x: Math.random() * canvas.width };
                     }
+                });
+                if(state.currentQuestionIndex === 0 && document.getElementById('screen-end').classList.contains('hidden') === false) {
+                    requestAnimationFrame(draw);
+                } else if (!document.getElementById('screen-end').classList.contains('hidden')) {
+                    requestAnimationFrame(draw);
+                } else {
+                    ctx.clearRect(0,0,canvas.width,canvas.height);
+                }
+            }
+            draw();
+            setTimeout(() => { ctx.clearRect(0,0,canvas.width,canvas.height); }, 7000);
+        }
+
+        // ELEMENT SELECTORS MATRIX
+        const screenStart = document.getElementById('screen-start');
+        const screenQuiz = document.getElementById('screen-quiz');
+        const screenEnd = document.getElementById('screen-end');
+
+        // CORE SHUFFLE MECHANISM
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        }
+
+        // INITIALIZE RUNTIME INTERACTIVE LOOPS
+        function initApp() {
+            // Theme setup
+            if (localStorage.getItem('genz-theme') === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('theme-toggle').innerText = "☀️";
+            }
+
+            // Shuffle array components configuration
+            shuffleArray(state.questionsList);
+            state.questionsList.forEach(q => shuffleArray(q.options));
+        }
+
+        // RUN TIME RENDER QUESTION CARD CONTAINER
+        function renderCurrentQuestion() {
+            clearInterval(state.timerInterval);
+            
+            const qData = state.questionsList[state.currentQuestionIndex];
+            
+            // Labels parsing
+            document.getElementById('badge-category').innerText = qData.category;
+            document.getElementById('badge-difficulty').innerText = qData.difficulty;
+            document.getElementById('main-question-text').innerText = qData.question;
+            document.getElementById('counter-questions-lbl').innerText = `Question ${state.currentQuestionIndex + 1} of ${state.questionsList.length}`;
+            
+            // Progress configurations
+            const pct = Math.round(((state.currentQuestionIndex) / state.questionsList.length) * 100);
+            document.getElementById('quiz-progress-fill').style.width = `${pct}%`;
+            document.getElementById('counter-percentage-lbl').innerText = `${pct}% Complete`;
+            
+            // Stats configuration labels
+            document.getElementById('live-score-lbl').innerText = state.score;
+            document.getElementById('live-answered-lbl').innerText = state.answeredCount;
+            document.getElementById('live-remaining-lbl').innerText = state.questionsList.length - state.currentQuestionIndex;
+
+            // Generate options blocks fields
+            const matrixBox = document.getElementById('options-matrix-box');
+            matrixBox.innerHTML = '';
+            
+            const existingResponse = state.responses[state.currentQuestionIndex];
+
+            // Generating voting mapping simulation counters metrics data
+            let mockVotes = [32, 45, 12, 11]; 
+            
+            qData.options.forEach((opt, idx) => {
+                const card = document.createElement('div');
+                card.className = 'option-card';
+                card.innerText = opt;
+                card.setAttribute('data-opt-index', idx);
+                card.setAttribute('data-opt-text', opt);
+
+                // Check historical selection profiles states
+                if (existingResponse) {
+                    card.classList.add('disabled');
+                    if (opt === existingResponse.selectedOptionText) {
+                        card.classList.add(existingResponse.isCorrect ? 'correct' : 'wrong');
+                    }
+                    if (!existingResponse.isCorrect && opt === qData.correctAnswer) {
+                        card.classList.add('correct');
+                    }
+                    // Append simulated live statistics indicators
+                    const vLabel = document.createElement('span');
+                    vLabel.className = 'vote-percentage';
+                    vLabel.innerText = `${mockVotes[idx]}%`;
+                    card.appendChild(vLabel);
+                } else {
+                    card.addEventListener('click', () => handleOptionSelection(card, opt, qData.correctAnswer));
+                }
+
+                matrixBox.appendChild(card);
+            });
+
+            // Re-trigger visual dynamic timings loop timers
+            if (!existingResponse) {
+                startQuestionCountdown();
+            } else {
+                updateTimerDisplay(0);
+            }
+        }
+
+        // COUNTDOWN HANDLER ENGINE
+        function startQuestionCountdown() {
+            state.timeLeft = 30;
+            updateTimerDisplay(1);
+            
+            state.timerInterval = setInterval(() => {
+                state.timeLeft--;
+                const progressRatio = state.timeLeft / 30;
+                updateTimerDisplay(progressRatio);
+
+                if (state.timeLeft <= 0) {
+                    clearInterval(state.timerInterval);
+                    handleTimeoutTransition();
                 }
             }, 1000);
         }
 
-        function updateTimerUI() {
-            elements.timerText.innerText = timeLeft;
-            // 125 is the circumference of the circle (2 * pi * r) where r=20
-            const offset = 125 - (125 * timeLeft) / 30;
-            elements.progressCircle.style.strokeDashoffset = offset;
-            elements.progressCircle.style.stroke = timeLeft <= 5 ? 'var(--wrong)' : 'var(--secondary)';
+        function updateTimerDisplay(ratio) {
+            const offset = 151 - (151 * ratio);
+            document.getElementById('timer-progress-circle').style.strokeDashoffset = offset;
+            document.getElementById('timer-countdown-lbl').innerText = state.timeLeft;
         }
 
-        // --- 7. End Screen & Confetti ---
-        function endQuiz() {
-            screens.quiz.classList.add('hidden');
-            screens.result.classList.remove('hidden');
-            screens.result.classList.add('fade-in');
-            
-            const percentage = Math.round((correctAnswers / quizData.length) * 100);
-            document.getElementById('final-score').innerText = `${percentage}%`;
-            document.getElementById('correct-ans').innerText = correctAnswers;
-            document.getElementById('wrong-ans').innerText = wrongAnswers;
-            document.getElementById('skipped-ans').innerText = skippedAnswers;
+        // INTERACTION HANDLING ENGINE PROCEDURES
+        function handleOptionSelection(selectedCard, selectedText, correctText) {
+            clearInterval(state.timerInterval);
+            playClickSound();
 
-            const msgEl = document.getElementById('performance-msg');
-            if (percentage >= 80) {
-                msgEl.innerText = "Nawab Level! You crushed it. 🔥";
-                playSound('win');
+            const isCorrect = (selectedText === correctText);
+            if (isCorrect) {
+                state.score++;
+                playCorrectSound();
+                showToast("⚡ Performance matched! Correct entry.");
+            } else {
+                playWrongSound();
+                showToast("❌ Selection structural deviation. Incorrect.");
+            }
+
+            state.answeredCount++;
+            state.responses[state.currentQuestionIndex] = {
+                selectedOptionText: selectedText,
+                isCorrect: isCorrect
+            };
+
+            // Force refresh UI state elements layouts safely
+            renderCurrentQuestion();
+        }
+
+        function handleTimeoutTransition() {
+            showToast("⏰ Timing framework elapsed! Skipping block.");
+            // Store empty response profile
+            state.responses[state.currentQuestionIndex] = {
+                selectedOptionText: null,
+                isCorrect: false,
+                timeout: true
+            };
+            state.answeredCount++;
+            moveNextLogicalStep();
+        }
+
+        function moveNextLogicalStep() {
+            if (state.currentQuestionIndex < state.questionsList.length - 1) {
+                state.currentQuestionIndex++;
+                renderCurrentQuestion();
+            } else {
+                renderEndEvaluationScreen();
+            }
+        }
+
+        // TERMINAL DISPLAY PIPELINE DATA MATRIX
+        function renderEndEvaluationScreen() {
+            clearInterval(state.timerInterval);
+            screenQuiz.classList.add('hidden');
+            screenEnd.classList.remove('hidden');
+
+            let total = state.questionsList.length;
+            let correct = 0;
+            let wrong = 0;
+            let skipped = 0;
+
+            for (let i = 0; i < total; i++) {
+                const r = state.responses[i];
+                if (!r || r.timeout) skipped++;
+                else if (r.isCorrect) correct++;
+                else wrong++;
+            }
+
+            const pctScore = Math.round((correct / total) * 100);
+            document.getElementById('stat-score').innerText = `${pctScore}%`;
+            document.getElementById('stat-correct').innerText = correct;
+            document.getElementById('stat-wrong').innerText = wrong;
+            document.getElementById('stat-skipped').innerText = skipped;
+
+            if (pctScore >= 80) {
+                document.getElementById('end-performance-msg').innerText = "🔥 Elite Trendsetter Framework standard achieved perfectly!";
                 triggerConfetti();
-            } else if (percentage >= 50) {
-                msgEl.innerText = "Good job! You know your stuff. 👍";
             } else {
-                msgEl.innerText = "Keep grinding! Next time for sure. 💪";
+                document.getElementById('end-performance-msg').innerText = "Survey responses mapped across tracking infrastructure modules.";
             }
         }
 
-        // Lightweight Confetti
-        const canvas = document.getElementById('confetti');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        let particles = [];
+        // EVENT BINDINGS MATRIX INTERACTION HOOKS
+        document.getElementById('start-quiz-btn').addEventListener('click', () => {
+            playClickSound();
+            screenStart.classList.add('hidden');
+            screenQuiz.classList.remove('hidden');
+            renderCurrentQuestion();
+        });
 
-        function triggerConfetti() {
-            for (let i = 0; i < 150; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height - canvas.height,
-                    r: Math.random() * 6 + 2,
-                    dx: Math.random() * 4 - 2,
-                    dy: Math.random() * 4 + 2,
-                    color: `hsl(${Math.random() * 360}, 100%, 50%)`
-                });
-            }
-            animateConfetti();
-        }
+        document.getElementById('control-next-btn').addEventListener('click', () => {
+            playClickSound();
+            moveNextLogicalStep();
+        });
 
-        function animateConfetti() {
-            requestAnimationFrame(animateConfetti);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((p, index) => {
-                p.y += p.dy; p.x += p.dx;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = p.color;
-                ctx.fill();
-                if (p.y > canvas.height) particles.splice(index, 1);
-            });
-        }
-
-        // --- 8. UI Interactions & Modals ---
-        function showModal(id) { document.getElementById(id).classList.add('active'); playSound('click'); }
-        function closeModal(id) { document.getElementById(id).classList.remove('active'); playSound('click'); }
-        
-        function verifySignIn() {
-            const email = document.getElementById('email-input').value;
-            if (email.toLowerCase().endsWith('@gmail.com')) {
-                playSound('correct');
-                document.getElementById('verify-badge').style.display = 'block';
-                setTimeout(() => { closeModal('signin-modal'); showToast('Signed In as @Verify AI @Pro'); }, 1500);
+        document.getElementById('control-prev-btn').addEventListener('click', () => {
+            playClickSound();
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex--;
+                renderCurrentQuestion();
             } else {
-                playSound('wrong');
-                showToast("Only @gmail.com is allowed!");
-            }
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            playSound('click');
-        }
-
-        function toggleSound() {
-            soundEnabled = !soundEnabled;
-            showToast(soundEnabled ? "Sound ON 🔊" : "Sound OFF 🔇");
-        }
-
-        function likeQuestion() {
-            playSound('click');
-            let el = document.getElementById('like-count');
-            el.innerText = parseInt(el.innerText) + 1;
-            el.parentElement.style.color = "var(--wrong)";
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.innerText = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
-        // --- 9. Keyboard Support ---
-        window.addEventListener('keydown', (e) => {
-            if (screens.quiz.classList.contains('hidden')) return;
-            const key = e.key;
-            if (['1', '2', '3', '4'].includes(key)) {
-                const idx = parseInt(key) - 1;
-                const cards = document.querySelectorAll('.option-card');
-                if (cards[idx] && !hasAnswered) selectOption(idx, cards[idx]);
-            }
-            if (key === 'Enter') {
-                if (hasAnswered) nextQuestion();
-                else skipQuestion();
+                showToast("First index boundary reached.");
             }
         });
 
-        // Initialize user preference
-        if(localStorage.getItem('theme') === 'light') toggleTheme();
+        document.getElementById('control-skip-btn').addEventListener('click', () => {
+            playClickSound();
+            if (!state.responses[state.currentQuestionIndex]) {
+                state.responses[state.currentQuestionIndex] = { selectedOptionText: null, isCorrect: false };
+            }
+            moveNextLogicalStep();
+        });
+
+        // RESTART / HOME TERMINATION HANDLERS
+        const resetEngineFull = () => {
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.answeredCount = 0;
+            state.responses = {};
+            shuffleArray(state.questionsList);
+        };
+
+        document.getElementById('end-restart-btn').addEventListener('click', () => {
+            playClickSound();
+            resetEngineFull();
+            screenEnd.classList.add('hidden');
+            screenQuiz.classList.remove('hidden');
+            renderCurrentQuestion();
+        });
+
+        document.getElementById('end-home-btn').addEventListener('click', () => {
+            playClickSound();
+            resetEngineFull();
+            screenEnd.classList.add('hidden');
+            screenStart.classList.remove('hidden');
+        });
+
+        // SYSTEM MODALS HANDLING BINDINGS INTERFACES
+        function setupModalControls(triggerId, modalId, closeId) {
+            const trigger = document.getElementById(triggerId);
+            const modal = document.getElementById(modalId);
+            const close = document.getElementById(closeId);
+
+            trigger.addEventListener('click', () => { playClickSound(); modal.classList.add('active'); });
+            close.addEventListener('click', () => { playClickSound(); modal.classList.remove('active'); });
+            modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+        }
+
+        setupModalControls('help-trigger', 'modal-help', 'help-close-btn');
+        setupModalControls('policy-trigger', 'modal-policy', 'policy-close-btn');
+        setupModalControls('links-trigger', 'modal-links', 'links-close-btn');
+
+        // SIGN IN PROCESSING PIPELINE ROUTINES
+        const signinOverlay = document.getElementById('modal-signin');
+        document.getElementById('signin-navbar-btn').addEventListener('click', () => {
+            playClickSound();
+            signinOverlay.classList.add('active');
+        });
+
+        document.getElementById('signin-cancel-btn').addEventListener('click', () => {
+            playClickSound();
+            signinOverlay.classList.remove('active');
+        });
+
+        document.getElementById('signin-confirm-btn').addEventListener('click', () => {
+            playClickSound();
+            const emailInput = document.getElementById('signin-email-field').value.trim();
+            
+            // Exact Gmail compliance validation
+            if (!emailInput.toLowerCase().endsWith('@gmail.com') || emailInput.length < 11) {
+                showToast("❌ Access Refused. Absolute compliance requires exact '@gmail.com' parameters.");
+                return;
+            }
+
+            // Simulate AI verification processing delay loops
+            document.getElementById('signin-confirm-btn').innerText = "Scanning Pipeline...";
+            document.getElementById('signin-confirm-btn').style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                showToast("🧬 Hardware Scanner verified integrity sequence parameters completely.");
+                signinOverlay.classList.remove('active');
+                
+                // Redraw UI navbar states controls
+                document.getElementById('signin-navbar-btn').classList.add('hidden');
+                const slot = document.getElementById('user-avatar-slot');
+                slot.classList.remove('hidden');
+                slot.title = `Access Authorized: ${emailInput}`;
+                
+                showToast("✅ Welcome Verified @Pro Access Enabled.");
+            }, 2500);
+        });
+
+        // EXTRA PREFERENCES TOGGLES INTERACTION HOOKS
+        document.getElementById('sound-toggle').addEventListener('click', () => {
+            state.isMuted = !state.isMuted;
+            document.getElementById('sound-toggle').innerText = state.isMuted ? "🔇" : "🔊";
+        });
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            playClickSound();
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            document.getElementById('theme-toggle').innerText = isLight ? "☀️" : "🌙";
+            localStorage.setItem('genz-theme', isLight ? 'light' : 'dark');
+        });
+
+        // KEYBOARD ACCESSIBILITY CAPABILITY ENGINE SYSTEM
+        document.addEventListener('keydown', (e) => {
+            if (screenQuiz.classList.contains('hidden')) return;
+            
+            if (e.key === 'ArrowRight') {
+                document.getElementById('control-next-btn').click();
+            } else if (e.key === 'ArrowLeft') {
+                document.getElementById('control-prev-btn').click();
+            } else if (['1','2','3','4'].includes(e.key)) {
+                const index = parseInt(e.key) - 1;
+                const targets = document.querySelectorAll('.option-card');
+                if (targets[index] && !targets[index].classList.contains('disabled')) {
+                    targets[index].click();
+                }
+            } else if (e.key === 'Enter') {
+                document.getElementById('control-next-btn').click();
+            }
+        });
+
+        // TRACE START SEQUENCE EXECUTION BUILD
+        window.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
