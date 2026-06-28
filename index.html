@@ -1,615 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEN Z ERA - THIS ERA TRENDS</title>
+    <title>GEN Z ERA - Malik Nafay Labs</title>
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* CSS DESIGN STYLES & GLASSMORPHISM IMPORTS */
-        :root {
-            --bg-dark: #0F172A;
-            --primary: #7C3AED;
-            --secondary: #3B82F6;
-            --success: #22C55E;
-            --wrong: #EF4444;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --text-main: #FFFFFF;
-            --text-muted: #94A3B8;
-            --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --transition-speed: 0.3s;
-        }
-
-        .light-mode {
-            --bg-dark: #F8FAFC;
-            --primary: #6D28D9;
-            --secondary: #2563EB;
-            --success: #16A34A;
-            --wrong: #DC2626;
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --card-border: rgba(124, 58, 237, 0.2);
-            --text-main: #0F172A;
-            --text-muted: #475569;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-        }
-
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: var(--font-family);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0F172A;
+            color: #FFFFFF;
             overflow-x: hidden;
-            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-            min-height: 100vh;
-            position: relative;
         }
-
-        /* CUSTOM SCROLLBAR */
-        ::-webkit-scrollbar {
-            width: 10px;
+        .urdu-text {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            line-height: 2.5;
         }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
-
-        /* BACKGROUND FLOATING SHAPES */
-        .bg-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .shape {
-            position: absolute;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            filter: blur(80px);
-            opacity: 0.15;
-            border-radius: 50%;
-            animation: floating 12s infinite alternate ease-in-out;
-        }
-
-        .shape-1 { width: 300px; height: 300px; top: 10%; left: -5%; animation-duration: 14s; }
-        .shape-2 { width: 400px; height: 400px; bottom: 10%; right: -5%; animation-duration: 18s; }
-
-        @keyframes floating {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(40px) scale(1.1); }
-        }
-
-        /* NAVBAR & HEADER */
-        header {
-            background: rgba(15, 23, 42, 0.8);
+        .glass-card {
+            background: rgba(30, 41, 59, 0.45);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--card-border);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .brand {
-            display: flex;
-            flex-direction: column;
+        .glass-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(124, 58, 237, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(124, 58, 237, 0.3);
         }
-
-        .brand h1 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            background: linear-gradient(to right, #7C3AED, #3B82F6);
+        .text-gradient {
+            background: linear-gradient(135deg, #A78BFA 0%, #3B82F6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        .brand span {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 600;
+        .bg-gradient-premium {
+            background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F172A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 999px;
+            border: 2px solid #0F172A;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7C3AED;
         }
 
-        .nav-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+        /* Animations & Keyframes */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.1); opacity: 0.6; }
         }
-
-        .btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 0.6rem 1.4rem;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+        .glow-shape {
+            animation: pulseGlow 8s infinite ease-in-out;
         }
+        .anim-delay-2000 { animation-delay: 2s; }
+        .anim-delay-4000 { animation-delay: 4s; }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
-            filter: brightness(1.1);
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--text-main);
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-sm {
-            padding: 0.4rem 1rem;
-            font-size: 0.85rem;
-        }
-
-        /* TOGGLE CONTROLS */
-        .icon-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            width: 40px;
-            height: 40px;
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all var(--transition-speed);
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes rippleEffect {
+            to { transform: scale(4); opacity: 0; }
         }
 
-        .icon-btn:hover {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        /* MAIN CONTAINER WIREFRAME */
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        /* APP SCREENS LAYOUT */
-        .app-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            transition: transform 0.4s ease, opacity 0.4s ease;
-            position: relative;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* HERO ENTRY SCREEN */
-        .hero-section {
-            text-align: center;
-            padding: 3rem 1rem;
-        }
-
-        .hero-section h2 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-        .hero-section p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        /* QUIZ POLL WRAPPER INTERFACE */
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .meta-badges {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .badge {
-            background: rgba(255,255,255,0.1);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid var(--card-border);
-        }
-
-        .badge-primary {
-            background: rgba(124, 58, 237, 0.2);
-            color: #C084FC;
-            border-color: rgba(124, 58, 237, 0.4);
-        }
-
-        /* REVOLVING TIMING LOOPS ARCHETYPE */
-        .timer-container {
-            position: relative;
-            width: 60px;
-            height: 60px;
-        }
-
-        .timer-svg {
-            transform: rotate(-90deg);
-            width: 60px;
-            height: 60px;
-        }
-
-        .timer-svg circle {
-            slot: stroke-dasharray;
-            stroke-dasharray: 151;
-            stroke-dashoffset: 0;
-            stroke-linecap: round;
-            stroke-width: 5;
-            fill: none;
-        }
-
-        .circle-bg { stroke: rgba(255,255,255,0.1); }
-        .circle-progress {
-            stroke: var(--secondary);
+        /* Circular Timer Track SVG */
+        .timer-circle {
             transition: stroke-dashoffset 1s linear;
         }
 
-        .timer-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        /* PROGRESS TRACKERS */
-        .progress-container {
-            margin-bottom: 2rem;
-        }
-
-        .progress-bar-wrapper {
-            background: rgba(255,255,255,0.1);
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-bar-fill {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            width: 0%;
-            height: 100%;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .progress-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        /* OPTIONS MATRIX DESIGN RULES */
-        .question-text {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            line-height: 1.4;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .options-grid { grid-template-columns: 1fr 1fr; }
-        }
-
-        .option-card {
-            background: rgba(255,255,255,0.03);
-            border: 2px solid var(--card-border);
-            border-radius: 16px;
-            padding: 1.25rem 1.5rem;
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            position: relative;
-        }
-
-        .option-card:hover {
-            background: rgba(255,255,255,0.07);
-            border-color: var(--secondary);
-            transform: translateY(-2px);
-        }
-
-        .option-card.selected {
-            border-color: var(--primary);
-            background: rgba(124, 58, 237, 0.15);
-            box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
-        }
-
-        .option-card.correct {
-            border-color: var(--success) !important;
-            background: rgba(34, 197, 94, 0.2) !important;
-            color: white;
-        }
-
-        .option-card.wrong {
-            border-color: var(--wrong) !important;
-            background: rgba(239, 68, 68, 0.2) !important;
-            color: white;
-        }
-
-        .option-card.disabled {
-            pointer-events: none;
-            opacity: 0.7;
-        }
-
-        .vote-percentage {
-            font-size: 0.9rem;
-            background: rgba(255,255,255,0.1);
-            padding: 0.2rem 0.6rem;
-            border-radius: 8px;
-            font-weight: 700;
-        }
-
-        /* NAVIGATION CONTROL PLATFORM */
-        .controls-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .navigation-btns {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        /* END SCREEN SCORE MATRIX */
-        .end-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        @media (min-width: 768px) {
-            .end-grid { grid-template-columns: repeat(4, 1fr); }
-        }
-
-        .stat-box {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--card-border);
-            padding: 1.25rem;
-            border-radius: 16px;
-            text-align: center;
-        }
-
-        .stat-box .num {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-box .label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        /* MODAL WINDOW SYSTEM FOR REAL VERIFIED SIGN IN BOX */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-box {
-            background: #1E293B;
-            border: 2px solid var(--primary);
-            border-radius: 24px;
-            padding: 2.5rem;
-            max-width: 450px;
-            width: 90%;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-
-        .modal-overlay.active .modal-box {
-            transform: scale(1);
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .modal-subtitle {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .input-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .input-control {
-            width: 100%;
-            background: rgba(15, 23, 42, 0.6);
-            border: 2px solid var(--card-border);
-            border-radius: 12px;
-            padding: 0.8rem 1rem;
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .input-control:focus {
-            border-color: var(--primary);
-        }
-
-        .badges-row {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* ROUTING PANELS LINKS MATRIX */
-        .links-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        @media (min-width: 600px) {
-            .links-grid { grid-template-columns: 1fr 1fr; }
-        }
-
-        .link-anchor {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 1rem;
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: all var(--transition-speed);
-        }
-
-        .link-anchor:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: var(--secondary);
-            transform: translateX(3px);
-        }
-
-        /* TOAST SYSTEM RULES */
-        .toast-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .toast {
-            background: #1E293B;
-            border-left: 4px solid var(--primary);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            animation: slideIn 0.3s ease forwards;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* LABELS FOOTER */
-        footer {
-            text-align: center;
-            padding: 2.5rem 1rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-top: 1px solid var(--card-border);
-            margin-top: 4rem;
-            background: rgba(15, 23, 42, 0.5);
-        }
-
-        /* CONFETTI LAYER CANVAS EFFECT */
+        /* Confetti Canvas Container */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -617,674 +102,1382 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1500;
+            z-index: 99;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen relative selection:bg-purple-600 selection:text-white">
 
-    <!-- BACKDROP BLURS -->
-    <div class="bg-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-    </div>
+    <!-- Audio Engine Context Nodes -->
+    <audio id="snd-click" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-84.wav" preload="auto"></audio>
+    <audio id="snd-correct" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-84.wav" preload="auto"></audio>
+    <audio id="snd-wrong" src="https://assets.mixkit.co/active_storage/sfx/959/959-84.wav" preload="auto"></audio>
 
-    <!-- CANVAS FOR CONFETTI -->
+    <!-- Canvas Container for Celebratory Layout Render states -->
     <canvas id="confetti-canvas"></canvas>
 
-    <!-- HEADER PANEL STRUC -->
-    <header>
-        <div class="brand">
-            <h1>GEN Z ERA</h1>
-            <span>THE ERA OF 2000-2026</span>
-        </div>
-        <div class="nav-actions">
-            <button class="btn btn-sm btn-outline" id="help-trigger">Help</button>
-            <button class="btn btn-sm btn-outline" id="policy-trigger">Privacy Policies</button>
-            <button class="btn btn-sm btn-outline" id="links-trigger">Nafay's Links</button>
-            <button class="icon-btn" id="sound-toggle" title="Mute/Unmute">🔊</button>
-            <button class="icon-btn" id="theme-toggle" title="Toggle Mode">🌙</button>
-            <button class="btn btn-sm" id="signin-navbar-btn">Sign In</button>
-            <div id="user-avatar-slot" class="hidden" style="font-size: 1.5rem; background: var(--primary); padding: 0.3rem 0.6rem; border-radius: 50%;">⚡</div>
+    <!-- Global Floating Structural Elements -->
+    <div class="fixed -top-40 -left-40 w-96 height-96 rounded-full bg-purple-700/20 blur-[128px] glow-shape pointer-events-none z-0"></div>
+    <div class="fixed top-1/2 -right-40 w-96 height-96 rounded-full bg-blue-600/20 blur-[128px] glow-shape anim-delay-2000 pointer-events-none z-0"></div>
+    <div class="fixed -bottom-40 left-1/3 w-96 height-96 rounded-full bg-pink-600/15 blur-[128px] glow-shape anim-delay-4000 pointer-events-none z-0"></div>
+
+    <!-- Global Toast Alert Infrastructure -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3"></div>
+
+    <!-- Top-Level Navigation Engine Structure -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-white/5 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showScreen('screen-home')">
+                <div class="w-11 h-11 rounded-xl bg-gradient-premium flex items-center justify-center shadow-lg shadow-purple-500/20">
+                    <i class="fa-solid fa-bolt text-lg text-white"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-white block">GEN Z ERA</span>
+                    <span class="text-xs font-semibold text-slate-400 tracking-wider block -mt-1 uppercase">Malik Nafay Labs</span>
+                </div>
+            </div>
+
+            <!-- Header Interaction Cluster Panel -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleMute()" id="btn-mute" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white" title="Toggle Sound">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-300 hover:text-white" title="Toggle Aspect Aesthetics">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button onclick="openHelpModal()" class="px-4 h-10 rounded-xl glass-card flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-white">
+                    <i class="fa-solid fa-circle-question text-purple-400"></i> <span class="hidden sm:inline">Help</span>
+                </button>
+                
+                <!-- Dynamic Conditional Identity Slot Component -->
+                <div id="auth-zone" class="flex items-center">
+                    <button id="btn-global-signin" onclick="openSignInModal()" class="relative overflow-hidden px-5 h-10 rounded-xl bg-gradient-premium text-sm font-bold shadow-lg shadow-purple-600/20 hover:shadow-purple-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- MAIN DISPLAY CANVAS WIREFRAME -->
-    <main>
+    <!-- Main Container Content Route Canvas -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         
-        <!-- HERO START CARD SCREEN -->
-        <div class="app-card hero-section" id="screen-start">
-            <h2>This Era Trends</h2>
-            <p>Test your knowledge on choices, brands, and pop-culture trends from the Gen Z Timeline (2000-2026).</p>
-            <button class="btn" id="start-quiz-btn" style="font-size: 1.2rem; padding: 0.8rem 2.5rem;">Start Quiz & Poll Matrix</button>
-        </div>
-
-        <!-- WORKING QUIZ CONTROLLER PLATFORM -->
-        <div class="app-card hidden" id="screen-quiz">
-            <div class="quiz-header">
-                <div class="meta-badges">
-                    <span class="badge badge-primary" id="badge-category">Trends</span>
-                    <span class="badge" id="badge-difficulty">Standard</span>
+        <!-- Screen 1: Home Dashboard Grid Grid Layout Configuration -->
+        <section id="screen-home" class="space-y-12">
+            <!-- Hero Showcase Identity Jumbotron Grid Element -->
+            <div class="text-center max-w-3xl mx-auto space-y-4 pt-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card border-purple-500/20 text-xs font-bold text-purple-300 tracking-wide uppercase">
+                    <span class="w-2 h-2 rounded-full bg-purple-500 animate-ping"></span> Live Polls Ecosystem
                 </div>
-                <div class="timer-container">
-                    <svg class="timer-svg">
-                        <circle class="circle-bg" cx="30" cy="30" r="24"></circle>
-                        <circle class="circle-progress" id="timer-progress-circle" cx="30" cy="30" r="24"></circle>
-                    </svg>
-                    <div class="timer-text" id="timer-countdown-lbl">30</div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
+                    Explore <span class="text-gradient">This Era Trends</span>
+                </h1>
+                <p class="text-base sm:text-xl text-slate-400 font-medium">
+                    The ultimate opinion archive spanning the historic era of <span class="text-white font-semibold">2000 - 2026</span>. Voice your generation's choices today.
+                </p>
+                
+                <!-- Global Metrics Dashboard Overlay Tracker Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 text-left">
+                    <div class="p-4 rounded-2xl glass-card border-white/5">
+                        <span class="text-xs font-bold text-slate-400 block uppercase tracking-wider">Total Votes</span>
+                        <span id="stat-total-votes" class="text-2xl font-extrabold text-gradient">249,102</span>
+                    </div>
+                    <div class="p-4 rounded-2xl glass-card border-white/5">
+                        <span class="text-xs font-bold text-slate-400 block uppercase tracking-wider">Active Polls</span>
+                        <span class="text-2xl font-extrabold text-white">80+ Cards</span>
+                    </div>
+                    <div class="p-4 rounded-2xl glass-card border-white/5">
+                        <span class="text-xs font-bold text-slate-400 block uppercase tracking-wider">Architecture</span>
+                        <span class="text-2xl font-extrabold text-blue-400">V13 Engine</span>
+                    </div>
+                    <div class="p-4 rounded-2xl glass-card border-white/5">
+                        <span class="text-xs font-bold text-slate-400 block uppercase tracking-wider">Dev Lab</span>
+                        <span class="text-2xl font-extrabold text-purple-400">MN Labs</span>
+                    </div>
+                </div>
+
+                <!-- Custom Client Search Feature Interface -->
+                <div class="pt-4 max-w-xl mx-auto relative">
+                    <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="text" id="home-search-bar" oninput="handleSearchFilter(this.value)" placeholder="Search trending topics, cars, choices, or general knowledge..." class="w-full h-12 pl-12 pr-4 rounded-xl bg-slate-900/60 border border-white/10 text-sm font-medium focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all text-white placeholder:text-slate-500">
+                    <button onclick="triggerSpinWheel()" class="absolute right-2 top-2 h-8 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-purple-300 flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Random
+                    </button>
                 </div>
             </div>
 
-            <!-- PROGRESS TRACKERS -->
-            <div class="progress-container">
-                <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" id="quiz-progress-fill"></div>
+            <!-- Categories System Matrix Node Section -->
+            <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-fire text-orange-500 text-xl animate-bounce"></i>
+                        <h2 class="text-2xl font-bold tracking-tight text-white">Select Trend Domain</h2>
+                    </div>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest bg-slate-900 px-3 py-1 rounded-full border border-white/5">Standard Verified</span>
                 </div>
-                <div class="progress-meta">
-                    <span id="counter-questions-lbl">Question 1 of 20</span>
-                    <span id="counter-percentage-lbl">0% Complete</span>
+
+                <!-- Grid Node Engine Hook Container layout elements -->
+                <div id="categories-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cards will be dynamically injected by JavaScript Core Runtime System Engine -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 2: Dynamic Core Quiz Layout Viewport -->
+        <section id="screen-quiz" class="hidden max-w-4xl mx-auto space-y-6">
+            <!-- Context Context Metadata Navigation Panel Context -->
+            <div class="flex items-center justify-between p-4 rounded-2xl glass-panel border-white/5">
+                <div class="flex items-center gap-3">
+                    <button onclick="confirmExitToHome()" class="w-10 h-10 rounded-xl glass-card hover:bg-slate-800 text-slate-300 flex items-center justify-center transition-all">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div>
+                        <h4 id="quiz-header-category" class="text-sm font-bold text-purple-400 uppercase tracking-wider">Category</h4>
+                        <p id="quiz-header-difficulty" class="text-xs text-slate-400 font-semibold uppercase tracking-widest mt-0.5">Difficulty</p>
+                    </div>
+                </div>
+
+                <!-- Live Track Statistics Dynamic Element Component Module -->
+                <div class="flex items-center gap-6 text-right">
+                    <div class="hidden sm:block">
+                        <span class="text-xs font-bold text-slate-400 block uppercase">Current Score</span>
+                        <span id="quiz-live-score" class="text-sm font-extrabold text-emerald-400">0 pts</span>
+                    </div>
+                    <!-- Countdown Visual Render Layer Element -->
+                    <div class="relative w-12 h-12 flex items-center justify-center">
+                        <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-800" stroke-width="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path id="timer-progress" class="text-purple-500 timer-circle" stroke-width="3" stroke-dasharray="100, 100" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <span id="timer-text" class="text-sm font-bold text-white z-10">30</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- RUNTIME TEXTS -->
-            <div class="question-text" id="main-question-text">Loading survey question parameters...</div>
+            <!-- Global Question Structural Layout Context Card -->
+            <div id="quiz-interactive-card" class="glass-panel rounded-3xl p-6 sm:p-8 border-white/5 shadow-2xl relative overflow-hidden transition-all duration-300">
+                <!-- Internal Linear Progress Pipeline Tracker Component -->
+                <div class="w-full h-1.5 bg-slate-900 rounded-full mb-6 overflow-hidden relative">
+                    <div id="quiz-progress-fill" class="h-full bg-gradient-premium transition-all duration-500 rounded-full" style="width: 0%"></div>
+                </div>
 
-            <!-- DYNAMIC BLOCKS HOUSING 4 CLICKS CARDS -->
-            <div class="options-grid" id="options-matrix-box">
-                <!-- Programmatically generated options go here -->
-            </div>
+                <div class="flex items-center justify-between text-xs font-bold text-slate-400 uppercase mb-4 tracking-wider">
+                    <span id="quiz-question-counter">Question 1 of 10</span>
+                    <span id="quiz-percentage-text">0% Complete</span>
+                </div>
 
-            <!-- NAVIGATION INTERACTION CONTROLS BAR -->
-            <div class="controls-row">
-                <div class="progress-meta" style="gap: 1rem;">
-                    <span>Live Score: <b id="live-score-lbl" style="color:var(--secondary)">0</b></span>
-                    <span>Answered: <b id="live-answered-lbl">0</b></span>
-                    <span>Remaining: <b id="live-remaining-lbl">0</b></span>
-                </div>
-                <div class="navigation-btns">
-                    <button class="btn btn-outline btn-sm" id="control-prev-btn">Previous</button>
-                    <button class="btn btn-outline btn-sm" id="control-skip-btn">Skip</button>
-                    <button class="btn btn-sm" id="control-next-btn">Next</button>
-                </div>
-            </div>
-        </div>
+                <!-- Dynamic Target Content Question Anchor Field Node Box -->
+                <h2 id="quiz-question-text" class="text-xl sm:text-2xl font-bold tracking-tight text-white mb-8 leading-relaxed">
+                    <!-- Injected via Script Engine Layout Renderers -->
+                </h2>
 
-        <!-- RESULTS / SUMMARY DISPLAY END SCREEN -->
-        <div class="app-card hidden" id="screen-end">
-            <h2 style="text-align:center; font-size: 2.2rem; margin-bottom: 0.5rem;">Matrix Evaluation Complete</h2>
-            <p style="text-align:center; color: var(--text-muted); margin-bottom: 2rem;" id="end-performance-msg">Thank you for submitting your responses across Gen Z era milestones.</p>
+                <!-- Options Active Vector Interactive Node Column Grid Matrix -->
+                <div id="quiz-options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Option items generated with full isolated UI dynamic functional handlers -->
+                </div>
 
-            <div class="end-grid">
-                <div class="stat-box">
-                    <div class="num" id="stat-score">0%</div>
-                    <div class="label">Final Score</div>
-                </div>
-                <div class="stat-box">
-                    <div class="num" id="stat-correct" style="color: var(--success)">0</div>
-                    <div class="label">Correct</div>
-                </div>
-                <div class="stat-box">
-                    <div class="num" id="stat-wrong" style="color: var(--wrong)">0</div>
-                    <div class="label">Wrong</div>
-                </div>
-                <div class="stat-box">
-                    <div class="num" id="stat-skipped" style="color: var(--text-muted)">0</div>
-                    <div class="label">Skipped</div>
+                <!-- In-Line Context Post Answer Dynamic Content Box Context Window -->
+                <div id="poll-analytics-box" class="hidden mt-6 p-4 rounded-xl bg-slate-900/50 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 block uppercase tracking-wider">Era Metrics</span>
+                            <span id="poll-total-votes-label" class="text-xs font-semibold text-slate-300">1,240 global responses simulated.</span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="handleLikePoll()" class="h-8 px-3 rounded-lg glass-card hover:bg-slate-800 text-xs font-bold flex items-center gap-1.5 transition-all text-rose-400">
+                            <i class="fa-solid fa-heart"></i> <span id="like-counter">124</span>
+                        </button>
+                        <button onclick="handleSharePoll()" class="h-8 px-3 rounded-lg glass-card hover:bg-slate-800 text-xs font-bold flex items-center gap-1.5 transition-all text-blue-400">
+                            <i class="fa-solid fa-share-nodes"></i> Share
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div style="display:flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
-                <button class="btn btn-outline" id="end-home-btn">Home</button>
-                <button class="btn" id="end-restart-btn">Restart Matrix</button>
+            <!-- Quiz Screen Controls Panel Button Strip Interface Array Module -->
+            <div class="flex items-center justify-between gap-4">
+                <button id="btn-quiz-prev" onclick="handleQuizPrev()" class="px-5 h-12 rounded-xl glass-card hover:bg-slate-800 text-sm font-bold text-slate-300 hover:text-white transition-all flex items-center gap-2 disabled:opacity-40 disabled:pointer-events-none">
+                    <i class="fa-solid fa-arrow-left"></i> Prev
+                </button>
+                <div class="flex items-center gap-3">
+                    <button id="btn-quiz-skip" onclick="handleQuizSkip()" class="px-5 h-12 rounded-xl glass-card hover:bg-slate-800 text-sm font-bold text-amber-400 transition-all">
+                        Skip Question
+                    </button>
+                    <button id="btn-quiz-next" onclick="handleQuizNext()" class="px-6 h-12 rounded-xl bg-gradient-premium text-sm font-bold text-white shadow-lg shadow-purple-600/20 hover:shadow-purple-600/30 transition-all flex items-center gap-2 disabled:opacity-40 disabled:pointer-events-none">
+                        Next <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+        </section>
 
+        <!-- Screen 3: Final Presentation Metrics Score Aggregator Screen Grid Layout -->
+        <section id="screen-result" class="hidden max-w-2xl mx-auto glass-panel rounded-3xl p-6 sm:p-10 border-white/5 shadow-2xl space-y-8 text-center relative overflow-hidden">
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-purple-500/10 rounded-full blur-2xl"></div>
+            
+            <div class="space-y-3">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-premium flex items-center justify-center mx-auto shadow-xl shadow-purple-500/20 mb-2">
+                    <i id="result-status-icon" class="fa-solid fa-trophy text-2xl text-white"></i>
+                </div>
+                <h2 class="text-3xl font-extrabold tracking-tight text-white">Era Session Complete!</h2>
+                <p id="result-performance-message" class="text-sm text-slate-400 max-w-md mx-auto font-medium">
+                    Excellent perspective tracking. Your choices reflect deep alignment with mainstream trends of this modern era.
+                </p>
+            </div>
+
+            <!-- Scoring Engine Core Vector Box Outputs -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/5">
+                    <span class="text-xs font-bold text-slate-400 block uppercase tracking-wider mb-1">Final Score</span>
+                    <span id="result-stat-score" class="text-2xl font-extrabold text-gradient">80 pts</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/5">
+                    <span class="text-xs font-bold text-slate-400 block uppercase tracking-wider mb-1">Ratio Match</span>
+                    <span id="result-stat-percentage" class="text-2xl font-extrabold text-white">85%</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-900/60 border border-white/5 col-span-2 sm:col-span-1">
+                    <span class="text-xs font-bold text-slate-400 block uppercase tracking-wider mb-1">Status Summary</span>
+                    <span id="result-stat-ratio" class="text-sm font-bold text-blue-400 block mt-1">8 Correct / 0 Skipped</span>
+                </div>
+            </div>
+
+            <!-- Breakdown Analytical Vector Rows Context Structure layout -->
+            <div class="p-4 rounded-2xl bg-slate-900/40 border border-white/5 text-left space-y-3">
+                <span class="text-xs font-bold text-slate-400 block uppercase tracking-wider mb-1">Session Matrix Ledger</span>
+                <div class="flex items-center justify-between text-xs font-medium text-slate-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Correct Submissions</span>
+                    <span id="ledger-correct" class="font-bold text-white">0</span>
+                </div>
+                <div class="flex items-center justify-between text-xs font-medium text-slate-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-circle-xmark text-rose-400"></i> Incorrect Choices</span>
+                    <span id="ledger-wrong" class="font-bold text-white">0</span>
+                </div>
+                <div class="flex items-center justify-between text-xs font-medium text-slate-300">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-circle-minus text-amber-400"></i> Skipped Indexes</span>
+                    <span id="ledger-skipped" class="font-bold text-white">0</span>
+                </div>
+            </div>
+
+            <!-- Actions Controls Context Area Vector Block -->
+            <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                <button onclick="handleQuizRestart()" class="w-full sm:flex-1 h-12 rounded-xl bg-gradient-premium text-sm font-bold text-white shadow-lg shadow-purple-600/20 hover:shadow-purple-600/30 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Restart Context
+                </button>
+                <button onclick="showScreen('screen-home')" class="w-full sm:flex-1 h-12 rounded-xl glass-card hover:bg-slate-800 text-sm font-bold text-slate-300 hover:text-white transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-house"></i> Home Dashboard
+                </button>
+            </div>
+        </section>
     </main>
 
-    <!-- REAL WORKING OVERLAY SYSTEM BLOCK FOR SIGN IN LOGIC -->
-    <div class="modal-overlay" id="modal-signin">
-        <div class="modal-box">
-            <div class="modal-title">Get more experience with Sign Up</div>
-            <div class="modal-subtitle">Provide parameters for validation verification access pipelines.</div>
+    <!-- App Site Context Layout Footer Module Anchor Node Layout container elements -->
+    <footer class="mt-20 border-t border-white/5 bg-slate-950/60 backdrop-blur-md relative z-10 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="space-y-3">
+                <span class="text-sm font-extrabold tracking-tight text-white uppercase block">GEN Z ERA TRENDS</span>
+                <p class="text-xs text-slate-400 leading-relaxed font-medium">
+                    An advanced interactive algorithmic dashboard mapping cultural preferences, mainstream opinions, and digital knowledge assets from 2000 to 2026.
+                </p>
+                <span class="text-[11px] font-bold text-slate-500 uppercase tracking-widest block pt-2">
+                    Developed by Malik Nafay Labs
+                </span>
+            </div>
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-4">Secure Reference Nodes</span>
+                <div class="grid grid-cols-1 gap-2 text-xs font-semibold">
+                    <a href="https://whatsapp.com/channel/0029Vb8Z5szGOj9wNBebrQ2U" target="_blank" class="text-slate-400 hover:text-purple-400 transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i> WhatsApp: NEWS LABS
+                    </a>
+                    <a href="https://maliknafaytop10.github.io/ELEVEN-PRO-/" target="_blank" class="text-slate-400 hover:text-purple-400 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-globe text-blue-400"></i> Eleven Pro System
+                    </a>
+                    <a href="https://maliknafaytop10.github.io/the-ultimate-song/" target="_blank" class="text-slate-400 hover:text-purple-400 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-music text-pink-400"></i> The Ultimate Song Hub
+                    </a>
+                    <a href="https://maliknafaytop10.github.io/POETS-WRITES/" target="_blank" class="text-slate-400 hover:text-purple-400 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-pen-nib text-amber-400"></i> Poets Writes Engine
+                    </a>
+                    <a href="https://maliknafaytop10.github.io/NAFAY-WRITE/" target="_blank" class="text-slate-400 hover:text-purple-400 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-file-lines text-teal-400"></i> Nafay Write Document
+                    </a>
+                </div>
+            </div>
+            <div>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-4">Verified Social Footprint</span>
+                <div class="grid grid-cols-2 gap-3 text-xs font-semibold">
+                    <a href="https://www.tiktok.com/@pakpattan123" target="_blank" class="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 hover:border-purple-500/30 text-slate-300 flex items-center gap-2 transition-all">
+                        <i class="fa-brands fa-tiktok text-white"></i> TikTok
+                    </a>
+                    <a href="https://www.instagram.com/maliknafay321" target="_blank" class="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 hover:border-purple-500/30 text-slate-300 flex items-center gap-2 transition-all">
+                        <i class="fa-brands fa-instagram text-pink-400"></i> Instagram
+                    </a>
+                    <a href="https://x.com/falconlabs_officail" target="_blank" class="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 hover:border-purple-500/30 text-slate-300 flex items-center gap-2 transition-all">
+                        <i class="fa-brands fa-x-twitter text-white"></i> X Platform
+                    </a>
+                    <a href="https://www.snapchat.com/add/nafaypakpattan1" target="_blank" class="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 hover:border-purple-500/30 text-slate-300 flex items-center gap-2 transition-all">
+                        <i class="fa-brands fa-snapchat text-yellow-400"></i> Snapchat
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold text-slate-500 uppercase tracking-widest">
+            <span>&copy; 2026 GEN Z ERA TRENDS. All Rights Reserved.</span>
+            <div class="flex gap-6">
+                <span class="cursor-pointer hover:text-slate-300 transition-all" onclick="openPrivacyModal()">Privacy Policy</span>
+                <span class="cursor-pointer hover:text-slate-300 transition-all" onclick="openHelpModal()">System Documentation</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Application Modal Elements Matrix -->
+    
+    <!-- Modal 1: Identity Access Authentication Sign In Modal -->
+    <div id="modal-signin" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+        <div class="w-full max-w-md bg-slate-900 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6 relative shadow-2xl transform scale-95 transition-all duration-300 modal-content">
+            <button onclick="closeSignInModal()" class="absolute right-4 top-4 w-8 h-8 rounded-lg hover:bg-slate-800 text-slate-400 flex items-center justify-center text-sm transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold text-purple-400 uppercase tracking-widest bg-purple-500/10 px-2.5 py-1 rounded-full">Secure Session Gateway</span>
+                <h3 class="text-2xl font-extrabold text-white">Get more experience with Sign Up</h3>
+                <p class="text-xs text-slate-400 font-medium">Verify your access context path to unlock specialized engine analytical metrics.</p>
+            </div>
             
-            <div class="input-group">
-                <input type="text" class="input-control" id="signin-email-field" placeholder="Enter your Gmail address">
+            <!-- Target Interactive Authentication Pipeline Form Engine -->
+            <div class="space-y-4">
+                <div class="space-y-1.5">
+                    <label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Required Account Address</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-500"><i class="fa-solid fa-envelope"></i></div>
+                        <input type="email" id="signin-email-input" placeholder="username@gmail.com" class="w-full h-12 pl-12 pr-4 rounded-xl bg-slate-950 border border-white/10 text-sm font-medium text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-center text-xs font-bold">
+                    <div class="p-3 rounded-xl bg-slate-950 border border-purple-500/20 text-purple-300 flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-robot text-purple-400"></i> @Verify AI
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-950 border-blue-500/20 text-blue-300 flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-crown text-blue-400"></i> @Pro Tier
+                    </div>
+                </div>
+
+                <button id="btn-signin-submit" onclick="executeSignInPipeline()" class="w-full h-12 rounded-xl bg-gradient-premium text-sm font-bold text-white shadow-lg shadow-purple-600/20 hover:shadow-purple-600/30 transition-all flex items-center justify-center gap-2">
+                    Verify Identity <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
 
-            <div class="badges-row">
-                <span class="badge badge-primary">@Verify AI</span>
-                <span class="badge badge-primary">@Pro</span>
-            </div>
-
-            <div style="display:flex; gap: 1rem;">
-                <button class="btn btn-outline" style="flex:1" id="signin-cancel-btn">Cancel</button>
-                <button class="btn" style="flex:1" id="signin-confirm-btn">Sign In</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- HELP ROUTING MODAL -->
-    <div class="modal-overlay" id="modal-help">
-        <div class="modal-box">
-            <div class="modal-title">Matrix Help Guide</div>
-            <div class="modal-subtitle" style="text-align:left; margin-top:1rem; line-height: 1.6;">
-                * Press <b>Arrow Keys Left/Right</b> to navigate across parsed cards.<br>
-                * Press numbers <b>1, 2, 3, 4</b> or <b>Enter</b> to confirm option selections inside the grid.<br>
-                * Complete all questions completely to view structural preference statistics comparison indices.
-            </div>
-            <button class="btn" style="width:100%; margin-top:1.5rem;" id="help-close-btn">Close Help</button>
-        </div>
-    </div>
-
-    <!-- PRIVACY POLICIES CONTAINER PANEL -->
-    <div class="modal-overlay" id="modal-policy">
-        <div class="modal-box" style="max-width: 550px;">
-            <div class="modal-title">Cyber Security Protection Terms</div>
-            <div class="modal-subtitle" style="text-align:left; margin-top:1rem; line-height: 1.5; font-size:0.85rem;">
-                This database system is verified under cryptographic validation layers. All computational structures are protected against reverse engineering scripting injections.<br><br>
-                By proceeding, users agree that telemetry parameters log zero trackable footprints onto public environments. Explicit violations incur security firewall bans automatically.
-            </div>
-            <button class="btn" style="width:100%; margin-top:1.5rem;" id="policy-close-btn">Acknowledge</button>
-        </div>
-    </div>
-
-    <!-- REAL NAFAYS LINK CONTROLLER GRID PANEL -->
-    <div class="modal-overlay" id="modal-links">
-        <div class="modal-box" style="max-width: 500px;">
-            <div class="modal-title">Malik Nafay Labs Ecosystem</div>
-            <div class="modal-subtitle">Verified external deployment links and communication hub channels.</div>
-            
-            <div class="links-grid">
-                <a href="https://whatsapp.com/channel/0029Vb8Z5szGOj9wNBebrQ2U" target="_blank" class="link-anchor">🟢 WhatsApp News Labs</a>
-                <a href="https://maliknafaytop10.github.io/ELEVEN-PRO-/" target="_blank" class="link-anchor">⚡ Eleven Pro App</a>
-                <a href="https://maliknafaytop10.github.io/the-ultimate-song/" target="_blank" class="link-anchor">🎵 The Ultimate Song</a>
-                <a href="https://maliknafaytop10.github.io/POETS-WRITES/" target="_blank" class="link-anchor">📝 Poets Writes Portal</a>
-                <a href="https://maliknafaytop10.github.io/NAFAY-WRITE/" target="_blank" class="link-anchor">✍️ Nafay Write Engine</a>
-            </div>
-
-            <div style="margin-top:1.5rem; border-top:1px solid var(--card-border); padding-top:1rem;">
-                <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.5rem; text-align:center;">Social Media Nodes:</div>
-                <div style="font-size:0.8rem; line-height:1.6; color:var(--text-muted)">
-                    * <b>TikTok:</b> pakpattan123 <br>
-                    * <b>Instagram:</b> maliknafay321 <br>
-                    * <b>X (Twitter):</b> falconlabs_officail <br>
-                    * <b>Snapchat:</b> nafaypakpattan1 <br>
-                    * <b>Threads Matrix Connected Verified</b>
+            <!-- Internal Embedded Hardware Scanning Loop Simulator UI State Component Container -->
+            <div id="signin-scanning-overlay" class="absolute inset-0 bg-slate-900 rounded-3xl flex flex-col items-center justify-center p-6 space-y-4 transition-all duration-300 opacity-0 pointer-events-none">
+                <div class="relative w-16 h-16 flex items-center justify-center">
+                    <div class="absolute inset-0 rounded-full border-4 border-purple-500/20"></div>
+                    <div class="absolute inset-0 rounded-full border-4 border-t-purple-500 animate-spin"></div>
+                    <i class="fa-solid fa-fingerprint text-2xl text-purple-400 animate-pulse"></i>
+                </div>
+                <div class="text-center space-y-1">
+                    <span id="scan-status-text" class="text-sm font-bold text-white block">Executing Core Identity Scan</span>
+                    <span class="text-xs text-slate-500 font-semibold uppercase tracking-widest block">Hardware Matrix Verification Loop</span>
+                </div>
+                <div class="w-48 h-1 bg-slate-950 rounded-full overflow-hidden relative">
+                    <div id="scan-progress-bar" class="h-full bg-purple-500 w-0 transition-all duration-200"></div>
                 </div>
             </div>
 
-            <button class="btn" style="width:100%; margin-top:1.5rem;" id="links-close-btn">Dismiss</button>
+            <!-- Post-Auth Selection Dashboard Container Element Module -->
+            <div id="signin-avatar-overlay" class="absolute inset-0 bg-slate-900 rounded-3xl flex flex-col p-6 space-y-4 transition-all duration-300 opacity-0 pointer-events-none overflow-y-auto">
+                <div class="text-center">
+                    <h4 class="text-lg font-extrabold text-white">Identity Matrix Authenticated</h4>
+                    <p class="text-xs text-slate-400 font-semibold mt-0.5 uppercase tracking-wide">Select Available Active Profile Asset Container</p>
+                </div>
+
+                <!-- 15 Matrix Nodes Dynamic Injection Target Grid layout elements -->
+                <div id="avatar-selection-grid" class="grid grid-cols-5 gap-2.5 py-2">
+                    <!-- Dynamic injection code loops 10 Free / 5 Locked vectors -->
+                </div>
+
+                <div class="pt-2 border-t border-white/5 flex items-center gap-3">
+                    <button onclick="executeAvatarUpgradePipeline()" class="flex-1 h-10 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-xs font-extrabold text-white uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-lg shadow-amber-500/10">
+                        <i class="fa-solid fa-gem"></i> Upgrade Profile
+                    </button>
+                    <button onclick="dismissAvatarMatrix()" class="px-4 h-10 rounded-xl bg-slate-800 text-xs font-bold text-slate-400 uppercase tracking-wide">
+                        Not Now
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- FOOTER PANEL SYSTEM WRAPPER -->
-    <footer>
-        <div>DEVELOP BY MALIK NAFAY LABS</div>
-        <div style="font-size: 0.75rem; margin-top: 0.25rem; opacity: 0.7;">BASICALLY THIS WEB IS MAKE FOR QUESTION ANSWER ENGINE &copy; 2026</div>
-        <div style="font-size: 0.7rem; margin-top: 0.5rem; color: var(--primary);">THIS WEB MAKE BY NAFAY</div>
-    </footer>
+    <!-- Modal 2: System Documentation Help Modal Container element block Layout -->
+    <div id="modal-help" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+        <div class="w-full max-w-lg bg-slate-900 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6 relative shadow-2xl transform scale-95 transition-all duration-300 modal-content">
+            <button onclick="closeHelpModal()" class="absolute right-4 top-4 w-8 h-8 rounded-lg hover:bg-slate-800 text-slate-400 flex items-center justify-center text-sm transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="space-y-1">
+                <span class="text-xs font-bold text-purple-400 uppercase tracking-widest block">System Documentation</span>
+                <h3 class="text-xl font-extrabold text-white">GEN Z ERA Navigation Matrix</h3>
+            </div>
+            
+            <div class="space-y-4 max-y-64 overflow-y-auto pr-2 text-xs font-medium text-slate-300 leading-relaxed">
+                <div class="p-3.5 rounded-xl bg-slate-950 border border-white/5 space-y-1.5">
+                    <span class="font-bold text-white block uppercase tracking-wider text-[11px] text-purple-400">Keyboard Shortcuts System</span>
+                    <p><kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-white font-bold mx-0.5">Left Arrow</kbd> : Returns context view state to Previous question array index.</p>
+                    <p><kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-white font-bold mx-0.5">Right Arrow</kbd> : Evaluates skipping criteria or triggers Next card pipeline.</p>
+                    <p><kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-white font-bold mx-0.5">1, 2, 3, 4 Keys</kbd> : Selects corresponding Answer Option nodes 1 through 4 instantly.</p>
+                    <p><kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-white font-bold mx-0.5">Enter Key</kbd> : Validates submission pipeline context parameters.</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-950 border border-white/5 space-y-1">
+                    <span class="font-bold text-white block uppercase tracking-wider text-[11px] text-blue-400">Algorithmic Scoring Matrix</span>
+                    <p>Every standard correct submission dynamically flags a discrete payload adding points to live score caches. Shuffled indexing modules ensure non-static options on successive loads.</p>
+                </div>
+            </div>
+            <button onclick="closeHelpModal()" class="w-full h-11 rounded-xl bg-slate-800 text-sm font-bold text-white transition-all">Dismiss Documentation</button>
+        </div>
+    </div>
 
-    <!-- TOAST POP PIPELINES BOX -->
-    <div class="toast-container" id="toast-bin"></div>
+    <!-- Modal 3: Privacy Protocol Ledger System Modal Panel -->
+    <div id="modal-privacy" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+        <div class="w-full max-w-md bg-slate-900 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-4 relative shadow-2xl transform scale-95 transition-all duration-300 modal-content">
+            <button onclick="closePrivacyModal()" class="absolute right-4 top-4 w-8 h-8 rounded-lg hover:bg-slate-800 text-slate-400 flex items-center justify-center text-sm transition-all">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="space-y-1">
+                <span class="text-xs font-bold text-rose-400 uppercase tracking-widest block">Data Sovereignty Guard</span>
+                <h3 class="text-xl font-extrabold text-white">Privacy Policies Pipeline</h3>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-950 border border-rose-500/20 text-xs font-medium text-slate-300 leading-relaxed space-y-2">
+                <p class="font-bold text-rose-400 uppercase tracking-wider text-[11px]"><i class="fa-solid fa-shield-halved"></i> Cyber Crime Guard Warn Block</p>
+                <p>Any malicious payload injections, unauthorized access scanning, or extraction attempts targeting Malik Nafay Labs architectures are strictly logs tracked.</p>
+                <p>Violators face civil enforcement fines up to <span class="text-white font-bold">$9,999 USD</span> alongside mandatory processing referral pipelines directly connecting state legal networks and FIA Cyber Crime Wing systems.</p>
+            </div>
+            <div class="flex gap-3">
+                <a href="https://maliknafaytop10.github.io/ELEVEN-PRO-/" target="_blank" class="flex-1 h-11 rounded-xl bg-slate-900 border border-white/10 text-xs font-bold text-slate-300 flex items-center justify-center gap-1.5 transition-all hover:bg-slate-800">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Full Contract
+                </a>
+                <button onclick="closePrivacyModal()" class="px-5 h-11 rounded-xl bg-slate-800 text-xs font-bold text-white">Acknowledge</button>
+            </div>
+        </div>
+    </div>
 
-    <!-- MAIN JAVASCRIPT LOGIC BLOCK -->
+    <!-- Engine Core Vanilla Executable Client Runtime Script Engine Block -->
     <script>
-        // QUESTION PREFERENCE DATABASE SYSTEM
-        const QUIZ_QUESTIONS = [
-            { question: "What is your favorite car?", options: ["BMW", "Mercedes-Benz", "Rolls-Royce", "Ferrari"], correctAnswer: "Ferrari", category: "Automotive", difficulty: "Standard" },
-            { question: "What is your favorite bike brand?", options: ["Yamaha", "Honda", "Kawasaki", "Ducati"], correctAnswer: "Ducati", category: "Automotive", difficulty: "Standard" },
-            { question: "What is your favorite food?", options: ["Pizza", "Burger", "Biryani", "Pasta"], correctAnswer: "Biryani", category: "Culinary", difficulty: "Standard" },
-            { question: "What is your favorite drink?", options: ["Coffee", "Tea", "Fresh Juice", "Soft Drink"], correctAnswer: "Coffee", category: "Beverages", difficulty: "Standard" },
-            { question: "What is your favorite fruit?", options: ["Mango", "Apple", "Banana", "Orange"], correctAnswer: "Mango", category: "Culinary", difficulty: "Standard" },
-            { question: "What is your favorite season?", options: ["Spring", "Summer", "Autumn", "Winter"], correctAnswer: "Winter", category: "Nature", difficulty: "Standard" },
-            { question: "What is your favorite pet?", options: ["Dog", "Cat", "Bird", "Fish"], correctAnswer: "Cat", category: "Fauna", difficulty: "Standard" },
-            { question: "What is your favorite sport?", options: ["Cricket", "Football", "Basketball", "Tennis"], correctAnswer: "Cricket", category: "Athletics", difficulty: "Standard" },
-            { question: "What is your favorite color?", options: ["Blue", "Black", "Red", "Green"], correctAnswer: "Black", category: "Aesthetics", difficulty: "Standard" },
-            { question: "What is your dream vacation?", options: ["Beach", "Mountains", "City Tour", "Countryside"], correctAnswer: "Mountains", category: "Travel", difficulty: "Standard" },
-            { question: "If you had Rs. 1,000, what would you do?", options: ["Buy delicious food 🍕", "Save it 💰", "Donate to someone in need ❤️", "Watch a movie 🎬"], correctAnswer: "Save it 💰", category: "Life Choices", difficulty: "Standard" },
-            { question: "If you won Rs. 1 million, what would you buy first?", options: ["A car 🚗", "A house 🏠", "A bike 🏍️", "Nothing, I'd save it 💰"], correctAnswer: "Nothing, I'd save it 💰", category: "Life Choices", difficulty: "Standard" },
-            { question: "What's your dream vacation spot?", options: ["Beach 🏖️", "Mountains ⛰️", "Dubai 🌆", "Europe ✈️"], correctAnswer: "Europe ✈️", category: "Travel", difficulty: "Standard" },
-            { question: "If you could have one superpower, what would you choose?", options: ["Fly 🦅", "Become invisible 👻", "Read minds 🧠", "Time travel ⏳"], correctAnswer: "Time travel ⏳", category: "Sci-Fi", difficulty: "Standard" },
-            { question: "Which meal can you never say no to?", options: ["Pizza 🍕", "Biryani 🍛", "Burger 🍔", "BBQ 🍗"], correctAnswer: "Biryani 🍛", category: "Culinary", difficulty: "Standard" },
-            { question: "How would you spend a free Sunday?", options: ["Sleep 😴", "Watch Netflix 📺", "Go out with friends 👫", "Play games 🎮"], correctAnswer: "Play games 🎮", category: "Lifestyle", difficulty: "Standard" },
-            { question: "Which pet would you love to have?", options: ["Dog 🐶", "Cat 🐱", "Parrot 🦜", "Fish 🐠"], correctAnswer: "Cat 🐱", category: "Fauna", difficulty: "Standard" },
-            { question: "If you could own one luxury item, what would it be?", options: ["Sports car 🏎️", "Private jet ✈️", "Luxury watch ⌚", "Yacht 🛥️"], correctAnswer: "Sports car 🏎️", category: "Luxury", difficulty: "Standard" },
-            { question: "What would you do if you had one day off with no responsibilities?", options: ["Travel 🚗", "Sleep all day 😴", "Play games 🎮", "Spend time with family ❤️"], correctAnswer: "Play games 🎮", category: "Lifestyle", difficulty: "Standard" },
-            { question: "If you could eat only one food for a month, what would it be?", options: ["Pizza 🍕", "Biryani 🍛", "Burgers 🍔", "Pasta 🍝"], correctAnswer: "Biryani 🍛", category: "Culinary", difficulty: "Standard" },
-            { question: "Which PC brand do you prefer?", options: ["Dell", "HP", "Lenovo", "Acer"], correctAnswer: "Dell", category: "Tech Gear", difficulty: "Standard" },
-            { question: "Which smartphone brand do you trust the most?", options: ["Apple", "Samsung", "Xiaomi", "Google Pixel"], correctAnswer: "Apple", category: "Tech Gear", difficulty: "Standard" },
-            { question: "Which gaming console would you choose?", options: ["PlayStation", "Xbox", "Nintendo Switch", "Gaming PC"], correctAnswer: "Gaming PC", category: "Gaming", difficulty: "Standard" },
-            { question: "Which AI assistant do you like the most?", options: ["ChatGPT", "Gemini", "Claude", "Microsoft Copilot"], correctAnswer: "Gemini", category: "Artificial Intelligence", difficulty: "Standard" }
+        /* -------------------------------------------------------------------------
+         * Global Application State Matrix Data Storage
+         * ------------------------------------------------------------------------- */
+        let activeAudioMuted = false;
+        let activeAppSessionTheme = 'dark';
+        let currentActiveUserIdentity = null;
+        let selectedProfileAvatarIndex = null;
+        
+        let quizActiveCategoryIndex = null;
+        let quizQuestionsSequencePayload = [];
+        let quizCurrentIndexPointer = 0;
+        let quizTrackingScoreCache = 0;
+        let quizRuntimeCountdownTimer = null;
+        let quizTimerRemainingValue = 30;
+        let quizAnsweredTrackerState = {}; // Index mapping: { questionIndex: { chosenOptIndex, isCorrect, skipped } }
+
+        /* -------------------------------------------------------------------------
+         * Complete Category & Question Matrix Databank Initialization Configuration
+         * ------------------------------------------------------------------------- */
+        const globalCategoriesDatabase = [
+            { id: "era-trends", name: "Gen Z Era Trends", icon: "fa-solid fa-bolt", gradient: "from-purple-600 to-blue-600", count: 30, difficulty: "Trending" },
+            { id: "tech-ai", name: "Technology & AI", icon: "fa-solid fa-robot", gradient: "from-blue-600 to-cyan-500", count: 15, difficulty: "Medium" },
+            { id: "pak-gk", name: "Pakistan GK", icon: "fa-solid fa-star-and-crescent", gradient: "from-emerald-600 to-teal-500", count: 10, difficulty: "Urdu Native" },
+            { id: "gaming-hub", name: "Gaming & Platforms", icon: "fa-solid fa-gamepad", gradient: "from-pink-600 to-rose-500", count: 10, difficulty: "High Tech" },
+            { id: "food-ent", name: "Food & Lifestyle", icon: "fa-solid fa-utensils", gradient: "from-amber-500 to-orange-600", count: 15, difficulty: "Casual" }
         ];
 
-        // ENGINE APPLICATION STATE CONTROLLER
-        let state = {
-            currentQuestionIndex: 0,
-            score: 0,
-            answeredCount: 0,
-            responses: {}, // index -> {selectedOptionText, isCorrect}
-            timerInterval: null,
-            timeLeft: 30,
-            isMuted: false,
-            questionsList: [...QUIZ_QUESTIONS]
-        };
+        const globalQuestionsDataset = [
+            // Category 0: Gen Z Era Trends
+            { category: "era-trends", difficulty: "Trending", question: "What is your favorite car brand among luxury modern tiers?", options: ["BMW", "Mercedes-Benz", "Rolls-Royce", "Ferrari"], correctAnswer: 2 },
+            { category: "era-trends", difficulty: "Trending", question: "Which motorcycle brand matches modern performance standards?", options: ["Yamaha", "Honda", "Kawasaki", "Ducati"], correctAnswer: 3 },
+            { category: "era-trends", difficulty: "Trending", question: "Which mainstream fast food item ranks highest in recent surveys?", options: ["Pizza", "Burger", "Biryani", "Pasta"], correctAnswer: 2 },
+            { category: "era-trends", difficulty: "Trending", question: "What drink asset dictates the current daily routine trend?", options: ["Coffee", "Tea", "Fresh Juice", "Soft Drink"], correctAnswer: 0 },
+            { category: "era-trends", difficulty: "Trending", question: "Which fruit asset is consistently labeled the king of flavors?", options: ["Mango", "Apple", "Banana", "Orange"], correctAnswer: 0 },
+            { category: "era-trends", difficulty: "Trending", question: "What season environment maximizes relaxation preferences?", options: ["Spring", "Summer", "Autumn", "Winter"], correctAnswer: 3 },
+            { category: "era-trends", difficulty: "Trending", question: "Which animal asset is widely adopted as the cutest domestic pet?", options: ["Dog", "Cat", "Bird", "Fish"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "Which athletic field dynamic captures maximum global screen views?", options: ["Cricket", "Football", "Basketball", "Tennis"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "Which minimalist structural aesthetic color ranks highest?", options: ["Blue", "Black", "Red", "Green"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "What dream vacation topology is highly shared on platforms?", options: ["Beach", "Mountains", "City Tour", "Countryside"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "If you had Rs. 1,000 cash on hand, what would be your choice?", options: ["Buy delicious food 🍕", "Save it 💰", "Donate to someone in need ❤️", "Watch a movie 🎬"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "If you won Rs. 1 Million instantly, what asset comes first?", options: ["A car 🚗", "A house 🏠", "A bike 🏍️", "Nothing, I'd save it 💰"], correctAnswer: 3 },
+            { category: "era-trends", difficulty: "Trending", question: "What specific regional vacation destination is heavily trending?", options: ["Beach 🏖️", "Mountains ⛰️", "Dubai 🌆", "Europe ✈️"], correctAnswer: 2 },
+            { category: "era-trends", difficulty: "Trending", question: "Which core fictional superpower would you capture?", options: ["Fly 🦅", "Become invisible 👻", "Read minds 🧠", "Time travel ⏳"], correctAnswer: 3 },
+            { category: "era-trends", difficulty: "Trending", question: "Which meal matrix can you absolutely never say no to?", options: ["Pizza 🍕", "Biryani 🍛", "Burger 🍔", "BBQ 🍗"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "How would you optimally allocate a completely free Sunday?", options: ["Sleep 😴", "Watch Netflix 📺", "Go out with friends 👫", "Play games 🎮"], correctAnswer: 3 },
+            { category: "era-trends", difficulty: "Trending", question: "Which specific luxury asset holds maximum status weight?", options: ["Sports car 🏎️", "Private jet ✈️", "Luxury watch ⌚", "Yacht 🛥️"], correctAnswer: 0 },
+            { category: "era-trends", difficulty: "Trending", question: "If you could eat only one food item for an entire month?", options: ["Pizza 🍕", "Biryani 🍛", "Burgers 🍔", "Pasta 🍝"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "Which global abstract asset holds highest value?", options: ["Unlimited money 💵", "Unlimited happiness 😊", "Perfect health 💪", "World peace ☮️"], correctAnswer: 2 },
+            { category: "era-trends", difficulty: "Trending", question: "Which mobile interface application takes most screen time?", options: ["YouTube ▶️", "Instagram 📷", "TikTok 🎵", "WhatsApp 💬"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "If you could own one isolated land domain, what would it be?", options: ["Private Jet ✈️", "Supercar 🏎️", "Luxury Villa 🏠", "Private Island 🏝️"], correctAnswer: 3 },
+            { category: "era-trends", difficulty: "Trending", question: "Which sudden reality modification scares you the most?", options: ["Snake 🐍", "Spider 🕷️", "Ghost 👻", "Heights 🏢"], correctAnswer: 2 },
+            { category: "era-trends", difficulty: "Trending", question: "Which free systemic hardware drop would you pick instantly?", options: ["iPhone 📱", "Gaming PC 💻", "PS5 🎮", "MacBook 💼"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "What element becomes hardest to isolate and live without?", options: ["Phone 📱", "Wi-Fi 🌐", "Friends 👥", "Family ❤️"], correctAnswer: 3 },
+            { category: "era-trends", difficulty: "Trending", question: "Which premium performance car badge commands your vision?", options: ["Lamborghini", "Ferrari", "Bugatti", "Rolls-Royce"], correctAnswer: 0 },
+            { category: "era-trends", difficulty: "Trending", question: "Which entertainment cinema genre do you watch most?", options: ["Horror 👻", "Comedy 😂", "Action 💥", "Romance ❤️"], correctAnswer: 2 },
+            { category: "era-trends", difficulty: "Trending", question: "What is your target digital career track orientation?", options: ["Pilot ✈️", "Doctor 🩺", "Software Engineer 💻", "YouTuber 🎥"], correctAnswer: 2 },
+            { category: "era-trends", difficulty: "Trending", question: "If you possessed a high-end robot, what is its primary task?", options: ["Clean the house 🧹", "Cook 🍳", "Do homework 📚", "Drive me 🚗"], correctAnswer: 2 },
+            { category: "era-trends", difficulty: "Trending", question: "Which target celestial space domain would you explore first?", options: ["Moon 🌙", "Mars 🔴", "Underwater 🌊", "Antarctica ❄️"], correctAnswer: 1 },
+            { category: "era-trends", difficulty: "Trending", question: "Which social application would you delete permanently first?", options: ["Facebook", "TikTok", "Instagram", "Snapchat"], correctAnswer: 0 },
 
-        // AUDIO CONTEXT SYSTEM SYNTHESIZERS
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playTone(freq, type, duration) {
-            if (state.isMuted) return;
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = type;
-                osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch(e) {}
+            // Category 1: Technology & AI
+            { category: "tech-ai", difficulty: "Medium", question: "Which enterprise personal computer brand do you prefer?", options: ["Dell", "HP", "Lenovo", "Acer"], correctAnswer: 0 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which smartphone device hardware ecosystem do you trust most?", options: ["Apple", "Samsung", "Xiaomi", "Google Pixel"], correctAnswer: 1 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which web browser utility commands your default engine run?", options: ["Google Chrome", "Microsoft Edge", "Firefox", "Safari"], correctAnswer: 0 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which search engine index utility processes your lookups?", options: ["Google", "Bing", "DuckDuckGo", "Yahoo"], correctAnswer: 0 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which production deployment operating system do you run?", options: ["Windows", "macOS", "Linux", "ChromeOS"], correctAnswer: 0 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which advanced large language model assistant tool do you prefer?", options: ["ChatGPT", "Gemini", "Claude", "Microsoft Copilot"], correctAnswer: 1 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which pocket utility infrastructure gadget can you not live without?", options: ["Smartphone", "Laptop", "Smartwatch", "Tablet"], correctAnswer: 0 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which physical layout keyboard mechanism typing experience suits you?", options: ["Mechanical", "Membrane", "Wireless", "Laptop Keyboard"], correctAnswer: 0 },
+            { category: "tech-ai", difficulty: "Medium", question: "If you found Rs. 50,000, what tactical framework follows?", options: ["Buy a phone", "Save it", "Invest it", "Donate it"], correctAnswer: 2 },
+            { category: "tech-ai", difficulty: "Medium", question: "What is your primary developmental target focus right now?", options: ["Become rich 💰", "Stay healthy 💪", "Travel the world 🌎", "Start a successful business 🚀"], correctAnswer: 3 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which core technical skill would you master instantly?", options: ["Coding 💻", "Cooking 👨‍🍳", "Playing guitar 🎸", "Speaking every language 🌍"], correctAnswer: 0 },
+            { category: "tech-ai", difficulty: "Medium", question: "What core item do you optimize first upon becoming rich?", options: ["House", "Car", "Business", "Travel"], correctAnswer: 2 },
+            { category: "tech-ai", difficulty: "Medium", question: "If you had the technical route option to retire completely at 30?", options: ["Yes", "No", "Maybe", "Not Sure"], correctAnswer: 0 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which mobile tracking operating system architecture is best?", options: ["Android", "iOS", "HarmonyOS", "Other"], correctAnswer: 0 },
+            { category: "tech-ai", difficulty: "Medium", question: "Which video streaming service do you open most frequently?", options: ["Netflix", "Disney+", "Prime Video", "YouTube"], correctAnswer: 3 },
+
+            // Category 2: Pakistan GK (Urdu Native Elements)
+            { category: "pak-gk", difficulty: "Urdu Native", question: "لاہور کی مشہور اور تاریخی مسجد کون سی ہے؟", options: ["فیصل مسجد", "بادشاہی مسجد", "وزیر خان مسجد", "طوبیٰ مسجد"], correctAnswer: 1 },
+            { category: "pak-gk", difficulty: "Urdu Native", question: "پاکستان کا دارالحکومت کون سا شہر ہے؟", options: ["لاہور", "کراچی", "اسلام آباد", "پشاور"], correctAnswer: 2 },
+            { category: "pak-gk", difficulty: "Urdu Native", question: "پاکستان کا قومی جانور کون سا منتخب کیا گیا ہے؟", options: ["شیر", "مارخور", "ہرن", "چیتا"], correctAnswer: 1 },
+            { category: "pak-gk", difficulty: "Urdu Native", question: "پاکستان کا قومی پھول کون سا ہے؟", options: ["گلاب", "چنبیلی", "سورج مکھی", "کنول"], correctAnswer: 1 },
+            { category: "pak-gk", difficulty: "Urdu Native", question: "آبادی اور معیشت کے لحاظ سے پاکستان کا سب سے بڑا شہر کون سا ہے؟", options: ["لاہور", "کراچی", "فیصل آباد", "ملتان"], correctAnswer: 1 },
+            { category: "pak-gk", difficulty: "Urdu Native", question: "پاکستان کا قومی پرچم قانونی طور پر کس رنگ کا ہے؟", options: ["سبز اور سفید", "سرخ اور سفید", "نیلا اور سفید", "سبز اور کالا"], correctAnswer: 0 },
+            { category: "pak-gk", difficulty: "Urdu Native", question: "پاکستان کا قومی کھیل کون سا تسلیم کیا جاتا ہے؟", options: ["کرکٹ", "ہاکی", "فٹبال", "کبڈی"], correctAnswer: 1 },
+            { category: "pak-gk", difficulty: "Urdu Native", question: "پاکستان کا سب سے اونچا پہاڑی سلسلہ یا پہاڑ کون سا ہے؟", options: ["نانگا پربت", "کے ٹو (K2)", "ماؤنٹ ایورسٹ", "راکا پوشی"], correctAnswer: 1 },
+            { category: "pak-gk", difficulty: "Urdu Native", question: "دریائے سندھ کا جیوگرافیکل آغاز کہاں سے نکلتا ہے؟", options: ["چین", "تبت", "افغانستان", "نیپال"], correctAnswer: 1 },
+            { category: "pak-gk", difficulty: "Urdu Native", question: "اولیاء کی سرزمیں ملتان کس خاص پھل کی پیداوار کے لیے مشہور ہے؟", options: ["سیب", "آم", "انگور", "کیلا"], correctAnswer: 1 },
+
+            // Category 3: Gaming & Platforms
+            { category: "gaming-hub", difficulty: "High Tech", question: "Which digital game title would you execute for 100+ hours non-stop?", options: ["Minecraft", "GTA V", "PUBG", "Valorant"], correctAnswer: 1 },
+            { category: "gaming-hub", difficulty: "High Tech", question: "Which peripheral controller input interface gives best response?", options: ["PlayStation", "Xbox", "Keyboard & Mouse", "Mobile Controls"], correctAnswer: 2 },
+            { category: "gaming-hub", difficulty: "High Tech", question: "Which algorithmic game design genre suits your setup?", options: ["RPG", "FPS", "Racing", "Sports"], correctAnswer: 1 },
+            { category: "gaming-hub", difficulty: "High Tech", question: "Which interactive mode session style do you match with?", options: ["Single Player", "Multiplayer", "Co-op", "Battle Royale"], correctAnswer: 1 },
+            { category: "gaming-hub", difficulty: "High Tech", question: "What is your dream gaming console or physical rig target layout?", options: ["PlayStation", "Xbox", "Nintendo Switch", "Gaming PC"], correctAnswer: 3 },
+            { category: "gaming-hub", difficulty: "High Tech", question: "Which primary gaming setup battle-chair color do you deploy?", options: ["Black", "White", "Red", "Blue"], correctAnswer: 0 },
+            { category: "gaming-hub", difficulty: "High Tech", question: "Which interactive global game sandbox do you load?", options: ["Minecraft", "GTA V", "PUBG", "Fortnite"], correctAnswer: 1 },
+            { category: "gaming-hub", difficulty: "High Tech", question: "Which entertainment streaming platform keeps your view focus?", options: ["Netflix", "YouTube", "Prime Video", "Disney+"], correctAnswer: 1 },
+            { category: "gaming-hub", difficulty: "High Tech", question: "How would you prefer to handle structural casual social messaging?", options: ["WhatsApp", "Telegram", "Messenger", "Signal"], correctAnswer: 0 },
+            { category: "gaming-hub", difficulty: "High Tech", question: "Which platform content layout element do you generate most?", options: ["Photos", "Videos", "Stories", "Memes"], correctAnswer: 3 },
+
+            // Category 4: Food & Lifestyle
+            { category: "food-ent", difficulty: "Casual", question: "Which foundational breakfast selection starts your routine?", options: ["Omelette", "Pancakes", "Cereal", "Paratha"], correctAnswer: 3 },
+            { category: "food-ent", difficulty: "Casual", question: "Which high-sugar dessert item completes your palette?", options: ["Cake", "Ice Cream", "Brownie", "Donut"], correctAnswer: 1 },
+            { category: "food-ent", difficulty: "Casual", question: "Which intense spicy food item carries maximum heritage value?", options: ["Biryani", "Karahi", "BBQ", "Nihari"], correctAnswer: 0 },
+            { category: "food-ent", difficulty: "Casual", question: "Which target late-night snack item fits sudden hunger spikes?", options: ["Chips", "Pizza", "Instant Noodles", "Sandwich"], correctAnswer: 2 },
+            { category: "food-ent", difficulty: "Casual", question: "What music mood audio canvas matches your production line?", options: ["Relaxing", "Party", "Sad", "Motivational"], correctAnswer: 3 },
+            { category: "food-ent", difficulty: "Casual", question: "Which global vacation geographic terrain landscape matches your vibe?", options: ["Japan", "Switzerland", "Maldives", "Canada"], correctAnswer: 1 },
+            { category: "food-ent", difficulty: "Casual", question: "Which logistical transport medium do you map for long paths?", options: ["Plane", "Train", "Car", "Cruise Ship"], correctAnswer: 0 },
+            { category: "food-ent", difficulty: "Casual", question: "What topographic space environment satisfies deep travel?", options: ["Beach", "Mountains", "Forest", "Desert"], correctAnswer: 1 },
+            { category: "food-ent", difficulty: "Casual", question: "Which hotel asset infrastructure format fits your style?", options: ["Hotel", "Camping", "Cabin", "RV"], correctAnswer: 0 },
+            { category: "food-ent", difficulty: "Casual", question: "What is your chosen social alignment for expeditions?", options: ["Alone", "Friends", "Family", "Partner"], correctAnswer: 1 },
+            { category: "food-ent", difficulty: "Casual", question: "Where do you execute the highest percentage of lifestyle shopping?", options: ["Amazon", "Local Market", "Mall", "Brand Stores"], correctAnswer: 0 },
+            { category: "food-ent", difficulty: "Casual", question: "Which target fashion accessory element gets purchased first?", options: ["Sneakers", "Jacket", "Watch", "Backpack"], correctAnswer: 2 },
+            { category: "food-ent", difficulty: "Casual", question: "Which financial payment network asset transaction method is preferred?", options: ["Cash", "Card", "Mobile Wallet", "Bank Transfer"], correctAnswer: 2 },
+            { category: "food-ent", difficulty: "Casual", question: "Which physical lifestyle room structural zone holds highest weight?", options: ["Bedroom", "Gaming Room", "Kitchen", "Living Room"], correctAnswer: 1 },
+            { category: "food-ent", difficulty: "Casual", question: "Which atmospheric ambient weather state unlocks maximum clarity?", options: ["Rain", "Snow", "Sunny", "Cloudy"], correctAnswer: 0 }
+        ];
+
+        /* -------------------------------------------------------------------------
+         * Core Core UI Screen Router Lifecycle Control Hooks
+         * ------------------------------------------------------------------------- */
+        function showScreen(screenId) {
+            playSound('snd-click');
+            document.getElementById('screen-home').classList.add('hidden');
+            document.getElementById('screen-quiz').classList.add('hidden');
+            document.getElementById('screen-result').classList.add('hidden');
+            
+            document.getElementById(screenId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function playClickSound() { playTone(600, 'sine', 0.1); }
-        function playCorrectSound() { playTone(800, 'triangle', 0.3); }
-        function playWrongSound() { playTone(250, 'sawtooth', 0.45); }
+        /* -------------------------------------------------------------------------
+         * Client Storage Context Preferences & Initialization Engine Lifecycle
+         * ------------------------------------------------------------------------- */
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeSystemLocalStorage();
+            renderCategoriesMatrix(globalCategoriesDatabase);
+            setupGlobalKeyboardBindings();
+            
+            // Simulating high-end dynamic text element increment counter animation
+            setTimeout(() => {
+                document.getElementById('stat-total-votes').innerText = "251,904";
+            }, 1500);
+        });
 
-        // TOAST NOTIFICATIONS PIPELINE
-        function showToast(message) {
-            const container = document.getElementById('toast-bin');
-            const element = document.createElement('div');
-            element.className = 'toast';
-            element.innerText = message;
-            container.appendChild(element);
-            setTimeout(() => { element.remove(); }, 3500);
-        }
-
-        // CONFETTI RENDERER ENGINE PIPELINE
-        function triggerConfetti() {
-            const canvas = document.getElementById('confetti-canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            let particles = [];
-            for (let i = 0; i < 120; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height - canvas.height,
-                    r: Math.random() * 6 + 4,
-                    d: Math.random() * canvas.height,
-                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-                    tilt: Math.random() * 10 - 5,
-                    speed: Math.random() * 3 + 2
-                });
+        function initializeSystemLocalStorage() {
+            if (localStorage.getItem('genz_muted') === 'true') {
+                activeAudioMuted = true;
+                updateMuteUIState();
             }
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach((p, idx) => {
-                    ctx.beginPath();
-                    ctx.lineWidth = p.r;
-                    ctx.strokeStyle = p.color;
-                    ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
-                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
-                    ctx.stroke();
-                    p.y += p.speed;
-                    p.x += Math.sin(p.tilt) * 0.5;
-                    if (p.y > canvas.height) {
-                        particles[idx] = { ...p, y: -20, x: Math.random() * canvas.width };
-                    }
-                });
-                if(state.currentQuestionIndex === 0 && document.getElementById('screen-end').classList.contains('hidden') === false) {
-                    requestAnimationFrame(draw);
-                } else if (!document.getElementById('screen-end').classList.contains('hidden')) {
-                    requestAnimationFrame(draw);
+            if (localStorage.getItem('genz_theme') === 'light') {
+                activeAppSessionTheme = 'light';
+                document.documentElement.classList.add('light-mode-override'); 
+            }
+            const identity = localStorage.getItem('genz_user_identity');
+            if (identity) {
+                currentActiveUserIdentity = identity;
+                selectedProfileAvatarIndex = localStorage.getItem('genz_user_avatar') || 3;
+                injectAuthenticatedUserHeaderState();
+            }
+        }
+
+        /* -------------------------------------------------------------------------
+         * Category Grid Card Element Assembler Pipeline Loop
+         * ------------------------------------------------------------------------- */
+        function renderCategoriesMatrix(categoriesArray) {
+            const gridContainer = document.getElementById('categories-grid');
+            gridContainer.innerHTML = '';
+            
+            categoriesArray.forEach((cat) => {
+                const cardNode = document.createElement('div');
+                cardNode.className = 'glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group cursor-pointer';
+                cardNode.onclick = (e) => triggerQuizInstanceInitialization(cat.id, e);
+                
+                cardNode.innerHTML = `
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${cat.gradient}"></div>
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br ${cat.gradient} flex items-center justify-center text-white text-lg shadow-md group-hover:scale-110 transition-transform duration-300">
+                            <i class="${cat.icon}"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-purple-400 transition-colors">${cat.name}</h3>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mt-1">${cat.difficulty} Badge</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-6 mt-4 border-t border-white/5 text-xs font-semibold text-slate-400">
+                        <span>${cat.count} Context Cards</span>
+                        <span class="text-purple-400 group-hover:translate-x-1 transition-transform">Launch <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i></span>
+                    </div>
+                `;
+                gridContainer.appendChild(cardNode);
+            });
+        }
+
+        function handleSearchFilter(searchQuery) {
+            const normalizedQuery = searchQuery.toLowerCase().trim();
+            if (!normalizedQuery) {
+                renderCategoriesMatrix(globalCategoriesDatabase);
+                return;
+            }
+            const filteredCategories = globalCategoriesDatabase.filter(cat => 
+                cat.name.toLowerCase().includes(normalizedQuery) || 
+                cat.difficulty.toLowerCase().includes(normalizedQuery)
+            );
+            renderCategoriesMatrix(filteredCategories);
+        }
+
+        function triggerSpinWheel() {
+            createToastNotification("Spinning Wheel triggered. Selecting random trend context node...", "info");
+            playSound('snd-click');
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * globalCategoriesDatabase.length);
+                const targetCatId = globalCategoriesDatabase[randomIndex].id;
+                createToastNotification(`Random Selection landed on: ${globalCategoriesDatabase[randomIndex].name}`, "success");
+                triggerQuizInstanceInitialization(targetCatId, null);
+            }, 800);
+        }
+
+        /* -------------------------------------------------------------------------
+         * Quiz Engine Execution Lifecycle Runtime Logic
+         * ------------------------------------------------------------------------- */
+        function triggerQuizInstanceInitialization(categoryId, clickEvent) {
+            if (clickEvent) createRippleEffect(clickEvent);
+            playSound('snd-click');
+
+            const categoryMetadata = globalCategoriesDatabase.find(c => c.id === categoryId);
+            const explicitQuestionSet = globalQuestionsDataset.filter(q => q.category === categoryId);
+            
+            if (explicitQuestionSet.length === 0) {
+                createToastNotification("No question vectors loaded for this category index.", "error");
+                return;
+            }
+
+            quizActiveCategoryIndex = categoryId;
+            // Shuffling logic payload configuration instantiation
+            quizQuestionsSequencePayload = shuffleArrayPayload([...explicitQuestionSet]);
+            quizCurrentIndexPointer = 0;
+            quizTrackingScoreCache = 0;
+            quizAnsweredTrackerState = {};
+
+            // Synchronizing initial visual header states
+            document.getElementById('quiz-header-category').innerText = categoryMetadata.name;
+            document.getElementById('quiz-header-difficulty').innerText = `${categoryMetadata.difficulty} System`;
+            document.getElementById('quiz-live-score').innerText = `0 pts`;
+
+            showScreen('screen-quiz');
+            loadQuestionIndexPointerCard();
+        }
+
+        function loadQuestionIndexPointerCard() {
+            clearInterval(quizRuntimeCountdownTimer);
+            
+            const activeQuestionData = quizQuestionsSequencePayload[quizCurrentIndexPointer];
+            const totalQuestionsCount = quizQuestionsSequencePayload.length;
+            
+            // Render Dynamic Question Text - check for Urdu scripts parameters
+            const textElementContainer = document.getElementById('quiz-question-text');
+            textElementContainer.innerText = activeQuestionData.question;
+            if (/[\u0600-\u06FF]/.test(activeQuestionData.question)) {
+                textElementContainer.className = "text-xl sm:text-2xl font-bold tracking-tight text-white mb-8 leading-relaxed text-right urdu-text";
+            } else {
+                textElementContainer.className = "text-xl sm:text-2xl font-bold tracking-tight text-white mb-8 leading-relaxed";
+            }
+
+            // Synch Metrics Counter Text Fields
+            document.getElementById('quiz-question-counter').innerText = `Question ${quizCurrentIndexPointer + 1} of ${totalQuestionsCount}`;
+            const percentageComplete = Math.round((quizCurrentIndexPointer / totalQuestionsCount) * 100);
+            document.getElementById('quiz-percentage-text').innerText = `${percentageComplete}% Complete`;
+            document.getElementById('quiz-progress-fill').style.width = `${((quizCurrentIndexPointer) / totalQuestionsCount) * 100}%`;
+
+            // Generation and distribution of options items grid payload
+            const optionsContainerGrid = document.getElementById('quiz-options-container');
+            optionsContainerGrid.innerHTML = '';
+
+            const activeQuestionMetadata = quizAnsweredTrackerState[quizCurrentIndexPointer];
+
+            activeQuestionData.options.forEach((optionText, optIndex) => {
+                const optionBoxButton = document.createElement('button');
+                optionBoxButton.className = 'p-5 rounded-2xl glass-card border-white/5 text-left text-sm font-semibold text-slate-200 flex items-center justify-between group transition-all relative overflow-hidden w-full';
+                
+                // Set text styling mapping dynamically based on localized text characters matching
+                const isUrduOption = /[\u0600-\u06FF]/.test(optionText);
+                const textSpanNode = document.createElement('span');
+                textSpanNode.className = isUrduOption ? "urdu-text text-base block text-right w-full" : "block";
+                textSpanNode.innerText = optionText;
+
+                const indicatorIconSlot = document.createElement('div');
+                indicatorIconSlot.className = "w-6 h-6 rounded-lg bg-slate-900 flex items-center justify-center text-[10px] border border-white/10 group-hover:border-purple-500/30 shrink-0 ml-3";
+                indicatorIconSlot.innerHTML = `<span class="text-slate-500">${String.fromCharCode(65 + optIndex)}</span>`;
+
+                if (isUrduOption) {
+                    optionBoxButton.appendChild(indicatorIconSlot);
+                    optionBoxButton.appendChild(textSpanNode);
                 } else {
-                    ctx.clearRect(0,0,canvas.width,canvas.height);
+                    optionBoxButton.appendChild(textSpanNode);
+                    optionBoxButton.appendChild(indicatorIconSlot);
                 }
-            }
-            draw();
-            setTimeout(() => { ctx.clearRect(0,0,canvas.width,canvas.height); }, 7000);
-        }
 
-        // ELEMENT SELECTORS MATRIX
-        const screenStart = document.getElementById('screen-start');
-        const screenQuiz = document.getElementById('screen-quiz');
-        const screenEnd = document.getElementById('screen-end');
-
-        // CORE SHUFFLE MECHANISM
-        function shuffleArray(arr) {
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-        }
-
-        // INITIALIZE RUNTIME INTERACTIVE LOOPS
-        function initApp() {
-            // Theme setup
-            if (localStorage.getItem('genz-theme') === 'light') {
-                document.body.classList.add('light-mode');
-                document.getElementById('theme-toggle').innerText = "☀️";
-            }
-
-            // Shuffle array components configuration
-            shuffleArray(state.questionsList);
-            state.questionsList.forEach(q => shuffleArray(q.options));
-        }
-
-        // RUN TIME RENDER QUESTION CARD CONTAINER
-        function renderCurrentQuestion() {
-            clearInterval(state.timerInterval);
-            
-            const qData = state.questionsList[state.currentQuestionIndex];
-            
-            // Labels parsing
-            document.getElementById('badge-category').innerText = qData.category;
-            document.getElementById('badge-difficulty').innerText = qData.difficulty;
-            document.getElementById('main-question-text').innerText = qData.question;
-            document.getElementById('counter-questions-lbl').innerText = `Question ${state.currentQuestionIndex + 1} of ${state.questionsList.length}`;
-            
-            // Progress configurations
-            const pct = Math.round(((state.currentQuestionIndex) / state.questionsList.length) * 100);
-            document.getElementById('quiz-progress-fill').style.width = `${pct}%`;
-            document.getElementById('counter-percentage-lbl').innerText = `${pct}% Complete`;
-            
-            // Stats configuration labels
-            document.getElementById('live-score-lbl').innerText = state.score;
-            document.getElementById('live-answered-lbl').innerText = state.answeredCount;
-            document.getElementById('live-remaining-lbl').innerText = state.questionsList.length - state.currentQuestionIndex;
-
-            // Generate options blocks fields
-            const matrixBox = document.getElementById('options-matrix-box');
-            matrixBox.innerHTML = '';
-            
-            const existingResponse = state.responses[state.currentQuestionIndex];
-
-            // Generating voting mapping simulation counters metrics data
-            let mockVotes = [32, 45, 12, 11]; 
-            
-            qData.options.forEach((opt, idx) => {
-                const card = document.createElement('div');
-                card.className = 'option-card';
-                card.innerText = opt;
-                card.setAttribute('data-opt-index', idx);
-                card.setAttribute('data-opt-text', opt);
-
-                // Check historical selection profiles states
-                if (existingResponse) {
-                    card.classList.add('disabled');
-                    if (opt === existingResponse.selectedOptionText) {
-                        card.classList.add(existingResponse.isCorrect ? 'correct' : 'wrong');
+                // If this specific index question structure has historic analytical answers frozen already
+                if (activeQuestionMetadata) {
+                    optionBoxButton.disabled = true;
+                    if (optIndex === activeQuestionData.correctAnswer) {
+                        optionBoxButton.classList.add('border-emerald-500/50', 'bg-emerald-950/30', 'text-emerald-300');
+                        indicatorIconSlot.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i>`;
+                        indicatorIconSlot.className = "w-6 h-6 rounded-lg bg-emerald-500/20 flex items-center justify-center text-[10px] shrink-0 ml-3";
+                    } else if (optIndex === activeQuestionMetadata.chosenOptIndex) {
+                        optionBoxButton.classList.add('border-rose-500/50', 'bg-rose-950/30', 'text-rose-300');
+                        indicatorIconSlot.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-400"></i>`;
+                        indicatorIconSlot.className = "w-6 h-6 rounded-lg bg-rose-500/20 flex items-center justify-center text-[10px] shrink-0 ml-3";
                     }
-                    if (!existingResponse.isCorrect && opt === qData.correctAnswer) {
-                        card.classList.add('correct');
-                    }
-                    // Append simulated live statistics indicators
-                    const vLabel = document.createElement('span');
-                    vLabel.className = 'vote-percentage';
-                    vLabel.innerText = `${mockVotes[idx]}%`;
-                    card.appendChild(vLabel);
                 } else {
-                    card.addEventListener('click', () => handleOptionSelection(card, opt, qData.correctAnswer));
+                    optionBoxButton.onclick = (e) => executeOptionEvaluation(optIndex, optionBoxButton, e);
                 }
 
-                matrixBox.appendChild(card);
+                optionsContainerGrid.appendChild(optionBoxButton);
             });
 
-            // Re-trigger visual dynamic timings loop timers
-            if (!existingResponse) {
-                startQuestionCountdown();
+            // Handle Context Analytics Display Toggle
+            const analyticsBox = document.getElementById('poll-analytics-box');
+            if (activeQuestionMetadata) {
+                analyticsBox.classList.remove('hidden');
+                document.getElementById('like-counter').innerText = Math.floor(Math.random() * 200) + 45;
             } else {
-                updateTimerDisplay(0);
+                analyticsBox.classList.add('hidden');
             }
+
+            // Sync structural controls navigation parameters disabling state properties
+            document.getElementById('btn-quiz-prev').disabled = (quizCurrentIndexPointer === 0);
+            
+            // Start Timer pipeline execution loops
+            initiateQuestionTimerCountdownLoop();
         }
 
-        // COUNTDOWN HANDLER ENGINE
-        function startQuestionCountdown() {
-            state.timeLeft = 30;
-            updateTimerDisplay(1);
-            
-            state.timerInterval = setInterval(() => {
-                state.timeLeft--;
-                const progressRatio = state.timeLeft / 30;
-                updateTimerDisplay(progressRatio);
+        function executeOptionEvaluation(selectedOptionIndex, selectedButtonNode, clickEvent) {
+            clearInterval(quizRuntimeCountdownTimer);
+            createRippleEffect(clickEvent);
 
-                if (state.timeLeft <= 0) {
-                    clearInterval(state.timerInterval);
-                    handleTimeoutTransition();
+            const activeQuestionData = quizQuestionsSequencePayload[quizCurrentIndexPointer];
+            const isCorrectSubmission = (selectedOptionIndex === activeQuestionData.correctAnswer);
+
+            quizAnsweredTrackerState[quizCurrentIndexPointer] = {
+                chosenOptIndex: selectedOptionIndex,
+                isCorrect: isCorrectSubmission,
+                skipped: false
+            };
+
+            if (isCorrectSubmission) {
+                playSound('snd-correct');
+                selectedButtonNode.classList.add('border-emerald-500/60', 'bg-emerald-950/40', 'text-emerald-300', 'shadow-lg', 'shadow-emerald-500/10');
+                const badge = selectedButtonNode.querySelector('.shrink-0');
+                if (badge) {
+                    badge.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i>`;
+                    badge.className = "w-6 h-6 rounded-lg bg-emerald-500/20 flex items-center justify-center text-[10px] shrink-0 ml-3";
+                }
+                quizTrackingScoreCache += 10;
+                document.getElementById('quiz-live-score').innerText = `${quizTrackingScoreCache} pts`;
+                createToastNotification("Correct answer tracked! +10 Matrix Points.", "success");
+            } else {
+                playSound('snd-wrong');
+                selectedButtonNode.classList.add('border-rose-500/60', 'bg-rose-950/40', 'text-rose-300', 'shadow-lg', 'shadow-rose-500/10');
+                const badge = selectedButtonNode.querySelector('.shrink-0');
+                if (badge) {
+                    badge.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-400"></i>`;
+                    badge.className = "w-6 h-6 rounded-lg bg-rose-500/20 flex items-center justify-center text-[10px] shrink-0 ml-3";
+                }
+                createToastNotification("Option choice mismatch with era trend target.", "error");
+                
+                // Intentionally highlight the correct response structural block node path
+                setTimeout(() => {
+                    const nodesList = document.getElementById('quiz-options-container').children;
+                    const correctOptionNode = nodesList[activeQuestionData.correctAnswer];
+                    if (correctOptionNode) {
+                        correctOptionNode.classList.add('border-emerald-500/40', 'bg-emerald-950/20');
+                    }
+                }, 300);
+            }
+
+            // Freeze bails on option execution. Re-render element layer structures to reveal live analytical parameters block elements
+            setTimeout(() => {
+                loadQuestionIndexPointerCard();
+            }, 1200);
+        }
+
+        function initiateQuestionTimerCountdownLoop() {
+            quizTimerRemainingValue = 30;
+            const progressCircleFill = document.getElementById('timer-progress');
+            const timerLabelText = document.getElementById('timer-text');
+            
+            timerLabelText.innerText = quizTimerRemainingValue;
+            progressCircleFill.setAttribute('stroke-dasharray', `100, 100`);
+
+            // If the current card layout layer context parameter state is already evaluated historic
+            if (quizAnsweredTrackerState[quizCurrentIndexPointer]) {
+                progressCircleFill.setAttribute('stroke-dasharray', `100, 100`);
+                timerLabelText.innerHTML = `<i class="fa-solid fa-check text-xs text-purple-400"></i>`;
+                return;
+            }
+
+            quizRuntimeCountdownTimer = setInterval(() => {
+                quizTimerRemainingValue--;
+                timerLabelText.innerText = quizTimerRemainingValue;
+                
+                const ratioOffset = Math.round((quizTimerRemainingValue / 30) * 100);
+                progressCircleFill.setAttribute('stroke-dasharray', `${ratioOffset}, 100`);
+
+                if (quizTimerRemainingValue <= 0) {
+                    clearInterval(quizRuntimeCountdownTimer);
+                    executeAutomaticTimeoutPipeline();
                 }
             }, 1000);
         }
 
-        function updateTimerDisplay(ratio) {
-            const offset = 151 - (151 * ratio);
-            document.getElementById('timer-progress-circle').style.strokeDashoffset = offset;
-            document.getElementById('timer-countdown-lbl').innerText = state.timeLeft;
-        }
-
-        // INTERACTION HANDLING ENGINE PROCEDURES
-        function handleOptionSelection(selectedCard, selectedText, correctText) {
-            clearInterval(state.timerInterval);
-            playClickSound();
-
-            const isCorrect = (selectedText === correctText);
-            if (isCorrect) {
-                state.score++;
-                playCorrectSound();
-                showToast("⚡ Performance matched! Correct entry.");
-            } else {
-                playWrongSound();
-                showToast("❌ Selection structural deviation. Incorrect.");
-            }
-
-            state.answeredCount++;
-            state.responses[state.currentQuestionIndex] = {
-                selectedOptionText: selectedText,
-                isCorrect: isCorrect
-            };
-
-            // Force refresh UI state elements layouts safely
-            renderCurrentQuestion();
-        }
-
-        function handleTimeoutTransition() {
-            showToast("⏰ Timing framework elapsed! Skipping block.");
-            // Store empty response profile
-            state.responses[state.currentQuestionIndex] = {
-                selectedOptionText: null,
+        function executeAutomaticTimeoutPipeline() {
+            createToastNotification("System countdown lifecycle reached zero. Auto-skipping.", "info");
+            quizAnsweredTrackerState[quizCurrentIndexPointer] = {
+                chosenOptIndex: null,
                 isCorrect: false,
-                timeout: true
+                skipped: true
             };
-            state.answeredCount++;
-            moveNextLogicalStep();
+            handleQuizNext();
         }
 
-        function moveNextLogicalStep() {
-            if (state.currentQuestionIndex < state.questionsList.length - 1) {
-                state.currentQuestionIndex++;
-                renderCurrentQuestion();
+        function handleQuizPrev() {
+            if (quizCurrentIndexPointer > 0) {
+                quizCurrentIndexPointer--;
+                loadQuestionIndexPointerCard();
+            }
+        }
+
+        function handleQuizNext() {
+            const totalQuestionsCount = quizQuestionsSequencePayload.length;
+            if (quizCurrentIndexPointer < totalQuestionsCount - 1) {
+                quizCurrentIndexPointer++;
+                loadQuestionIndexPointerCard();
             } else {
-                renderEndEvaluationScreen();
+                executeQuizSessionTerminationSummary();
             }
         }
 
-        // TERMINAL DISPLAY PIPELINE DATA MATRIX
-        function renderEndEvaluationScreen() {
-            clearInterval(state.timerInterval);
-            screenQuiz.classList.add('hidden');
-            screenEnd.classList.remove('hidden');
-
-            let total = state.questionsList.length;
-            let correct = 0;
-            let wrong = 0;
-            let skipped = 0;
-
-            for (let i = 0; i < total; i++) {
-                const r = state.responses[i];
-                if (!r || r.timeout) skipped++;
-                else if (r.isCorrect) correct++;
-                else wrong++;
+        function handleQuizSkip() {
+            if (quizAnsweredTrackerState[quizCurrentIndexPointer]) {
+                createToastNotification("Evaluated options indices cannot be skipped post selection.", "info");
+                return;
             }
+            quizAnsweredTrackerState[quizCurrentIndexPointer] = {
+                chosenOptIndex: null,
+                isCorrect: false,
+                skipped: true
+            };
+            createToastNotification("Question vector skipped from execution history ledger.", "info");
+            handleQuizNext();
+        }
 
-            const pctScore = Math.round((correct / total) * 100);
-            document.getElementById('stat-score').innerText = `${pctScore}%`;
-            document.getElementById('stat-correct').innerText = correct;
-            document.getElementById('stat-wrong').innerText = wrong;
-            document.getElementById('stat-skipped').innerText = skipped;
+        function handleQuizRestart() {
+            clearInterval(quizRuntimeCountdownTimer);
+            triggerQuizInstanceInitialization(quizActiveCategoryIndex, null);
+        }
 
-            if (pctScore >= 80) {
-                document.getElementById('end-performance-msg').innerText = "🔥 Elite Trendsetter Framework standard achieved perfectly!";
-                triggerConfetti();
-            } else {
-                document.getElementById('end-performance-msg').innerText = "Survey responses mapped across tracking infrastructure modules.";
+        function confirmExitToHome() {
+            if (confirm("Are you sure you want to exit the current session? Current progression caches will clear.")) {
+                clearInterval(quizRuntimeCountdownTimer);
+                showScreen('screen-home');
             }
         }
 
-        // EVENT BINDINGS MATRIX INTERACTION HOOKS
-        document.getElementById('start-quiz-btn').addEventListener('click', () => {
-            playClickSound();
-            screenStart.classList.add('hidden');
-            screenQuiz.classList.remove('hidden');
-            renderCurrentQuestion();
-        });
+        /* -------------------------------------------------------------------------
+         * Quiz Session End Execution Pipeline & Analytical Aggregations
+         * ------------------------------------------------------------------------- */
+        function executeQuizSessionTerminationSummary() {
+            clearInterval(quizRuntimeCountdownTimer);
+            playSound('snd-click');
 
-        document.getElementById('control-next-btn').addEventListener('click', () => {
-            playClickSound();
-            moveNextLogicalStep();
-        });
+            let aggregateCorrect = 0;
+            let aggregateWrong = 0;
+            let aggregateSkipped = 0;
 
-        document.getElementById('control-prev-btn').addEventListener('click', () => {
-            playClickSound();
-            if (state.currentQuestionIndex > 0) {
-                state.currentQuestionIndex--;
-                renderCurrentQuestion();
-            } else {
-                showToast("First index boundary reached.");
-            }
-        });
+            quizQuestionsSequencePayload.forEach((_, idx) => {
+                const log = quizAnsweredTrackerState[idx];
+                if (log) {
+                    if (log.skipped) aggregateSkipped++;
+                    else if (log.isCorrect) aggregateCorrect++;
+                    else aggregateWrong++;
+                } else {
+                    aggregateSkipped++;
+                }
+            });
 
-        document.getElementById('control-skip-btn').addEventListener('click', () => {
-            playClickSound();
-            if (!state.responses[state.currentQuestionIndex]) {
-                state.responses[state.currentQuestionIndex] = { selectedOptionText: null, isCorrect: false };
-            }
-            moveNextLogicalStep();
-        });
+            const totalCount = quizQuestionsSequencePayload.length;
+            const calculatedPercentage = Math.round((aggregateCorrect / totalCount) * 100);
 
-        // RESTART / HOME TERMINATION HANDLERS
-        const resetEngineFull = () => {
-            state.currentQuestionIndex = 0;
-            state.score = 0;
-            state.answeredCount = 0;
-            state.responses = {};
-            shuffleArray(state.questionsList);
-        };
-
-        document.getElementById('end-restart-btn').addEventListener('click', () => {
-            playClickSound();
-            resetEngineFull();
-            screenEnd.classList.add('hidden');
-            screenQuiz.classList.remove('hidden');
-            renderCurrentQuestion();
-        });
-
-        document.getElementById('end-home-btn').addEventListener('click', () => {
-            playClickSound();
-            resetEngineFull();
-            screenEnd.classList.add('hidden');
-            screenStart.classList.remove('hidden');
-        });
-
-        // SYSTEM MODALS HANDLING BINDINGS INTERFACES
-        function setupModalControls(triggerId, modalId, closeId) {
-            const trigger = document.getElementById(triggerId);
-            const modal = document.getElementById(modalId);
-            const close = document.getElementById(closeId);
-
-            trigger.addEventListener('click', () => { playClickSound(); modal.classList.add('active'); });
-            close.addEventListener('click', () => { playClickSound(); modal.classList.remove('active'); });
-            modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
-        }
-
-        setupModalControls('help-trigger', 'modal-help', 'help-close-btn');
-        setupModalControls('policy-trigger', 'modal-policy', 'policy-close-btn');
-        setupModalControls('links-trigger', 'modal-links', 'links-close-btn');
-
-        // SIGN IN PROCESSING PIPELINE ROUTINES
-        const signinOverlay = document.getElementById('modal-signin');
-        document.getElementById('signin-navbar-btn').addEventListener('click', () => {
-            playClickSound();
-            signinOverlay.classList.add('active');
-        });
-
-        document.getElementById('signin-cancel-btn').addEventListener('click', () => {
-            playClickSound();
-            signinOverlay.classList.remove('active');
-        });
-
-        document.getElementById('signin-confirm-btn').addEventListener('click', () => {
-            playClickSound();
-            const emailInput = document.getElementById('signin-email-field').value.trim();
+            // Inject metrics properties out into targeted static field nodes
+            document.getElementById('result-stat-score').innerText = `${quizTrackingScoreCache} pts`;
+            document.getElementById('result-stat-percentage').innerText = `${calculatedPercentage}%`;
+            document.getElementById('result-stat-ratio').innerText = `${aggregateCorrect} Correct / ${aggregateSkipped} Skipped`;
             
-            // Exact Gmail compliance validation
-            if (!emailInput.toLowerCase().endsWith('@gmail.com') || emailInput.length < 11) {
-                showToast("❌ Access Refused. Absolute compliance requires exact '@gmail.com' parameters.");
+            document.getElementById('ledger-correct').innerText = aggregateCorrect;
+            document.getElementById('ledger-wrong').innerText = aggregateWrong;
+            document.getElementById('ledger-skipped').innerText = aggregateSkipped;
+
+            // Handle Performance messaging routing vectors
+            const msgNode = document.getElementById('result-performance-message');
+            const statusIcon = document.getElementById('result-status-icon');
+
+            if (calculatedPercentage >= 80) {
+                msgNode.innerText = "Exceptional performance profile! Your perspective metrics indicate absolute synchronization with top historical era vectors.";
+                statusIcon.className = "fa-solid fa-ranking-star text-2xl text-amber-400";
+                triggerCelebratoryConfettiBurst();
+            } else if (calculatedPercentage >= 50) {
+                msgNode.innerText = "Solid compliance matching. Your alignment indexes track within reasonable standard parameters of 2000-2026 digital trend data.";
+                statusIcon.className = "fa-solid fa-trophy text-2xl text-slate-300";
+            } else {
+                msgNode.innerText = "Perspective variance detected. Consider starting a fresh context tracking block to calibrate your historical preferences.";
+                statusIcon.className = "fa-solid fa-circle-nodes text-2xl text-blue-400";
+            }
+
+            showScreen('screen-result');
+        }
+
+        function handleLikePoll() {
+            playSound('snd-click');
+            const counterLabel = document.getElementById('like-counter');
+            let value = parseInt(counterLabel.innerText);
+            counterLabel.innerText = value + 1;
+            createToastNotification("Trend response upvoted in dynamic telemetry caches.", "success");
+        }
+
+        function handleSharePoll() {
+            playSound('snd-click');
+            navigator.clipboard.writeText(window.location.href);
+            createToastNotification("Context index deployment hash URL copied to system clipboard.", "success");
+        }
+
+        /* -------------------------------------------------------------------------
+         * Global Authentication Identity Platform Simulation Engine
+         * ------------------------------------------------------------------------- */
+        function openSignInModal() {
+            playSound('snd-click');
+            const m = document.getElementById('modal-signin');
+            m.classList.remove('opacity-0', 'pointer-events-none');
+            m.querySelector('.modal-content').classList.remove('scale-95');
+            m.querySelector('.modal-content').classList.add('scale-100');
+        }
+
+        function closeSignInModal() {
+            playSound('snd-click');
+            const m = document.getElementById('modal-signin');
+            m.classList.add('opacity-0', 'pointer-events-none');
+            m.querySelector('.modal-content').classList.remove('scale-100');
+            m.querySelector('.modal-content').classList.add('scale-95');
+            
+            // Clean up any remaining interactive simulation screens inside modal box containers
+            document.getElementById('signin-scanning-overlay').classList.add('opacity-0', 'pointer-events-none');
+            document.getElementById('signin-avatar-overlay').classList.add('opacity-0', 'pointer-events-none');
+            document.getElementById('signin-email-input').value = '';
+        }
+
+        function executeSignInPipeline() {
+            const inputField = document.getElementById('signin-email-input');
+            const parsedEmailValue = inputField.value.trim();
+
+            // Strict account address routing parameters validation rule matching match tracking pattern checking execution
+            if (!parsedEmailValue || !parsedEmailValue.toLowerCase().endsWith('@gmail.com') || parsedEmailValue.length < 11) {
+                createToastNotification("Authentication rejected. Absolute target address parameter '@gmail.com' required.", "error");
                 return;
             }
 
-            // Simulate AI verification processing delay loops
-            document.getElementById('signin-confirm-btn').innerText = "Scanning Pipeline...";
-            document.getElementById('signin-confirm-btn').style.pointerEvents = 'none';
+            playSound('snd-click');
+            
+            // Trigger 2-5 Seconds Automated Hardware Scanning Simulation Sequence Runtime
+            const scanOverlay = document.getElementById('signin-scanning-overlay');
+            const progressBar = document.getElementById('scan-progress-bar');
+            const statusLabel = document.getElementById('scan-status-text');
+
+            scanOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            progressBar.style.width = '0%';
+            
+            const totalSimulationDuration = Math.floor(Math.random() * 3000) + 2000; // 2 to 5 seconds constraint window parameter
+            let elapsedIntervalStep = 0;
+
+            const trackingLoopInterval = setInterval(() => {
+                elapsedIntervalStep += 100;
+                const ratioRatio = Math.min((elapsedIntervalStep / totalSimulationDuration) * 100, 100);
+                progressBar.style.width = `${ratioRatio}%`;
+
+                if (elapsedIntervalStep >= totalSimulationDuration / 2) {
+                    statusLabel.innerText = "Decoding Verification Credentials Payload Structures";
+                }
+
+                if (elapsedIntervalStep >= totalSimulationDuration) {
+                    clearInterval(trackingLoopInterval);
+                    statusLabel.innerText = "Identity Token Matrix Match Confirmed";
+                    
+                    setTimeout(() => {
+                        currentActiveUserIdentity = parsedEmailValue;
+                        localStorage.setItem('genz_user_identity', parsedEmailValue);
+                        
+                        // Switch scan container layout screen over into the Avatar Selection Matrix Component Grid Viewport
+                        scanOverlay.classList.add('opacity-0', 'pointer-events-none');
+                        generateProfileAvatarMatrixElements();
+                    }, 600);
+                }
+            }, 100);
+        }
+
+        function generateProfileAvatarMatrixElements() {
+            const containerGrid = document.getElementById('avatar-selection-grid');
+            containerGrid.innerHTML = '';
+            const targetAvatarOverlay = document.getElementById('signin-avatar-overlay');
+            targetAvatarOverlay.classList.remove('opacity-0', 'pointer-events-none');
+
+            // Constructing 15 total structural asset array items (10 Free nodes + 5 Locked vector clusters)
+            for (let index = 1; index <= 15; index++) {
+                const isLockedNode = (index > 10);
+                const avatarCellNode = document.createElement('div');
+                
+                avatarCellNode.className = `aspect-square rounded-xl bg-slate-950 border transition-all flex flex-col items-center justify-center relative cursor-pointer group ${
+                    selectedProfileAvatarIndex == index ? 'border-purple-500 bg-purple-950/20 shadow-md' : 'border-white/5 hover:border-white/20'
+                }`;
+                
+                avatarCellNode.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-300 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid ${isLockedNode ? 'fa-user-shield text-slate-500' : 'fa-user-ninja text-purple-400'}"></i>
+                    </div>
+                    <span class="text-[9px] font-bold text-slate-400 mt-1 uppercase tracking-wide">ID-${index}</span>
+                    ${isLockedNode ? '<div class="absolute top-1 right-1 text-[8px] text-rose-400 bg-rose-500/10 px-1 rounded-sm"><i class="fa-solid fa-lock"></i></div>' : '<div class="absolute top-1 right-1 text-[7px] text-emerald-400 bg-emerald-500/10 px-1 rounded-sm">FREE</div>'}
+                `;
+
+                avatarCellNode.onclick = () => {
+                    if (isLockedNode) {
+                        playSound('snd-wrong');
+                        createToastNotification(`Profile Asset Index ID-${index} locked. Upgrade system profile access block.`, "error");
+                    } else {
+                        playSound('snd-click');
+                        selectedProfileAvatarIndex = index;
+                        localStorage.setItem('genz_user_avatar', index);
+                        // Clear siblings structural highlights mapping loops
+                        Array.from(containerGrid.children).forEach(c => c.classList.remove('border-purple-500', 'bg-purple-950/20'));
+                        avatarCellNode.classList.add('border-purple-500', 'bg-purple-950/20');
+                        createToastNotification(`Profile Avatar Asset ID-${index} targeted.`, "info");
+                    }
+                };
+
+                containerGrid.appendChild(avatarCellNode);
+            }
+        }
+
+        function executeAvatarUpgradePipeline() {
+            playSound('snd-click');
+            createToastNotification("Redirecting system routing path to Premium License Tier purchase window...", "info");
+            setTimeout(() => {
+                window.open('https://maliknafaytop10.github.io/ELEVEN-PRO-/', '_blank');
+            }, 500);
+        }
+
+        function dismissAvatarMatrix() {
+            if (!selectedProfileAvatarIndex) {
+                // Default fallback anchor allocation
+                selectedProfileAvatarIndex = 3;
+                localStorage.setItem('genz_user_avatar', 3);
+            }
+            injectAuthenticatedUserHeaderState();
+            closeSignInModal();
+            createToastNotification("Authentication session mapping synchronized fully.", "success");
+        }
+
+        function injectAuthenticatedUserHeaderState() {
+            const targetZoneContainer = document.getElementById('auth-zone');
+            if (targetZoneContainer) {
+                targetZoneContainer.innerHTML = `
+                    <div class="flex items-center gap-2.5 pl-2 border-l border-white/10 ml-2 animate-fade-in">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 relative" title="${currentActiveUserIdentity}">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                            <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-slate-950 text-[7px] font-bold text-white flex items-center justify-center">${selectedProfileAvatarIndex}</span>
+                        </div>
+                        <button onclick="executeLogoutPipeline()" class="w-8 h-8 rounded-lg hover:bg-rose-950/30 border border-transparent hover:border-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center transition-all" title="Terminate Context Session">
+                            <i class="fa-solid fa-power-off text-sm"></i>
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function executeLogoutPipeline() {
+            if (confirm("Terminate authenticated user identity context session?")) {
+                localStorage.removeItem('genz_user_identity');
+                localStorage.removeItem('genz_user_avatar');
+                currentActiveUserIdentity = null;
+                selectedProfileAvatarIndex = null;
+                
+                document.getElementById('auth-zone').innerHTML = `
+                    <button id="btn-global-signin" onclick="openSignInModal()" class="relative overflow-hidden px-5 h-10 rounded-xl bg-gradient-premium text-sm font-bold shadow-lg shadow-purple-600/20 hover:shadow-purple-600/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+                    </button>
+                `;
+                createToastNotification("Identity context caches purged cleanly.", "info");
+            }
+        }
+
+        /* -------------------------------------------------------------------------
+         * Extra System Documentation Modals Infrastructure Functions
+         * ------------------------------------------------------------------------- */
+        function openHelpModal() {
+            playSound('snd-click');
+            const m = document.getElementById('modal-help');
+            m.classList.remove('opacity-0', 'pointer-events-none');
+            m.querySelector('.modal-content').classList.remove('scale-95');
+            m.querySelector('.modal-content').classList.add('scale-100');
+        }
+        function closeHelpModal() {
+            playSound('snd-click');
+            const m = document.getElementById('modal-help');
+            m.classList.add('opacity-0', 'pointer-events-none');
+            m.querySelector('.modal-content').classList.remove('scale-100');
+            m.querySelector('.modal-content').classList.add('scale-95');
+        }
+        function openPrivacyModal() {
+            playSound('snd-click');
+            const m = document.getElementById('modal-privacy');
+            m.classList.remove('opacity-0', 'pointer-events-none');
+            m.querySelector('.modal-content').classList.remove('scale-95');
+            m.querySelector('.modal-content').classList.add('scale-100');
+        }
+        function closePrivacyModal() {
+            playSound('snd-click');
+            const m = document.getElementById('modal-privacy');
+            m.classList.add('opacity-0', 'pointer-events-none');
+            m.querySelector('.modal-content').classList.remove('scale-100');
+            m.querySelector('.modal-content').classList.add('scale-95');
+        }
+
+        /* -------------------------------------------------------------------------
+         * Keyboard Navigation Shortcuts Engine Integration Modules
+         * ------------------------------------------------------------------------- */
+        function setupGlobalKeyboardBindings() {
+            document.addEventListener('keydown', (e) => {
+                const activeQuizContainer = document.getElementById('screen-quiz');
+                if (activeQuizContainer.classList.contains('hidden')) return;
+
+                if (e.key === 'ArrowLeft') {
+                    handleQuizPrev();
+                } else if (e.key === 'ArrowRight') {
+                    if (quizAnsweredTrackerState[quizCurrentIndexPointer]) {
+                        handleQuizNext();
+                    } else {
+                        handleQuizSkip();
+                    }
+                } else if (['1', '2', '3', '4'].includes(e.key)) {
+                    if (quizAnsweredTrackerState[quizCurrentIndexPointer]) return;
+                    const parsedOptIdx = parseInt(e.key) - 1;
+                    const elementsGrid = document.getElementById('quiz-options-container').children;
+                    if (elementsGrid && elementsGrid[parsedOptIdx]) {
+                        elementsGrid[parsedOptIdx].click();
+                    }
+                } else if (e.key === 'Enter') {
+                    if (quizAnsweredTrackerState[quizCurrentIndexPointer]) {
+                        handleQuizNext();
+                    }
+                }
+            });
+        }
+
+        /* -------------------------------------------------------------------------
+         * Core Utility Helper Functions (Audio, Shufflers, Confetti, Ripples)
+         * ------------------------------------------------------------------------- */
+        function playSound(audioNodeId) {
+            if (activeAudioMuted) return;
+            const element = document.getElementById(audioNodeId);
+            if (element) {
+                element.currentTime = 0;
+                element.play().catch(() => {});
+            }
+        }
+
+        function toggleMute() {
+            activeAudioMuted = !activeAudioMuted;
+            localStorage.setItem('genz_muted', activeAudioMuted);
+            updateMuteUIState();
+        }
+
+        function updateMuteUIState() {
+            const iconNode = document.getElementById('btn-mute').querySelector('i');
+            if (activeAudioMuted) {
+                iconNode.className = "fa-solid fa-volume-xmark text-rose-400";
+                createToastNotification("System audio outputs muted.", "info");
+            } else {
+                iconNode.className = "fa-solid fa-volume-high text-emerald-400";
+                createToastNotification("System audio outputs active.", "info");
+            }
+        }
+
+        function toggleDarkMode() {
+            playSound('snd-click');
+            if (document.documentElement.classList.contains('light-mode-override')) {
+                document.documentElement.classList.remove('light-mode-override');
+                localStorage.setItem('genz_theme', 'dark');
+                createToastNotification("Dark Mode activated.", "info");
+            } else {
+                document.documentElement.classList.add('light-mode-override');
+                localStorage.setItem('genz_theme', 'light');
+                createToastNotification("Light mode aesthetic layer applied.", "info");
+            }
+        }
+
+        function shuffleArrayPayload(targetArray) {
+            for (let idx = targetArray.length - 1; idx > 0; idx--) {
+                const randomOffset = Math.floor(Math.random() * (idx + 1));
+                [targetArray[idx], targetArray[randomOffset]] = [targetArray[randomOffset], targetArray[idx]];
+            }
+            return targetArray;
+        }
+
+        function createRippleEffect(event) {
+            const triggerElement = event.currentTarget;
+            const rippleNode = document.createElement('span');
+            const boundingDimensions = triggerElement.getBoundingClientRect();
+            
+            const radiusRadius = Math.max(boundingDimensions.width, boundingDimensions.height);
+            rippleNode.style.width = rippleNode.style.height = `${radiusRadius}px`;
+            rippleNode.style.left = `${event.clientX - boundingDimensions.left - radiusRadius / 2}px`;
+            rippleNode.style.top = `${event.clientY - boundingDimensions.top - radiusRadius / 2}px`;
+            rippleNode.className = 'ripple';
+
+            triggerElement.appendChild(rippleNode);
+            setTimeout(() => rippleNode.remove(), 600);
+        }
+
+        function createToastNotification(messageString, notificationType = 'success') {
+            const containerNode = document.getElementById('toast-container');
+            const toastCell = document.createElement('div');
+            
+            let iconAssetHtml = `<i class="fa-solid fa-circle-check text-emerald-400"></i>`;
+            let borderStyleColor = "border-emerald-500/20";
+            if (notificationType === 'error') {
+                iconAssetHtml = `<i class="fa-solid fa-circle-exclamation text-rose-400"></i>`;
+                borderStyleColor = "border-rose-500/20";
+            } else if (notificationType === 'info') {
+                iconAssetHtml = `<i class="fa-solid fa-circle-info text-blue-400"></i>`;
+                borderStyleColor = "border-blue-500/20";
+            }
+
+            toastCell.className = `p-4 rounded-xl bg-slate-900 border ${borderStyleColor} shadow-xl flex items-center gap-3 max-w-sm transform translate-y-2 opacity-0 transition-all duration-300 relative overflow-hidden text-xs font-semibold text-slate-200`;
+            toastCell.innerHTML = `
+                <div class="shrink-0 text-sm">${iconAssetHtml}</div>
+                <div>${messageString}</div>
+            `;
+
+            containerNode.appendChild(toastCell);
+            
+            // Push layout lifecycle transformations forward instantly
+            setTimeout(() => {
+                toastCell.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
 
             setTimeout(() => {
-                showToast("🧬 Hardware Scanner verified integrity sequence parameters completely.");
-                signinOverlay.classList.remove('active');
-                
-                // Redraw UI navbar states controls
-                document.getElementById('signin-navbar-btn').classList.add('hidden');
-                const slot = document.getElementById('user-avatar-slot');
-                slot.classList.remove('hidden');
-                slot.title = `Access Authorized: ${emailInput}`;
-                
-                showToast("✅ Welcome Verified @Pro Access Enabled.");
-            }, 2500);
-        });
+                toastCell.classList.add('opacity-0', 'translate-x-4');
+                setTimeout(() => toastCell.remove(), 300);
+            }, 3500);
+        }
 
-        // EXTRA PREFERENCES TOGGLES INTERACTION HOOKS
-        document.getElementById('sound-toggle').addEventListener('click', () => {
-            state.isMuted = !state.isMuted;
-            document.getElementById('sound-toggle').innerText = state.isMuted ? "🔇" : "🔊";
-        });
-
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            playClickSound();
-            document.body.classList.toggle('light-mode');
-            const isLight = document.body.classList.contains('light-mode');
-            document.getElementById('theme-toggle').innerText = isLight ? "☀️" : "🌙";
-            localStorage.setItem('genz-theme', isLight ? 'light' : 'dark');
-        });
-
-        // KEYBOARD ACCESSIBILITY CAPABILITY ENGINE SYSTEM
-        document.addEventListener('keydown', (e) => {
-            if (screenQuiz.classList.contains('hidden')) return;
+        function triggerCelebratoryConfettiBurst() {
+            const canvasElement = document.getElementById('confetti-canvas');
+            const context2d = canvasElement.getContext('2d');
             
-            if (e.key === 'ArrowRight') {
-                document.getElementById('control-next-btn').click();
-            } else if (e.key === 'ArrowLeft') {
-                document.getElementById('control-prev-btn').click();
-            } else if (['1','2','3','4'].includes(e.key)) {
-                const index = parseInt(e.key) - 1;
-                const targets = document.querySelectorAll('.option-card');
-                if (targets[index] && !targets[index].classList.contains('disabled')) {
-                    targets[index].click();
-                }
-            } else if (e.key === 'Enter') {
-                document.getElementById('control-next-btn').click();
-            }
-        });
+            canvasElement.width = window.innerWidth;
+            canvasElement.height = window.innerHeight;
 
-        // TRACE START SEQUENCE EXECUTION BUILD
-        window.addEventListener('DOMContentLoaded', initApp);
+            let particlesStorage = [];
+            const paletteOptions = ['#7C3AED', '#3B82F6', '#10B981', '#F59E0B', '#EF4444'];
+
+            for (let i = 0; i < 120; i++) {
+                particlesStorage.push({
+                    x: Math.random() * canvasElement.width,
+                    y: Math.random() * canvasElement.height - canvasElement.height,
+                    radius: Math.random() * 4 + 3,
+                    color: paletteOptions[Math.floor(Math.random() * paletteOptions.length)],
+                    velocityStepX: Math.random() * 3 - 1.5,
+                    velocityStepY: Math.random() * 3 + 2,
+                    rotationAngle: Math.random() * 360,
+                    rotationSpeed: Math.random() * 2 - 1
+                });
+            }
+
+            let particleAnimationLifecycleFrame;
+            function updateAndRenderParticleLoop() {
+                context2d.clearRect(0, 0, canvasElement.width, canvasElement.height);
+                let aliveCount = 0;
+
+                particlesStorage.forEach(p => {
+                    p.y += p.velocityStepY;
+                    p.x += p.velocityStepX;
+                    p.rotationAngle += p.rotationSpeed;
+
+                    if (p.y < canvasElement.height) aliveCount++;
+
+                    context2d.save();
+                    context2d.translate(p.x, p.y);
+                    context2d.rotate((p.rotationAngle * Math.PI) / 180);
+                    context2d.fillStyle = p.color;
+                    context2d.fillRect(-p.radius, -p.radius, p.radius * 2, p.radius * 2);
+                    context2d.restore();
+                });
+
+                if (aliveCount > 0) {
+                    particleAnimationLifecycleFrame = requestAnimationFrame(updateAndRenderParticleLoop);
+                } else {
+                    context2d.clearRect(0, 0, canvasElement.width, canvasElement.height);
+                    cancelAnimationFrame(particleAnimationLifecycleFrame);
+                }
+            }
+            updateAndRenderParticleLoop();
+        }
     </script>
 </body>
 </html>
